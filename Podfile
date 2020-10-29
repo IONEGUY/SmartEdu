@@ -5,7 +5,14 @@ target 'SmartEducation' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for SmartEducation
+  pod 'Alamofire'
+  pod 'RealmSwift'
+  pod 'Realm'
+  pod 'SDWebImage'
+  pod 'SwiftLint'
+  pod 'Closures'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 
   target 'SmartEducationTests' do
     inherit! :search_paths

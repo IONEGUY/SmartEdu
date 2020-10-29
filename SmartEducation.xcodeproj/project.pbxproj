@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0525B6B60D1B39B37F50CEA6 /* Pods_SmartEducation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4190D602A85DAAFE8D9B86 /* Pods_SmartEducation.framework */; };
+		2E7275ACC09E4791079826DD /* Pods_SmartEducation_SmartEducationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E588DB1D335A043E94FD59A /* Pods_SmartEducation_SmartEducationUITests.framework */; };
+		EA22D77B0331530C8D208BE3 /* Pods_SmartEducationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF87241E2987BB55DA9713 /* Pods_SmartEducationTests.framework */; };
 		FAE312C1253F21EA00CB73F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */; };
 		FAE312C3253F21EA00CB73F8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE312C2253F21EA00CB73F8 /* art.scnassets */; };
 		FAE312C5253F21EA00CB73F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE312C4253F21EA00CB73F8 /* ViewController.swift */; };
@@ -35,6 +38,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13FF87241E2987BB55DA9713 /* Pods_SmartEducationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartEducationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4190D602A85DAAFE8D9B86 /* Pods_SmartEducation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartEducation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C9DC74B013389E9DD052916 /* Pods-SmartEducation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartEducation.release.xcconfig"; path = "Target Support Files/Pods-SmartEducation/Pods-SmartEducation.release.xcconfig"; sourceTree = "<group>"; };
+		3E588DB1D335A043E94FD59A /* Pods_SmartEducation_SmartEducationUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartEducation_SmartEducationUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FEB7118D1870D7F03663CFD /* Pods-SmartEducation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartEducation.debug.xcconfig"; path = "Target Support Files/Pods-SmartEducation/Pods-SmartEducation.debug.xcconfig"; sourceTree = "<group>"; };
+		67357D8DD3E1496183DB499B /* Pods-SmartEducationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartEducationTests.debug.xcconfig"; path = "Target Support Files/Pods-SmartEducationTests/Pods-SmartEducationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		983A730802E6226166BF0850 /* Pods-SmartEducationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartEducationTests.release.xcconfig"; path = "Target Support Files/Pods-SmartEducationTests/Pods-SmartEducationTests.release.xcconfig"; sourceTree = "<group>"; };
+		9A5F12F63CD58BE9F9BB50C9 /* Pods-SmartEducation-SmartEducationUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartEducation-SmartEducationUITests.release.xcconfig"; path = "Target Support Files/Pods-SmartEducation-SmartEducationUITests/Pods-SmartEducation-SmartEducationUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F98A32ED199FF2C18670CB87 /* Pods-SmartEducation-SmartEducationUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartEducation-SmartEducationUITests.debug.xcconfig"; path = "Target Support Files/Pods-SmartEducation-SmartEducationUITests/Pods-SmartEducation-SmartEducationUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FAE312BD253F21EA00CB73F8 /* SmartEducation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartEducation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE312C2253F21EA00CB73F8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0525B6B60D1B39B37F50CEA6 /* Pods_SmartEducation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA22D77B0331530C8D208BE3 /* Pods_SmartEducationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +84,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E7275ACC09E4791079826DD /* Pods_SmartEducation_SmartEducationUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E0469CEB3444840A55ABF4C6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C4190D602A85DAAFE8D9B86 /* Pods_SmartEducation.framework */,
+				3E588DB1D335A043E94FD59A /* Pods_SmartEducation_SmartEducationUITests.framework */,
+				13FF87241E2987BB55DA9713 /* Pods_SmartEducationTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E6535402CF0DF12802BEFC2F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4FEB7118D1870D7F03663CFD /* Pods-SmartEducation.debug.xcconfig */,
+				2C9DC74B013389E9DD052916 /* Pods-SmartEducation.release.xcconfig */,
+				F98A32ED199FF2C18670CB87 /* Pods-SmartEducation-SmartEducationUITests.debug.xcconfig */,
+				9A5F12F63CD58BE9F9BB50C9 /* Pods-SmartEducation-SmartEducationUITests.release.xcconfig */,
+				67357D8DD3E1496183DB499B /* Pods-SmartEducationTests.debug.xcconfig */,
+				983A730802E6226166BF0850 /* Pods-SmartEducationTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		FAE312B4253F21EA00CB73F8 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +121,8 @@
 				FAE312D6253F21EB00CB73F8 /* SmartEducationTests */,
 				FAE312E1253F21EB00CB73F8 /* SmartEducationUITests */,
 				FAE312BE253F21EA00CB73F8 /* Products */,
+				E6535402CF0DF12802BEFC2F /* Pods */,
+				E0469CEB3444840A55ABF4C6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,9 +175,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAE312E7253F21EB00CB73F8 /* Build configuration list for PBXNativeTarget "SmartEducation" */;
 			buildPhases = (
+				FABDA9BA254B5D1600936B99 /* ShellScript */,
+				EB520D16D4DA65B60DCF29E5 /* [CP] Check Pods Manifest.lock */,
 				FAE312B9253F21EA00CB73F8 /* Sources */,
 				FAE312BA253F21EA00CB73F8 /* Frameworks */,
 				FAE312BB253F21EA00CB73F8 /* Resources */,
+				2CFDD8F55F1A76C5E130D6D0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +195,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAE312EA253F21EB00CB73F8 /* Build configuration list for PBXNativeTarget "SmartEducationTests" */;
 			buildPhases = (
+				15331B611271F4EF4EB7CEFB /* [CP] Check Pods Manifest.lock */,
 				FAE312CF253F21EB00CB73F8 /* Sources */,
 				FAE312D0253F21EB00CB73F8 /* Frameworks */,
 				FAE312D1253F21EB00CB73F8 /* Resources */,
@@ -170,9 +214,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAE312ED253F21EB00CB73F8 /* Build configuration list for PBXNativeTarget "SmartEducationUITests" */;
 			buildPhases = (
+				D1E7811A6AF5E10960F88428 /* [CP] Check Pods Manifest.lock */,
 				FAE312DA253F21EB00CB73F8 /* Sources */,
 				FAE312DB253F21EB00CB73F8 /* Frameworks */,
 				FAE312DC253F21EB00CB73F8 /* Resources */,
+				BBEB910D6DDC77704A919E3E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,6 +299,126 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		15331B611271F4EF4EB7CEFB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmartEducationTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2CFDD8F55F1A76C5E130D6D0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmartEducation/Pods-SmartEducation-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmartEducation/Pods-SmartEducation-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SmartEducation/Pods-SmartEducation-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBEB910D6DDC77704A919E3E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmartEducation-SmartEducationUITests/Pods-SmartEducation-SmartEducationUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmartEducation-SmartEducationUITests/Pods-SmartEducation-SmartEducationUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SmartEducation-SmartEducationUITests/Pods-SmartEducation-SmartEducationUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1E7811A6AF5E10960F88428 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmartEducation-SmartEducationUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB520D16D4DA65B60DCF29E5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmartEducation-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FABDA9BA254B5D1600936B99 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FAE312B9253F21EA00CB73F8 /* Sources */ = {
@@ -433,6 +599,7 @@
 		};
 		FAE312E8253F21EB00CB73F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FEB7118D1870D7F03663CFD /* Pods-SmartEducation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -452,6 +619,7 @@
 		};
 		FAE312E9253F21EB00CB73F8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C9DC74B013389E9DD052916 /* Pods-SmartEducation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -471,6 +639,7 @@
 		};
 		FAE312EB253F21EB00CB73F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67357D8DD3E1496183DB499B /* Pods-SmartEducationTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -493,6 +662,7 @@
 		};
 		FAE312EC253F21EB00CB73F8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 983A730802E6226166BF0850 /* Pods-SmartEducationTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -515,6 +685,7 @@
 		};
 		FAE312EE253F21EB00CB73F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F98A32ED199FF2C18670CB87 /* Pods-SmartEducation-SmartEducationUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -535,6 +706,7 @@
 		};
 		FAE312EF253F21EB00CB73F8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A5F12F63CD58BE9F9BB50C9 /* Pods-SmartEducation-SmartEducationUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
