@@ -10,6 +10,11 @@
 		0525B6B60D1B39B37F50CEA6 /* Pods_SmartEducation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4190D602A85DAAFE8D9B86 /* Pods_SmartEducation.framework */; };
 		2E7275ACC09E4791079826DD /* Pods_SmartEducation_SmartEducationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E588DB1D335A043E94FD59A /* Pods_SmartEducation_SmartEducationUITests.framework */; };
 		EA22D77B0331530C8D208BE3 /* Pods_SmartEducationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF87241E2987BB55DA9713 /* Pods_SmartEducationTests.framework */; };
+		FA52A196254CBA0A0075DE9C /* BaseApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA52A195254CBA0A0075DE9C /* BaseApiService.swift */; };
+		FA52A19B254CBF310075DE9C /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA52A19A254CBF310075DE9C /* ErrorHandler.swift */; };
+		FA52A1A0254CC23D0075DE9C /* ApiErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA52A19F254CC23D0075DE9C /* ApiErrorLogger.swift */; };
+		FABBD3A5254C336500CE45C5 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBD3A4254C336500CE45C5 /* URLRequestBuilder.swift */; };
+		FABBD3AD254C33B500CE45C5 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBD3AC254C33B500CE45C5 /* ApiConstants.swift */; };
 		FAE312C1253F21EA00CB73F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */; };
 		FAE312C3253F21EA00CB73F8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE312C2253F21EA00CB73F8 /* art.scnassets */; };
 		FAE312C5253F21EA00CB73F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE312C4253F21EA00CB73F8 /* ViewController.swift */; };
@@ -47,6 +52,11 @@
 		983A730802E6226166BF0850 /* Pods-SmartEducationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartEducationTests.release.xcconfig"; path = "Target Support Files/Pods-SmartEducationTests/Pods-SmartEducationTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A5F12F63CD58BE9F9BB50C9 /* Pods-SmartEducation-SmartEducationUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartEducation-SmartEducationUITests.release.xcconfig"; path = "Target Support Files/Pods-SmartEducation-SmartEducationUITests/Pods-SmartEducation-SmartEducationUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F98A32ED199FF2C18670CB87 /* Pods-SmartEducation-SmartEducationUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartEducation-SmartEducationUITests.debug.xcconfig"; path = "Target Support Files/Pods-SmartEducation-SmartEducationUITests/Pods-SmartEducation-SmartEducationUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA52A195254CBA0A0075DE9C /* BaseApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseApiService.swift; sourceTree = "<group>"; };
+		FA52A19A254CBF310075DE9C /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		FA52A19F254CC23D0075DE9C /* ApiErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiErrorLogger.swift; sourceTree = "<group>"; };
+		FABBD3A4254C336500CE45C5 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
+		FABBD3AC254C33B500CE45C5 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		FAE312BD253F21EA00CB73F8 /* SmartEducation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartEducation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE312C2253F21EA00CB73F8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -114,6 +124,103 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		FA52A1B3254CC7C90075DE9C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FABBD3A4254C336500CE45C5 /* URLRequestBuilder.swift */,
+				FABBD3AC254C33B500CE45C5 /* ApiConstants.swift */,
+				FA52A195254CBA0A0075DE9C /* BaseApiService.swift */,
+				FA52A19A254CBF310075DE9C /* ErrorHandler.swift */,
+				FA52A19F254CC23D0075DE9C /* ApiErrorLogger.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		FA52A1B4254CC8210075DE9C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FA52A1B5254CC84B0075DE9C /* ApiServices */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ApiServices;
+			sourceTree = "<group>";
+		};
+		FA52A1B6254CC86D0075DE9C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FA52A1B7254CC8770075DE9C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA52A1B8254CC87F0075DE9C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FA52A1B9254CC88F0075DE9C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA52A1C0254CC9700075DE9C /* Storyboards */,
+				FA52A1BB254CC8B70075DE9C /* ViewControllers */,
+				FA52A1BA254CC8AA0075DE9C /* ExtendedControls */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA52A1BA254CC8AA0075DE9C /* ExtendedControls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ExtendedControls;
+			sourceTree = "<group>";
+		};
+		FA52A1BB254CC8B70075DE9C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAE312C4253F21EA00CB73F8 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FA52A1BC254CC8F20075DE9C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FA52A1C0254CC9700075DE9C /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FAE312C6253F21EA00CB73F8 /* Main.storyboard */,
+				FAE312CB253F21EB00CB73F8 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FABBD3A3254C333C00CE45C5 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				FA52A1B5254CC84B0075DE9C /* ApiServices */,
+				FA52A1B3254CC7C90075DE9C /* Core */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		FAE312B4253F21EA00CB73F8 = {
 			isa = PBXGroup;
 			children = (
@@ -139,13 +246,17 @@
 		FAE312BF253F21EA00CB73F8 /* SmartEducation */ = {
 			isa = PBXGroup;
 			children = (
-				FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */,
-				FAE312C2253F21EA00CB73F8 /* art.scnassets */,
-				FAE312C4253F21EA00CB73F8 /* ViewController.swift */,
-				FAE312C6253F21EA00CB73F8 /* Main.storyboard */,
-				FAE312C9253F21EB00CB73F8 /* Assets.xcassets */,
-				FAE312CB253F21EB00CB73F8 /* LaunchScreen.storyboard */,
+				FA52A1BC254CC8F20075DE9C /* Resources */,
+				FA52A1B9254CC88F0075DE9C /* Views */,
+				FA52A1B8254CC87F0075DE9C /* Helpers */,
+				FA52A1B7254CC8770075DE9C /* Extensions */,
+				FA52A1B6254CC86D0075DE9C /* ViewModels */,
+				FA52A1B4254CC8210075DE9C /* Models */,
+				FABBD3A3254C333C00CE45C5 /* Networking */,
 				FAE312CE253F21EB00CB73F8 /* Info.plist */,
+				FAE312C9253F21EB00CB73F8 /* Assets.xcassets */,
+				FAE312C2253F21EA00CB73F8 /* art.scnassets */,
+				FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */,
 			);
 			path = SmartEducation;
 			sourceTree = "<group>";
@@ -175,8 +286,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAE312E7253F21EB00CB73F8 /* Build configuration list for PBXNativeTarget "SmartEducation" */;
 			buildPhases = (
-				FABDA9BA254B5D1600936B99 /* ShellScript */,
 				EB520D16D4DA65B60DCF29E5 /* [CP] Check Pods Manifest.lock */,
+				FABDA9BA254B5D1600936B99 /* ShellScript */,
 				FAE312B9253F21EA00CB73F8 /* Sources */,
 				FAE312BA253F21EA00CB73F8 /* Frameworks */,
 				FAE312BB253F21EA00CB73F8 /* Resources */,
@@ -425,8 +536,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABBD3AD254C33B500CE45C5 /* ApiConstants.swift in Sources */,
+				FA52A19B254CBF310075DE9C /* ErrorHandler.swift in Sources */,
 				FAE312C5253F21EA00CB73F8 /* ViewController.swift in Sources */,
+				FABBD3A5254C336500CE45C5 /* URLRequestBuilder.swift in Sources */,
+				FA52A196254CBA0A0075DE9C /* BaseApiService.swift in Sources */,
 				FAE312C1253F21EA00CB73F8 /* AppDelegate.swift in Sources */,
+				FA52A1A0254CC23D0075DE9C /* ApiErrorLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
