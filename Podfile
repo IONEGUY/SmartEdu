@@ -13,6 +13,8 @@ target 'SmartEducation' do
   pod 'Closures'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'Swinject'
+  pod 'SwinjectAutoregistration'
 
   target 'SmartEducationTests' do
     inherit! :search_paths

@@ -23,6 +23,11 @@
 		FAE312CD253F21EB00CB73F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE312CB253F21EB00CB73F8 /* LaunchScreen.storyboard */; };
 		FAE312D8253F21EB00CB73F8 /* SmartEducationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE312D7253F21EB00CB73F8 /* SmartEducationTests.swift */; };
 		FAE312E3253F21EB00CB73F8 /* SmartEducationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE312E2253F21EB00CB73F8 /* SmartEducationUITests.swift */; };
+		FAEE678D25506ABA00CD16B9 /* CurrentViewControllerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE678C25506ABA00CD16B9 /* CurrentViewControllerProvider.swift */; };
+		FAEE679B2550869D00CD16B9 /* DIContainerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE679A2550869D00CD16B9 /* DIContainerConfigurator.swift */; };
+		FAEE67A0255086E800CD16B9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE679F255086E800CD16B9 /* Router.swift */; };
+		FAEE67A52550872400CD16B9 /* NavigatedToAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE67A42550872400CD16B9 /* NavigatedToAware.swift */; };
+		FAEE67AA2550874F00CD16B9 /* MVVMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE67A92550874F00CD16B9 /* MVVMViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +76,11 @@
 		FAE312DE253F21EB00CB73F8 /* SmartEducationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartEducationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE312E2253F21EB00CB73F8 /* SmartEducationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEducationUITests.swift; sourceTree = "<group>"; };
 		FAE312E4253F21EB00CB73F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAEE678C25506ABA00CD16B9 /* CurrentViewControllerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewControllerProvider.swift; sourceTree = "<group>"; };
+		FAEE679A2550869D00CD16B9 /* DIContainerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainerConfigurator.swift; sourceTree = "<group>"; };
+		FAEE679F255086E800CD16B9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		FAEE67A42550872400CD16B9 /* NavigatedToAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatedToAware.swift; sourceTree = "<group>"; };
+		FAEE67A92550874F00CD16B9 /* MVVMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +177,7 @@
 		FA52A1B8254CC87F0075DE9C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FAEE678C25506ABA00CD16B9 /* CurrentViewControllerProvider.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -246,6 +257,7 @@
 		FAE312BF253F21EA00CB73F8 /* SmartEducation */ = {
 			isa = PBXGroup;
 			children = (
+				FAEE67992550868100CD16B9 /* Navigation */,
 				FA52A1BC254CC8F20075DE9C /* Resources */,
 				FA52A1B9254CC88F0075DE9C /* Views */,
 				FA52A1B8254CC87F0075DE9C /* Helpers */,
@@ -277,6 +289,17 @@
 				FAE312E4253F21EB00CB73F8 /* Info.plist */,
 			);
 			path = SmartEducationUITests;
+			sourceTree = "<group>";
+		};
+		FAEE67992550868100CD16B9 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				FAEE679A2550869D00CD16B9 /* DIContainerConfigurator.swift */,
+				FAEE679F255086E800CD16B9 /* Router.swift */,
+				FAEE67A42550872400CD16B9 /* NavigatedToAware.swift */,
+				FAEE67A92550874F00CD16B9 /* MVVMViewController.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -536,9 +559,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAEE67A0255086E800CD16B9 /* Router.swift in Sources */,
 				FABBD3AD254C33B500CE45C5 /* ApiConstants.swift in Sources */,
 				FA52A19B254CBF310075DE9C /* ErrorHandler.swift in Sources */,
+				FAEE67A52550872400CD16B9 /* NavigatedToAware.swift in Sources */,
 				FAE312C5253F21EA00CB73F8 /* ViewController.swift in Sources */,
+				FAEE678D25506ABA00CD16B9 /* CurrentViewControllerProvider.swift in Sources */,
+				FAEE679B2550869D00CD16B9 /* DIContainerConfigurator.swift in Sources */,
+				FAEE67AA2550874F00CD16B9 /* MVVMViewController.swift in Sources */,
 				FABBD3A5254C336500CE45C5 /* URLRequestBuilder.swift in Sources */,
 				FA52A196254CBA0A0075DE9C /* BaseApiService.swift in Sources */,
 				FAE312C1253F21EA00CB73F8 /* AppDelegate.swift in Sources */,
