@@ -18,7 +18,9 @@ class DIContainerConfigurator {
     }
 
     private static func registerViewModels() {
-//        container.autoregister(ViewModel.self, initializer: ViewModel.init)
+        container.autoregister(FieldsOfScienceViewModel.self, initializer: FieldsOfScienceViewModel.init)
+        container.autoregister(SciencesViewModel.self, initializer: SciencesViewModel.init)
+        container.autoregister(SpecificScienceViewModel.self, initializer: SpecificScienceViewModel.init)
     }
 
     private static func registerServices() {
