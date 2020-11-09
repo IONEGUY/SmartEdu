@@ -7,37 +7,21 @@
 
 import UIKit
 
-class TableViewWithTitleViewController<TViewModel: TableViewWithTitleViewModel>:
-    UIViewController, MVVMViewController {
-    
+class TableViewWithTitleViewController<TViewModel: TableViewWithTitleViewModel>: UIViewController, MVVMViewController {
+
     var viewModel: TViewModel?
     typealias ViewModelType = TViewModel
-    
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         titleLabel.text = viewModel?.title
 
-        setupNavigationBar()
-        setupBackBarButtonItem()
+        setupBaseNavBarStyle()
         configueTableView()
-    }
-    
-    func setupBackBarButtonItem() {
-        let backButton = UIBarButtonItem()
-        backButton.title = String.empty
-        backButton.tintColor = .black
-        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-    }
-
-    func setupNavigationBar() {
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.layoutIfNeeded()
     }
 
     func configueTableView() {

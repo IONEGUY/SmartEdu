@@ -11,6 +11,8 @@ import Alamofire
 struct ApiConstants {
     static let baseUrl = "https://jsonplaceholder.typicode.com"
 
+    static let conferenceUrl = "https://smarteducation-zain-test.awtg.co.uk/"
+
     struct Parameters {
 
     }

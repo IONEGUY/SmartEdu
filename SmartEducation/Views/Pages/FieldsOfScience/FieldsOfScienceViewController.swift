@@ -21,13 +21,8 @@ class FieldsOfScienceViewController: UIViewController, MVVMViewController {
 
         titleLabel.text = "Fields of science"
 
+        setupBaseNavBarStyle()
         configueFieldsOfScienceCollectionView()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        navigationController?.navigationBar.isHidden = true
     }
 
     private func configueFieldsOfScienceCollectionView() {

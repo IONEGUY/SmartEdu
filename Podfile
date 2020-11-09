@@ -15,6 +15,7 @@ target 'SmartEducation' do
   pod 'RxCocoa'
   pod 'Swinject'
   pod 'SwinjectAutoregistration'
+  pod 'JitsiMeetSDK'
 
   target 'SmartEducationTests' do
     inherit! :search_paths

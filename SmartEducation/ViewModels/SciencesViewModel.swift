@@ -10,7 +10,7 @@ import Foundation
 class SciencesViewModel: TableViewWithTitleViewModel {
     override init() {
         super.init()
-        
+
         self.items = [
             ScienceListItem(title: "Biology", iconName: "plant"),
             ScienceListItem(title: "Chemistry", iconName: "flask"),

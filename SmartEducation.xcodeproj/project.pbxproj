@@ -24,6 +24,10 @@
 		FA0919E12551C34D0097203E /* SpecificScienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0919DF2551C34D0097203E /* SpecificScienceViewController.swift */; };
 		FA0919E22551C34D0097203E /* SpecificScienceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0919E02551C34D0097203E /* SpecificScienceViewController.xib */; };
 		FA0919EA2551D7270097203E /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0919E92551D7270097203E /* UIColorExtensions.swift */; };
+		FA512685255568D40082DBFF /* ImageRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA512683255568D40082DBFF /* ImageRecognitionViewController.swift */; };
+		FA512686255568D40082DBFF /* ImageRecognitionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA512684255568D40082DBFF /* ImageRecognitionViewController.xib */; };
+		FA5218162555DD0E0012BAEE /* ConferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5218142555DD0E0012BAEE /* ConferenceViewController.swift */; };
+		FA5218172555DD0E0012BAEE /* ConferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5218152555DD0E0012BAEE /* ConferenceViewController.xib */; };
 		FA5286472552A0C100581987 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5286462552A0C100581987 /* StringExtensions.swift */; };
 		FA52864C2552F59200581987 /* TableViewWithTItleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA52864B2552F59200581987 /* TableViewWithTItleViewController.swift */; };
 		FA5286512552F94800581987 /* TableViewWithTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5286502552F94800581987 /* TableViewWithTitleViewModel.swift */; };
@@ -32,6 +36,10 @@
 		FA52A1A0254CC23D0075DE9C /* ApiErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA52A19F254CC23D0075DE9C /* ApiErrorLogger.swift */; };
 		FABBD3A5254C336500CE45C5 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBD3A4254C336500CE45C5 /* URLRequestBuilder.swift */; };
 		FABBD3AD254C33B500CE45C5 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBD3AC254C33B500CE45C5 /* ApiConstants.swift */; };
+		FACA5448255871ED00ACB158 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA5447255871ED00ACB158 /* UIViewControllerExtensions.swift */; };
+		FACA545A25587A8500ACB158 /* VolumetricObjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA545825587A8500ACB158 /* VolumetricObjectsViewController.swift */; };
+		FACA545B25587A8500ACB158 /* VolumetricObjectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACA545925587A8500ACB158 /* VolumetricObjectsViewController.xib */; };
+		FACA546025587AA600ACB158 /* VolumetricObjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA545F25587AA600ACB158 /* VolumetricObjectsViewModel.swift */; };
 		FAE312C1253F21EA00CB73F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */; };
 		FAE312C3253F21EA00CB73F8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE312C2253F21EA00CB73F8 /* art.scnassets */; };
 		FAE312CA253F21EB00CB73F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE312C9253F21EB00CB73F8 /* Assets.xcassets */; };
@@ -86,6 +94,10 @@
 		FA0919DF2551C34D0097203E /* SpecificScienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificScienceViewController.swift; sourceTree = "<group>"; };
 		FA0919E02551C34D0097203E /* SpecificScienceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpecificScienceViewController.xib; sourceTree = "<group>"; };
 		FA0919E92551D7270097203E /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		FA512683255568D40082DBFF /* ImageRecognitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecognitionViewController.swift; sourceTree = "<group>"; };
+		FA512684255568D40082DBFF /* ImageRecognitionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageRecognitionViewController.xib; sourceTree = "<group>"; };
+		FA5218142555DD0E0012BAEE /* ConferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceViewController.swift; sourceTree = "<group>"; };
+		FA5218152555DD0E0012BAEE /* ConferenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConferenceViewController.xib; sourceTree = "<group>"; };
 		FA5286462552A0C100581987 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		FA52864B2552F59200581987 /* TableViewWithTItleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewWithTItleViewController.swift; sourceTree = "<group>"; };
 		FA5286502552F94800581987 /* TableViewWithTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewWithTitleViewModel.swift; sourceTree = "<group>"; };
@@ -94,6 +106,10 @@
 		FA52A19F254CC23D0075DE9C /* ApiErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiErrorLogger.swift; sourceTree = "<group>"; };
 		FABBD3A4254C336500CE45C5 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		FABBD3AC254C33B500CE45C5 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
+		FACA5447255871ED00ACB158 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		FACA545825587A8500ACB158 /* VolumetricObjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricObjectsViewController.swift; sourceTree = "<group>"; };
+		FACA545925587A8500ACB158 /* VolumetricObjectsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolumetricObjectsViewController.xib; sourceTree = "<group>"; };
+		FACA545F25587AA600ACB158 /* VolumetricObjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricObjectsViewModel.swift; sourceTree = "<group>"; };
 		FAE312BD253F21EA00CB73F8 /* SmartEducation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartEducation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE312C2253F21EA00CB73F8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -200,6 +216,31 @@
 			path = SpecificScience;
 			sourceTree = "<group>";
 		};
+		FA512682255564B00082DBFF /* ImageRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				FA512683255568D40082DBFF /* ImageRecognitionViewController.swift */,
+				FA512684255568D40082DBFF /* ImageRecognitionViewController.xib */,
+			);
+			path = ImageRecognition;
+			sourceTree = "<group>";
+		};
+		FA5218122555807A0012BAEE /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Videos;
+			sourceTree = "<group>";
+		};
+		FA5218132555DCED0012BAEE /* Conference */ = {
+			isa = PBXGroup;
+			children = (
+				FA5218142555DD0E0012BAEE /* ConferenceViewController.swift */,
+				FA5218152555DD0E0012BAEE /* ConferenceViewController.xib */,
+			);
+			path = Conference;
+			sourceTree = "<group>";
+		};
 		FA52A1B3254CC7C90075DE9C /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +275,7 @@
 				FA0919D12551BF480097203E /* SciencesViewModel.swift */,
 				FA0919D62551BFC50097203E /* SpecificScienceViewModel.swift */,
 				FA5286502552F94800581987 /* TableViewWithTitleViewModel.swift */,
+				FACA545F25587AA600ACB158 /* VolumetricObjectsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -244,6 +286,7 @@
 				FA0919B72551B6230097203E /* NSObjectExtensions.swift */,
 				FA0919E92551D7270097203E /* UIColorExtensions.swift */,
 				FA5286462552A0C100581987 /* StringExtensions.swift */,
+				FACA5447255871ED00ACB158 /* UIViewControllerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -270,7 +313,6 @@
 		FA52A1BA254CC8AA0075DE9C /* ExtendedControls */ = {
 			isa = PBXGroup;
 			children = (
-				FA52864B2552F59200581987 /* TableViewWithTItleViewController.swift */,
 			);
 			path = ExtendedControls;
 			sourceTree = "<group>";
@@ -278,6 +320,10 @@
 		FA52A1BB254CC8B70075DE9C /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				FACA545725587A3600ACB158 /* VolumetricObjects */,
+				FACA544025586B6700ACB158 /* Base */,
+				FA5218132555DCED0012BAEE /* Conference */,
+				FA512682255564B00082DBFF /* ImageRecognition */,
 				FA0919DE2551C3330097203E /* SpecificScience */,
 				FA0919C62551BE170097203E /* Sciences */,
 				FA09199E25517BFE0097203E /* FieldsOfScience */,
@@ -288,6 +334,7 @@
 		FA52A1BC254CC8F20075DE9C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA5218122555807A0012BAEE /* Videos */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -307,6 +354,23 @@
 				FA52A1B3254CC7C90075DE9C /* Core */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		FACA544025586B6700ACB158 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				FA52864B2552F59200581987 /* TableViewWithTItleViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		FACA545725587A3600ACB158 /* VolumetricObjects */ = {
+			isa = PBXGroup;
+			children = (
+				FACA545825587A8500ACB158 /* VolumetricObjectsViewController.swift */,
+				FACA545925587A8500ACB158 /* VolumetricObjectsViewController.xib */,
+			);
+			path = VolumetricObjects;
 			sourceTree = "<group>";
 		};
 		FAE312B4253F21EA00CB73F8 = {
@@ -493,8 +557,11 @@
 				FAE312C3253F21EA00CB73F8 /* art.scnassets in Resources */,
 				FA0919A225517C5D0097203E /* FieldsOfScienceViewController.xib in Resources */,
 				FAE312CD253F21EB00CB73F8 /* LaunchScreen.storyboard in Resources */,
+				FACA545B25587A8500ACB158 /* VolumetricObjectsViewController.xib in Resources */,
 				FAE312CA253F21EB00CB73F8 /* Assets.xcassets in Resources */,
+				FA512686255568D40082DBFF /* ImageRecognitionViewController.xib in Resources */,
 				FA0919CA2551BF0F0097203E /* SciencesViewController.xib in Resources */,
+				FA5218172555DD0E0012BAEE /* ConferenceViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,7 +706,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA5218162555DD0E0012BAEE /* ConferenceViewController.swift in Sources */,
 				FAEE67A0255086E800CD16B9 /* Router.swift in Sources */,
+				FACA546025587AA600ACB158 /* VolumetricObjectsViewModel.swift in Sources */,
 				FA0919C22551B91F0097203E /* ScienceListItem.swift in Sources */,
 				FA0919D22551BF480097203E /* SciencesViewModel.swift in Sources */,
 				FABBD3AD254C33B500CE45C5 /* ApiConstants.swift in Sources */,
@@ -653,12 +722,15 @@
 				FA5286472552A0C100581987 /* StringExtensions.swift in Sources */,
 				FA0919A125517C5D0097203E /* FieldsOfScienceViewController.swift in Sources */,
 				FA0919E12551C34D0097203E /* SpecificScienceViewController.swift in Sources */,
+				FACA545A25587A8500ACB158 /* VolumetricObjectsViewController.swift in Sources */,
 				FABBD3A5254C336500CE45C5 /* URLRequestBuilder.swift in Sources */,
 				FA52A196254CBA0A0075DE9C /* BaseApiService.swift in Sources */,
 				FA52864C2552F59200581987 /* TableViewWithTItleViewController.swift in Sources */,
 				FAE312C1253F21EA00CB73F8 /* AppDelegate.swift in Sources */,
+				FA512685255568D40082DBFF /* ImageRecognitionViewController.swift in Sources */,
 				FA0919EA2551D7270097203E /* UIColorExtensions.swift in Sources */,
 				FA0919B82551B6230097203E /* NSObjectExtensions.swift in Sources */,
+				FACA5448255871ED00ACB158 /* UIViewControllerExtensions.swift in Sources */,
 				FA0919AF2551B5460097203E /* FieldOfScienceCollectionViewCell.swift in Sources */,
 				FA0919A825517CA20097203E /* FieldsOfScienceViewModel.swift in Sources */,
 				FA5286512552F94800581987 /* TableViewWithTitleViewModel.swift in Sources */,
@@ -744,6 +816,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -760,7 +833,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -805,6 +878,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -815,7 +889,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
