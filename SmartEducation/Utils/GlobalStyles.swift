@@ -15,7 +15,6 @@ class GlobalStyles {
     
     private class func setupTransparentNavigationBar() {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().isHidden = false
         UINavigationBar.appearance().shadowImage = UIImage()
     }
 }

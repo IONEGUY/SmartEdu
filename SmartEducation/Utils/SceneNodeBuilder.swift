@@ -151,7 +151,7 @@ class SceneNodeBuilder {
         containerNode.rotatingEnabled = true
         containerNode.draggingEnabled = true
 
-        let nodesInFile = SCNScene(named: "art.scnassets/ship.scn")
+        let nodesInFile = SCNScene(named: "art.scnassets/hakima.scn")
         
         containerNode.addChildNode(nodesInFile?.rootNode ?? SCNNode())
         

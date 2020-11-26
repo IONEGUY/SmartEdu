@@ -14,6 +14,10 @@ class ChatService {
         return ChatService.messages
     }
     
+    func clearMessages() {
+        ChatService.messages = []
+    }
+    
     func getLastIncomingMsssage() -> MessageCellModel? {
         return ChatService.messages.filter { $0.messageType == MessageType.incoming }.last
     }

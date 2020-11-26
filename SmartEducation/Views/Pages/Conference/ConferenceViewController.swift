@@ -15,8 +15,6 @@ class ConferenceViewController: UIViewController, MVVMViewController {
     
     @IBOutlet weak var jitsiMeetView: JitsiMeetView!
 
-    private var roomName = "SmartEDU"
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,7 +27,7 @@ class ConferenceViewController: UIViewController, MVVMViewController {
         let options = JitsiMeetConferenceOptions.fromBuilder { [weak self] (builder) in
             builder.serverURL = URL(string: ApiConstants.conferenceUrl)
             builder.welcomePageEnabled = false
-            builder.room = self?.roomName
+            builder.room = StringResources.conferenceRoomName
         }
 
         if JitsiMeet.sharedInstance().defaultConferenceOptions == nil {

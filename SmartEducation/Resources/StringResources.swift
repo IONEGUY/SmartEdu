@@ -8,6 +8,8 @@
 import Foundation
 
 struct StringResources {
+    static let universeVideoPath = "art.scnassets/universe_video"
+    static let conferenceRoomName = "SmartEDU"
     static let greetingMessage = "Hi, I’m Hakima. How can I help you?"
     static let unknownQuestionMessage = "Hmm…I don’t have an answer for that. Is there something else I can help with"
     static let predefinedMessages: [String : String] = [

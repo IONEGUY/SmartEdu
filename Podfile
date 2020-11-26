@@ -4,23 +4,18 @@ target 'SmartEducation' do
   use_frameworks!
 
   pod 'Alamofire'
-  pod 'RealmSwift'
-  pod 'Realm'
   pod 'SDWebImage'
   pod 'SwiftLint'
   pod 'Closures'
+  pod 'Swinject'
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'Swinject'
   pod 'SwinjectAutoregistration'
   pod 'SmartHitTest'
   pod 'JitsiMeetSDK', '~> 2.11.0'
   pod 'IQKeyboardManagerSwift'
   pod 'SnapKit', '~> 5.0.0'
-  pod 'NRSpeechToText'
   pod 'OSSSpeechKit'
-  pod 'FocusNode'
-  pod 'SwiftGifOrigin'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|

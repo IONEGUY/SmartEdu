@@ -21,7 +21,6 @@ class ImageRecognitionViewController: BaseViewController, MVVMViewController,
     
     var viewModel: ImageRecognitionViewModel?
 
-    private let universeVideoPath = "art.scnassets/universe_video"
     private var recognizedImageName = String.empty
 
     override func viewDidLoad() {
@@ -58,7 +57,7 @@ class ImageRecognitionViewController: BaseViewController, MVVMViewController,
 
         let player = recognizedImageName == "stream_trigger"
             ? SceneNodeBuilder.createPlayer(fromUrl: ApiConstants.streamURl)
-            : SceneNodeBuilder.createPlayer(fromVideoName: universeVideoPath)
+            : SceneNodeBuilder.createPlayer(fromVideoName: StringResources.universeVideoPath)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         present(playerViewController, animated: true) {
@@ -83,19 +82,22 @@ class ImageRecognitionViewController: BaseViewController, MVVMViewController,
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         guard let imageAnchor = anchor as? ARImageAnchor else { return nil }
         var node: SCNNode?
-        switch imageAnchor.referenceImage.name {
-        case "stream_trigger":
-            node = placeVideo(onImage: imageAnchor.referenceImage, ApiConstants.streamURl)
-        case "universe":
-            node = placeVideo(onImage: imageAnchor.referenceImage, universeVideoPath)
-        case "conference":
-            Router.show(ConferenceViewController.self)
-        default:
-            break
+        DispatchQueue.main.async { [weak self] in
+            switch imageAnchor.referenceImage.name {
+            case "stream_trigger":
+                node = self?.placeVideo(onImage: imageAnchor.referenceImage, ApiConstants.streamURl)
+            case "universe":
+                node = self?.placeVideo(onImage: imageAnchor.referenceImage, StringResources.universeVideoPath)
+            case "conference":
+                Router.show(ConferenceViewController.self)
+            default:
+                break
+            }
+            
+            self?.recognizedImageName = imageAnchor.referenceImage.name ?? String.empty
+            self?.focusFrame.isHidden = true
         }
-        
-        recognizedImageName = imageAnchor.referenceImage.name ?? String.empty
-        focusFrame.isHidden = true
+
         return node
     }
 

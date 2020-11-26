@@ -27,6 +27,7 @@ class VolumetricModeViewController: BaseViewController, MVVMViewController,
     @IBOutlet weak var messageInputCover: UIView!
     
     private var chatService = ChatService()
+    private var arSceneSetup = false
     weak var viewModel: VolumetricModeViewModel?
     
     override func viewDidLoad() {
@@ -47,19 +48,23 @@ class VolumetricModeViewController: BaseViewController, MVVMViewController,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        if arSceneSetup { return }
+        arSceneSetup.toggle()
         sceneView.setup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        sceneView.session.pause()
+
+        //It's workaround needed for avoid blocking ui after navigating to previous page or to next
+        ARSCNView()
     }
     
-    override func backButtonPressed() {        
+    override func backButtonPressed() {
+        chatService.clearMessages()
         Router.popTo(SpecificScienceViewController.self)
     }
-        
+  
     private func setupRightBarButtonItem(_ image: UIImage?) {
         let button = UIButton(type: .custom)
         button.setImage(image, for: .normal)

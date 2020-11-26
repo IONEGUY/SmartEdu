@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -17,7 +18,7 @@
                 <outlet property="lastMessageText" destination="M1z-48-oMr" id="xUS-ZW-Gi2"/>
                 <outlet property="messageInputCover" destination="1Y1-kn-osf" id="maD-a3-QSj"/>
                 <outlet property="planetsMode" destination="zvz-t2-opu" id="YDl-c0-R3o"/>
-                <outlet property="sceneView" destination="JR7-H2-hxa" id="G4V-9M-XqF"/>
+                <outlet property="sceneView" destination="d1o-bm-AAZ" id="9Js-qp-wof"/>
                 <outlet property="videosMode" destination="RLb-wj-0YT" id="58Z-a4-htm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="volumetricObjectsCollectionView" destination="Xfn-13-avb" id="UpT-hO-IvC"/>
@@ -28,8 +29,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JR7-H2-hxa" customClass="ExtendedARSceneView" customModule="SmartEducation" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
+                <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1o-bm-AAZ" customClass="ExtendedARSceneView" customModule="SmartEducation" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                 </arscnView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Xfn-13-avb">
                     <rect key="frame" x="0.0" y="44" width="375" height="90"/>
@@ -126,11 +127,11 @@
                 <constraint firstItem="1Y1-kn-osf" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Qho-lJ-vdF"/>
                 <constraint firstItem="Xfn-13-avb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TzR-zW-buF"/>
                 <constraint firstItem="1Y1-kn-osf" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="XUl-X4-b0a"/>
-                <constraint firstItem="JR7-H2-hxa" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="h6a-la-dwZ"/>
-                <constraint firstAttribute="bottom" secondItem="JR7-H2-hxa" secondAttribute="bottom" constant="34" id="jq6-e0-XoV"/>
-                <constraint firstItem="JR7-H2-hxa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ld7-QM-USV"/>
+                <constraint firstItem="d1o-bm-AAZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZJy-Df-XVL"/>
+                <constraint firstItem="d1o-bm-AAZ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dil-bb-TFt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="d1o-bm-AAZ" secondAttribute="bottom" constant="49" id="i6j-v9-TgJ"/>
                 <constraint firstItem="msB-1c-rzn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="oj4-lY-lP7"/>
-                <constraint firstItem="JR7-H2-hxa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yjH-Ub-ZDV"/>
+                <constraint firstItem="d1o-bm-AAZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="s2b-8H-Sts"/>
                 <constraint firstItem="msB-1c-rzn" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="zwk-N7-eT0"/>
             </constraints>
             <point key="canvasLocation" x="136.80000000000001" y="107.14285714285715"/>

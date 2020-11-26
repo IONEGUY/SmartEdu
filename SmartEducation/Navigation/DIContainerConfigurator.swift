@@ -14,7 +14,6 @@ class DIContainerConfigurator {
 
     static func initiate() {
         registerViewModels()
-        registerServices()
     }
 
     private static func registerViewModels() {
@@ -23,13 +22,8 @@ class DIContainerConfigurator {
         container.autoregister(SpecificScienceViewModel.self, initializer: SpecificScienceViewModel.init)
         container.autoregister(TableViewWithTitleViewModel.self, initializer: TableViewWithTitleViewModel.init)
         container.autoregister(VolumetricModeViewModel.self, initializer: VolumetricModeViewModel.init)
-        container.autoregister(BaseARViewModel.self, initializer: BaseARViewModel.init)
         container.autoregister(ChatViewModel.self, initializer: ChatViewModel.init)
-        container.autoregister(ImageRecognitionViewModel.self,
-                               initializer: ImageRecognitionViewModel.init)
-    }
-
-    private static func registerServices() {
-//        container.autoregister(SomeServiceProtocol1.self, initializer: SomeService1.init)
+        container.autoregister(ImageRecognitionViewModel.self, initializer:
+            ImageRecognitionViewModel.init)
     }
 }
