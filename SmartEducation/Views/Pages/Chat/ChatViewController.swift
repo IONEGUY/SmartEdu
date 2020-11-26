@@ -28,10 +28,6 @@ class ChatViewController: BaseViewController, MVVMViewController,
         getAllMessages()
         messageInput.delegate = self
     }
-    
-    deinit {
-        print("ChatViewController has been released")
-    }
         
     private func createTitle() {
         navigationItem.titleView = UIImageView(image: UIImage(named: "hakima_title"))
