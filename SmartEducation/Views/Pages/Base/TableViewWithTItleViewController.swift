@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableViewWithTitleViewController<TViewModel: TableViewWithTitleViewModel>: UIViewController, MVVMViewController {
+class TableViewWithTitleViewController<TViewModel: TableViewWithTitleViewModel>: BaseViewController, MVVMViewController {
 
     var viewModel: TViewModel?
     typealias ViewModelType = TViewModel
@@ -20,7 +20,6 @@ class TableViewWithTitleViewController<TViewModel: TableViewWithTitleViewModel>:
 
         titleLabel.text = viewModel?.title
 
-        setupBaseNavBarStyle()
         configueTableView()
     }
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="VolumetricObjectCollectionViewCell" customModule="SmartEducation" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="86" height="65"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="86" height="65"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="urk-US-m6l">
+                        <rect key="frame" x="0.0" y="0.0" width="86" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="Hvd-uF-ekR"/>
+                            <constraint firstAttribute="width" constant="86" id="twr-Sr-VoC"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2h1-7D-22u">
+                        <rect key="frame" x="0.0" y="51" width="86" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="ZDr-RZ-BEq"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="nV6-9X-C8f"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="urk-US-m6l" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LNg-El-dRZ"/>
+                <constraint firstAttribute="bottom" secondItem="2h1-7D-22u" secondAttribute="bottom" id="dGH-eZ-RoU"/>
+                <constraint firstItem="2h1-7D-22u" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lfX-R5-LpN"/>
+                <constraint firstAttribute="trailing" secondItem="2h1-7D-22u" secondAttribute="trailing" id="tfU-h3-61o"/>
+                <constraint firstItem="urk-US-m6l" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="xUA-Ox-QTX"/>
+                <constraint firstItem="2h1-7D-22u" firstAttribute="top" secondItem="urk-US-m6l" secondAttribute="bottom" constant="11" id="yLu-Bm-AOu"/>
+            </constraints>
+            <size key="customSize" width="86" height="55"/>
+            <connections>
+                <outlet property="objectImage" destination="urk-US-m6l" id="cEC-Km-g0O"/>
+                <outlet property="objectName" destination="2h1-7D-22u" id="aeJ-E1-Zch"/>
+            </connections>
+            <point key="canvasLocation" x="163.768115942029" y="134.26339285714286"/>
+        </collectionViewCell>
+    </objects>
+</document>

@@ -14,25 +14,48 @@ class Router {
         show(vcType, params: params, isModalVC: false)
     }
 
-    class func show<VCType: MVVMViewController>(_ vcType: VCType.Type,
-                                                params: [String: Any] = [:],
-                                                isModalVC: Bool) {
+    class private func navigateTo(_ vc: UIViewController?, isModalVC: Bool) {
+        guard let vc = vc else { return }
         DispatchQueue.main.async {
-            let currentVC = CurrentViewControllerProvider.getCurrentViewController()
-            var navigatingVC: UIViewController = VCType.buildModule(withNavigationParams: params)
+            let currentVC = UIApplication.getTopViewController()
             if isModalVC {
-                currentVC?.present(navigatingVC, animated: true, completion: nil)
+                currentVC?.present(vc, animated: false, completion: nil)
             } else {
-                currentVC?.navigationController?.pushViewController(navigatingVC, animated: true)
+                currentVC?.navigationController?.pushViewController(vc, animated: false)
             }
         }
     }
 
+    class func show<VCType: MVVMViewController>(_ vcType: VCType.Type,
+                                                params: [String: Any] = [:],
+                                                isModalVC: Bool) {
+        DispatchQueue.main.async {
+            let navigatingVC: UIViewController? = VCType.buildModule(withNavigationParams: params)
+            navigateTo(navigatingVC, isModalVC: isModalVC)
+        }
+    }
+
+    class func resolveVC<VCType: MVVMViewController>(_ vcType: VCType.Type,
+                                                     params: [String: Any] = [:]) -> UIViewController? {
+        return VCType.buildModule(withNavigationParams: params)
+    }
+
     class func pop() {
         DispatchQueue.main.async {
-            guard let currentVC = CurrentViewControllerProvider.getCurrentViewController() else { return }
+            guard let currentVC =
+                    UIApplication.getTopViewController() else { return }
             currentVC.dismiss(animated: true, completion: nil)
-            currentVC.navigationController?.popViewController(animated: true)
+            currentVC.navigationController?.popViewController(animated: false)
+        }
+    }
+    
+    class func popTo<VCType: MVVMViewController>(_ vcType: VCType.Type) {
+        guard let currentVC =
+                UIApplication.getTopViewController() else { return }
+        currentVC.navigationController?.viewControllers.forEach { vc in
+            if vcType == type(of: vc) {
+                currentVC.navigationController?.popToViewController(vc, animated: false)
+            }
         }
     }
 }

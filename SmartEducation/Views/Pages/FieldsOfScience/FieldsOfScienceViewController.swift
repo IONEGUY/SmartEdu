@@ -21,7 +21,6 @@ class FieldsOfScienceViewController: UIViewController, MVVMViewController {
 
         titleLabel.text = "Fields of science"
 
-        setupBaseNavBarStyle()
         configueFieldsOfScienceCollectionView()
     }
 

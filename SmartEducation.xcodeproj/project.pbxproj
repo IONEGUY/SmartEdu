@@ -24,6 +24,23 @@
 		FA0919E12551C34D0097203E /* SpecificScienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0919DF2551C34D0097203E /* SpecificScienceViewController.swift */; };
 		FA0919E22551C34D0097203E /* SpecificScienceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0919E02551C34D0097203E /* SpecificScienceViewController.xib */; };
 		FA0919EA2551D7270097203E /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0919E92551D7270097203E /* UIColorExtensions.swift */; };
+		FA1619602562DECB00B825E7 /* ChatMessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA16195F2562DECB00B825E7 /* ChatMessageInputView.swift */; };
+		FA1619652562DFB700B825E7 /* ChatMessageInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1619642562DFB700B825E7 /* ChatMessageInputView.xib */; };
+		FA1619702562F7AB00B825E7 /* MessageActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA16196F2562F7AB00B825E7 /* MessageActionType.swift */; };
+		FA16197B2562FE7F00B825E7 /* VoiceRecognizionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA16197A2562FE7F00B825E7 /* VoiceRecognizionService.swift */; };
+		FA1619802563120E00B825E7 /* SpeechSynthesizerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA16197F2563120E00B825E7 /* SpeechSynthesizerService.swift */; };
+		FA1619902563167500B825E7 /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA16198F2563167500B825E7 /* MessageCellModel.swift */; };
+		FA16199B25631B5400B825E7 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA16199A25631B5400B825E7 /* MessageType.swift */; };
+		FA2358482559811A00A627E1 /* BaseARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2358472559811A00A627E1 /* BaseARViewModel.swift */; };
+		FA2358592559AD0C00A627E1 /* VolumetricItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2358582559AD0C00A627E1 /* VolumetricItem.swift */; };
+		FA2358612559B9D500A627E1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2358602559B9D500A627E1 /* Colors.swift */; };
+		FA2358672559C70200A627E1 /* VolumetricObjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2358652559C70200A627E1 /* VolumetricObjectCollectionViewCell.swift */; };
+		FA2358682559C70200A627E1 /* VolumetricObjectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2358662559C70200A627E1 /* VolumetricObjectCollectionViewCell.xib */; };
+		FA23586D2559D63800A627E1 /* VolumetricObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA23586C2559D63800A627E1 /* VolumetricObject.swift */; };
+		FA2358782559F1A500A627E1 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2358772559F1A500A627E1 /* UIViewExtensions.swift */; };
+		FA235890255ADAFB00A627E1 /* VolumetricObjectSCNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA23588F255ADAFB00A627E1 /* VolumetricObjectSCNNode.swift */; };
+		FA235895255B0B4A00A627E1 /* SceneNodeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA235894255B0B4A00A627E1 /* SceneNodeBuilder.swift */; };
+		FA381E92256074CC0009B599 /* RotatableSCNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA381E91256074CC0009B599 /* RotatableSCNNode.swift */; };
 		FA512685255568D40082DBFF /* ImageRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA512683255568D40082DBFF /* ImageRecognitionViewController.swift */; };
 		FA512686255568D40082DBFF /* ImageRecognitionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA512684255568D40082DBFF /* ImageRecognitionViewController.xib */; };
 		FA5218162555DD0E0012BAEE /* ConferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5218142555DD0E0012BAEE /* ConferenceViewController.swift */; };
@@ -34,12 +51,26 @@
 		FA52A196254CBA0A0075DE9C /* BaseApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA52A195254CBA0A0075DE9C /* BaseApiService.swift */; };
 		FA52A19B254CBF310075DE9C /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA52A19A254CBF310075DE9C /* ErrorHandler.swift */; };
 		FA52A1A0254CC23D0075DE9C /* ApiErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA52A19F254CC23D0075DE9C /* ApiErrorLogger.swift */; };
+		FA6FE48125686A9E00324753 /* GlobalStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6FE48025686A9E00324753 /* GlobalStyles.swift */; };
+		FA7326852564198E003BD2B6 /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7326842564198E003BD2B6 /* PulseAnimation.swift */; };
+		FA73268A256434D2003BD2B6 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA732689256434D2003BD2B6 /* ChatService.swift */; };
+		FA73268F25643F5A003BD2B6 /* StringResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73268E25643F5A003BD2B6 /* StringResources.swift */; };
+		FA7326AA25646CF2003BD2B6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7326A825646CF2003BD2B6 /* ChatViewController.swift */; };
+		FA7326AB25646CF2003BD2B6 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7326A925646CF2003BD2B6 /* ChatViewController.xib */; };
+		FA7326B025646ECC003BD2B6 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7326AF25646ECC003BD2B6 /* ChatViewModel.swift */; };
+		FA7326B625647D23003BD2B6 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7326B425647D23003BD2B6 /* MessageTableViewCell.swift */; };
+		FA9346052566FE9800BC67E8 /* ImageRecognitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9346042566FE9800BC67E8 /* ImageRecognitionViewModel.swift */; };
+		FA93460A2567020E00BC67E8 /* ChatMessageInputViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */; };
+		FA9DD901256F060E00760106 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DD900256F060E00760106 /* BaseViewController.swift */; };
+		FAA43CD7256D920D0043467D /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA43CD6256D920D0043467D /* UIImageExtensions.swift */; };
+		FAA43D01256E99410043467D /* VideoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA43D00256E99410043467D /* VideoNode.swift */; };
+		FAA43D09256EF0BB0043467D /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA43D08256EF0BB0043467D /* UIApplicationExtensions.swift */; };
 		FABBD3A5254C336500CE45C5 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBD3A4254C336500CE45C5 /* URLRequestBuilder.swift */; };
 		FABBD3AD254C33B500CE45C5 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBD3AC254C33B500CE45C5 /* ApiConstants.swift */; };
-		FACA5448255871ED00ACB158 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA5447255871ED00ACB158 /* UIViewControllerExtensions.swift */; };
-		FACA545A25587A8500ACB158 /* VolumetricObjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA545825587A8500ACB158 /* VolumetricObjectsViewController.swift */; };
-		FACA545B25587A8500ACB158 /* VolumetricObjectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACA545925587A8500ACB158 /* VolumetricObjectsViewController.xib */; };
-		FACA546025587AA600ACB158 /* VolumetricObjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA545F25587AA600ACB158 /* VolumetricObjectsViewModel.swift */; };
+		FAC35327255D6B5500F080EB /* ExtendedARSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC35326255D6B5500F080EB /* ExtendedARSceneView.swift */; };
+		FACA545A25587A8500ACB158 /* VolumetricModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA545825587A8500ACB158 /* VolumetricModeViewController.swift */; };
+		FACA545B25587A8500ACB158 /* VolumetricModeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACA545925587A8500ACB158 /* VolumetricModeViewController.xib */; };
+		FACA546025587AA600ACB158 /* VolumetricModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA545F25587AA600ACB158 /* VolumetricModeViewModel.swift */; };
 		FAE312C1253F21EA00CB73F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */; };
 		FAE312C3253F21EA00CB73F8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE312C2253F21EA00CB73F8 /* art.scnassets */; };
 		FAE312CA253F21EB00CB73F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE312C9253F21EB00CB73F8 /* Assets.xcassets */; };
@@ -51,6 +82,7 @@
 		FAEE67A0255086E800CD16B9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE679F255086E800CD16B9 /* Router.swift */; };
 		FAEE67A52550872400CD16B9 /* NavigatedToAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE67A42550872400CD16B9 /* NavigatedToAware.swift */; };
 		FAEE67AA2550874F00CD16B9 /* MVVMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE67A92550874F00CD16B9 /* MVVMViewController.swift */; };
+		FAFA0D31255EF8610018DD9A /* SolarSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA0D30255EF8610018DD9A /* SolarSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +126,23 @@
 		FA0919DF2551C34D0097203E /* SpecificScienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificScienceViewController.swift; sourceTree = "<group>"; };
 		FA0919E02551C34D0097203E /* SpecificScienceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpecificScienceViewController.xib; sourceTree = "<group>"; };
 		FA0919E92551D7270097203E /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		FA16195F2562DECB00B825E7 /* ChatMessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageInputView.swift; sourceTree = "<group>"; };
+		FA1619642562DFB700B825E7 /* ChatMessageInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMessageInputView.xib; sourceTree = "<group>"; };
+		FA16196F2562F7AB00B825E7 /* MessageActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageActionType.swift; sourceTree = "<group>"; };
+		FA16197A2562FE7F00B825E7 /* VoiceRecognizionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRecognizionService.swift; sourceTree = "<group>"; };
+		FA16197F2563120E00B825E7 /* SpeechSynthesizerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerService.swift; sourceTree = "<group>"; };
+		FA16198F2563167500B825E7 /* MessageCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
+		FA16199A25631B5400B825E7 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
+		FA2358472559811A00A627E1 /* BaseARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseARViewModel.swift; sourceTree = "<group>"; };
+		FA2358582559AD0C00A627E1 /* VolumetricItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricItem.swift; sourceTree = "<group>"; };
+		FA2358602559B9D500A627E1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FA2358652559C70200A627E1 /* VolumetricObjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricObjectCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA2358662559C70200A627E1 /* VolumetricObjectCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolumetricObjectCollectionViewCell.xib; sourceTree = "<group>"; };
+		FA23586C2559D63800A627E1 /* VolumetricObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricObject.swift; sourceTree = "<group>"; };
+		FA2358772559F1A500A627E1 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		FA23588F255ADAFB00A627E1 /* VolumetricObjectSCNNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricObjectSCNNode.swift; sourceTree = "<group>"; };
+		FA235894255B0B4A00A627E1 /* SceneNodeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneNodeBuilder.swift; sourceTree = "<group>"; };
+		FA381E91256074CC0009B599 /* RotatableSCNNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatableSCNNode.swift; sourceTree = "<group>"; };
 		FA512683255568D40082DBFF /* ImageRecognitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecognitionViewController.swift; sourceTree = "<group>"; };
 		FA512684255568D40082DBFF /* ImageRecognitionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageRecognitionViewController.xib; sourceTree = "<group>"; };
 		FA5218142555DD0E0012BAEE /* ConferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceViewController.swift; sourceTree = "<group>"; };
@@ -104,12 +153,26 @@
 		FA52A195254CBA0A0075DE9C /* BaseApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseApiService.swift; sourceTree = "<group>"; };
 		FA52A19A254CBF310075DE9C /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		FA52A19F254CC23D0075DE9C /* ApiErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiErrorLogger.swift; sourceTree = "<group>"; };
+		FA6FE48025686A9E00324753 /* GlobalStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStyles.swift; sourceTree = "<group>"; };
+		FA7326842564198E003BD2B6 /* PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
+		FA732689256434D2003BD2B6 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		FA73268E25643F5A003BD2B6 /* StringResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringResources.swift; sourceTree = "<group>"; };
+		FA7326A825646CF2003BD2B6 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		FA7326A925646CF2003BD2B6 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		FA7326AF25646ECC003BD2B6 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		FA7326B425647D23003BD2B6 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		FA9346042566FE9800BC67E8 /* ImageRecognitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecognitionViewModel.swift; sourceTree = "<group>"; };
+		FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageInputViewDelegate.swift; sourceTree = "<group>"; };
+		FA9DD900256F060E00760106 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		FAA43CD6256D920D0043467D /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
+		FAA43D00256E99410043467D /* VideoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoNode.swift; sourceTree = "<group>"; };
+		FAA43D08256EF0BB0043467D /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
 		FABBD3A4254C336500CE45C5 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		FABBD3AC254C33B500CE45C5 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
-		FACA5447255871ED00ACB158 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
-		FACA545825587A8500ACB158 /* VolumetricObjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricObjectsViewController.swift; sourceTree = "<group>"; };
-		FACA545925587A8500ACB158 /* VolumetricObjectsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolumetricObjectsViewController.xib; sourceTree = "<group>"; };
-		FACA545F25587AA600ACB158 /* VolumetricObjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricObjectsViewModel.swift; sourceTree = "<group>"; };
+		FAC35326255D6B5500F080EB /* ExtendedARSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedARSceneView.swift; sourceTree = "<group>"; };
+		FACA545825587A8500ACB158 /* VolumetricModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricModeViewController.swift; sourceTree = "<group>"; };
+		FACA545925587A8500ACB158 /* VolumetricModeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolumetricModeViewController.xib; sourceTree = "<group>"; };
+		FACA545F25587AA600ACB158 /* VolumetricModeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricModeViewModel.swift; sourceTree = "<group>"; };
 		FAE312BD253F21EA00CB73F8 /* SmartEducation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartEducation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE312C2253F21EA00CB73F8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -127,6 +190,7 @@
 		FAEE679F255086E800CD16B9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		FAEE67A42550872400CD16B9 /* NavigatedToAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatedToAware.swift; sourceTree = "<group>"; };
 		FAEE67A92550874F00CD16B9 /* MVVMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMViewController.swift; sourceTree = "<group>"; };
+		FAFA0D30255EF8610018DD9A /* SolarSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +258,9 @@
 			children = (
 				FA0919AD2551B5460097203E /* FieldOfScienceCollectionViewCell.swift */,
 				FA0919AE2551B5460097203E /* FieldOfScienceCollectionViewCell.xib */,
+				FA2358652559C70200A627E1 /* VolumetricObjectCollectionViewCell.swift */,
+				FA2358662559C70200A627E1 /* VolumetricObjectCollectionViewCell.xib */,
+				FA7326B425647D23003BD2B6 /* MessageTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -214,6 +281,16 @@
 				FA0919E02551C34D0097203E /* SpecificScienceViewController.xib */,
 			);
 			path = SpecificScience;
+			sourceTree = "<group>";
+		};
+		FA2358572559ACE700A627E1 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				FA2358582559AD0C00A627E1 /* VolumetricItem.swift */,
+				FA16196F2562F7AB00B825E7 /* MessageActionType.swift */,
+				FA16199A25631B5400B825E7 /* MessageType.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		FA512682255564B00082DBFF /* ImageRecognition */ = {
@@ -257,6 +334,8 @@
 			isa = PBXGroup;
 			children = (
 				FA0919C12551B91F0097203E /* ScienceListItem.swift */,
+				FA23586C2559D63800A627E1 /* VolumetricObject.swift */,
+				FA16198F2563167500B825E7 /* MessageCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -275,7 +354,10 @@
 				FA0919D12551BF480097203E /* SciencesViewModel.swift */,
 				FA0919D62551BFC50097203E /* SpecificScienceViewModel.swift */,
 				FA5286502552F94800581987 /* TableViewWithTitleViewModel.swift */,
-				FACA545F25587AA600ACB158 /* VolumetricObjectsViewModel.swift */,
+				FACA545F25587AA600ACB158 /* VolumetricModeViewModel.swift */,
+				FA2358472559811A00A627E1 /* BaseARViewModel.swift */,
+				FA7326AF25646ECC003BD2B6 /* ChatViewModel.swift */,
+				FA9346042566FE9800BC67E8 /* ImageRecognitionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -286,17 +368,24 @@
 				FA0919B72551B6230097203E /* NSObjectExtensions.swift */,
 				FA0919E92551D7270097203E /* UIColorExtensions.swift */,
 				FA5286462552A0C100581987 /* StringExtensions.swift */,
-				FACA5447255871ED00ACB158 /* UIViewControllerExtensions.swift */,
+				FA2358772559F1A500A627E1 /* UIViewExtensions.swift */,
+				FAA43CD6256D920D0043467D /* UIImageExtensions.swift */,
+				FAA43D08256EF0BB0043467D /* UIApplicationExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		FA52A1B8254CC87F0075DE9C /* Helpers */ = {
+		FA52A1B8254CC87F0075DE9C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FA16197A2562FE7F00B825E7 /* VoiceRecognizionService.swift */,
 				FAEE678C25506ABA00CD16B9 /* CurrentViewControllerProvider.swift */,
+				FA235894255B0B4A00A627E1 /* SceneNodeBuilder.swift */,
+				FA16197F2563120E00B825E7 /* SpeechSynthesizerService.swift */,
+				FA732689256434D2003BD2B6 /* ChatService.swift */,
+				FA6FE48025686A9E00324753 /* GlobalStyles.swift */,
 			);
-			path = Helpers;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		FA52A1B9254CC88F0075DE9C /* Views */ = {
@@ -313,6 +402,14 @@
 		FA52A1BA254CC8AA0075DE9C /* ExtendedControls */ = {
 			isa = PBXGroup;
 			children = (
+				FA23588F255ADAFB00A627E1 /* VolumetricObjectSCNNode.swift */,
+				FAC35326255D6B5500F080EB /* ExtendedARSceneView.swift */,
+				FAFA0D30255EF8610018DD9A /* SolarSystem.swift */,
+				FA381E91256074CC0009B599 /* RotatableSCNNode.swift */,
+				FA16195F2562DECB00B825E7 /* ChatMessageInputView.swift */,
+				FA1619642562DFB700B825E7 /* ChatMessageInputView.xib */,
+				FA7326842564198E003BD2B6 /* PulseAnimation.swift */,
+				FAA43D00256E99410043467D /* VideoNode.swift */,
 			);
 			path = ExtendedControls;
 			sourceTree = "<group>";
@@ -320,6 +417,7 @@
 		FA52A1BB254CC8B70075DE9C /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				FA7326A725646CCF003BD2B6 /* Chat */,
 				FACA545725587A3600ACB158 /* VolumetricObjects */,
 				FACA544025586B6700ACB158 /* Base */,
 				FA5218132555DCED0012BAEE /* Conference */,
@@ -335,6 +433,8 @@
 			isa = PBXGroup;
 			children = (
 				FA5218122555807A0012BAEE /* Videos */,
+				FA2358602559B9D500A627E1 /* Colors.swift */,
+				FA73268E25643F5A003BD2B6 /* StringResources.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -347,6 +447,15 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		FA7326A725646CCF003BD2B6 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				FA7326A825646CF2003BD2B6 /* ChatViewController.swift */,
+				FA7326A925646CF2003BD2B6 /* ChatViewController.xib */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		FABBD3A3254C333C00CE45C5 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,10 +465,19 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		FAC3532E255D6C6600F080EB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		FACA544025586B6700ACB158 /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				FA52864B2552F59200581987 /* TableViewWithTItleViewController.swift */,
+				FA9DD900256F060E00760106 /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -367,8 +485,8 @@
 		FACA545725587A3600ACB158 /* VolumetricObjects */ = {
 			isa = PBXGroup;
 			children = (
-				FACA545825587A8500ACB158 /* VolumetricObjectsViewController.swift */,
-				FACA545925587A8500ACB158 /* VolumetricObjectsViewController.xib */,
+				FACA545825587A8500ACB158 /* VolumetricModeViewController.swift */,
+				FACA545925587A8500ACB158 /* VolumetricModeViewController.xib */,
 			);
 			path = VolumetricObjects;
 			sourceTree = "<group>";
@@ -398,10 +516,12 @@
 		FAE312BF253F21EA00CB73F8 /* SmartEducation */ = {
 			isa = PBXGroup;
 			children = (
+				FAC3532E255D6C6600F080EB /* Protocols */,
+				FA2358572559ACE700A627E1 /* Enums */,
 				FAEE67992550868100CD16B9 /* Navigation */,
 				FA52A1BC254CC8F20075DE9C /* Resources */,
 				FA52A1B9254CC88F0075DE9C /* Views */,
-				FA52A1B8254CC87F0075DE9C /* Helpers */,
+				FA52A1B8254CC87F0075DE9C /* Utils */,
 				FA52A1B7254CC8770075DE9C /* Extensions */,
 				FA52A1B6254CC86D0075DE9C /* ViewModels */,
 				FA52A1B4254CC8210075DE9C /* Models */,
@@ -554,10 +674,13 @@
 			files = (
 				FA0919B02551B5460097203E /* FieldOfScienceCollectionViewCell.xib in Resources */,
 				FA0919E22551C34D0097203E /* SpecificScienceViewController.xib in Resources */,
+				FA7326AB25646CF2003BD2B6 /* ChatViewController.xib in Resources */,
+				FA2358682559C70200A627E1 /* VolumetricObjectCollectionViewCell.xib in Resources */,
 				FAE312C3253F21EA00CB73F8 /* art.scnassets in Resources */,
 				FA0919A225517C5D0097203E /* FieldsOfScienceViewController.xib in Resources */,
+				FA1619652562DFB700B825E7 /* ChatMessageInputView.xib in Resources */,
 				FAE312CD253F21EB00CB73F8 /* LaunchScreen.storyboard in Resources */,
-				FACA545B25587A8500ACB158 /* VolumetricObjectsViewController.xib in Resources */,
+				FACA545B25587A8500ACB158 /* VolumetricModeViewController.xib in Resources */,
 				FAE312CA253F21EB00CB73F8 /* Assets.xcassets in Resources */,
 				FA512686255568D40082DBFF /* ImageRecognitionViewController.xib in Resources */,
 				FA0919CA2551BF0F0097203E /* SciencesViewController.xib in Resources */,
@@ -706,34 +829,63 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA73268F25643F5A003BD2B6 /* StringResources.swift in Sources */,
+				FA235890255ADAFB00A627E1 /* VolumetricObjectSCNNode.swift in Sources */,
+				FA1619602562DECB00B825E7 /* ChatMessageInputView.swift in Sources */,
+				FAA43CD7256D920D0043467D /* UIImageExtensions.swift in Sources */,
 				FA5218162555DD0E0012BAEE /* ConferenceViewController.swift in Sources */,
+				FA2358612559B9D500A627E1 /* Colors.swift in Sources */,
 				FAEE67A0255086E800CD16B9 /* Router.swift in Sources */,
-				FACA546025587AA600ACB158 /* VolumetricObjectsViewModel.swift in Sources */,
+				FACA546025587AA600ACB158 /* VolumetricModeViewModel.swift in Sources */,
+				FAA43D09256EF0BB0043467D /* UIApplicationExtensions.swift in Sources */,
 				FA0919C22551B91F0097203E /* ScienceListItem.swift in Sources */,
+				FA23586D2559D63800A627E1 /* VolumetricObject.swift in Sources */,
+				FA7326852564198E003BD2B6 /* PulseAnimation.swift in Sources */,
 				FA0919D22551BF480097203E /* SciencesViewModel.swift in Sources */,
 				FABBD3AD254C33B500CE45C5 /* ApiConstants.swift in Sources */,
 				FA0919C92551BF0F0097203E /* SciencesViewController.swift in Sources */,
+				FA7326AA25646CF2003BD2B6 /* ChatViewController.swift in Sources */,
 				FA52A19B254CBF310075DE9C /* ErrorHandler.swift in Sources */,
+				FA2358672559C70200A627E1 /* VolumetricObjectCollectionViewCell.swift in Sources */,
 				FAEE67A52550872400CD16B9 /* NavigatedToAware.swift in Sources */,
+				FAC35327255D6B5500F080EB /* ExtendedARSceneView.swift in Sources */,
 				FAEE678D25506ABA00CD16B9 /* CurrentViewControllerProvider.swift in Sources */,
+				FA2358482559811A00A627E1 /* BaseARViewModel.swift in Sources */,
+				FA93460A2567020E00BC67E8 /* ChatMessageInputViewDelegate.swift in Sources */,
 				FA0919D72551BFC50097203E /* SpecificScienceViewModel.swift in Sources */,
 				FAEE679B2550869D00CD16B9 /* DIContainerConfigurator.swift in Sources */,
 				FAEE67AA2550874F00CD16B9 /* MVVMViewController.swift in Sources */,
+				FA7326B625647D23003BD2B6 /* MessageTableViewCell.swift in Sources */,
+				FA235895255B0B4A00A627E1 /* SceneNodeBuilder.swift in Sources */,
+				FAA43D01256E99410043467D /* VideoNode.swift in Sources */,
 				FA5286472552A0C100581987 /* StringExtensions.swift in Sources */,
 				FA0919A125517C5D0097203E /* FieldsOfScienceViewController.swift in Sources */,
+				FA6FE48125686A9E00324753 /* GlobalStyles.swift in Sources */,
 				FA0919E12551C34D0097203E /* SpecificScienceViewController.swift in Sources */,
-				FACA545A25587A8500ACB158 /* VolumetricObjectsViewController.swift in Sources */,
+				FA381E92256074CC0009B599 /* RotatableSCNNode.swift in Sources */,
+				FACA545A25587A8500ACB158 /* VolumetricModeViewController.swift in Sources */,
 				FABBD3A5254C336500CE45C5 /* URLRequestBuilder.swift in Sources */,
+				FA1619902563167500B825E7 /* MessageCellModel.swift in Sources */,
+				FA73268A256434D2003BD2B6 /* ChatService.swift in Sources */,
 				FA52A196254CBA0A0075DE9C /* BaseApiService.swift in Sources */,
 				FA52864C2552F59200581987 /* TableViewWithTItleViewController.swift in Sources */,
 				FAE312C1253F21EA00CB73F8 /* AppDelegate.swift in Sources */,
+				FA9DD901256F060E00760106 /* BaseViewController.swift in Sources */,
 				FA512685255568D40082DBFF /* ImageRecognitionViewController.swift in Sources */,
 				FA0919EA2551D7270097203E /* UIColorExtensions.swift in Sources */,
+				FAFA0D31255EF8610018DD9A /* SolarSystem.swift in Sources */,
 				FA0919B82551B6230097203E /* NSObjectExtensions.swift in Sources */,
-				FACA5448255871ED00ACB158 /* UIViewControllerExtensions.swift in Sources */,
+				FA1619702562F7AB00B825E7 /* MessageActionType.swift in Sources */,
+				FA16197B2562FE7F00B825E7 /* VoiceRecognizionService.swift in Sources */,
 				FA0919AF2551B5460097203E /* FieldOfScienceCollectionViewCell.swift in Sources */,
+				FA1619802563120E00B825E7 /* SpeechSynthesizerService.swift in Sources */,
+				FA2358592559AD0C00A627E1 /* VolumetricItem.swift in Sources */,
 				FA0919A825517CA20097203E /* FieldsOfScienceViewModel.swift in Sources */,
+				FA7326B025646ECC003BD2B6 /* ChatViewModel.swift in Sources */,
 				FA5286512552F94800581987 /* TableViewWithTitleViewModel.swift in Sources */,
+				FA16199B25631B5400B825E7 /* MessageType.swift in Sources */,
+				FA9346052566FE9800BC67E8 /* ImageRecognitionViewModel.swift in Sources */,
+				FA2358782559F1A500A627E1 /* UIViewExtensions.swift in Sources */,
 				FA52A1A0254CC23D0075DE9C /* ApiErrorLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -784,6 +936,7 @@
 		FAE312E5253F21EB00CB73F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -833,19 +986,21 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "";
 			};
 			name = Debug;
 		};
 		FAE312E6253F21EB00CB73F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -889,12 +1044,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -948,7 +1104,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR6V794JNC;
 				INFOPLIST_FILE = SmartEducationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -971,7 +1127,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR6V794JNC;
 				INFOPLIST_FILE = SmartEducationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

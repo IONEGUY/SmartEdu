@@ -8,106 +8,123 @@
 import UIKit
 import SceneKit
 import ARKit
+import SmartHitTest
+import AVFoundation
+import AVKit
 
-class ImageRecognitionViewController: UIViewController, MVVMViewController, ARSCNViewDelegate {
-    typealias ViewModelType = AnyObject
+class ImageRecognitionViewController: BaseViewController, MVVMViewController,
+                                      ARSCNViewDelegate {
+    typealias ViewModelType = ImageRecognitionViewModel
 
     @IBOutlet weak var sceneView: ARSCNView!
+    @IBOutlet weak var focusFrame: UIView!
+    
+    var viewModel: ImageRecognitionViewModel?
 
-    var viewModel: AnyObject?
-
-    private let universeVideoPath = "Resources/Videos/universe"
-    private let videoUrl = "http://51.141.49.208:8080/sport-ar-be-video/api/videos/QMb_tUcxesM.mp4"
+    private let universeVideoPath = "art.scnassets/universe_video"
+    private var recognizedImageName = String.empty
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupBaseNavBarStyle()
-
+        
+        setupRightBarButtonItem(UIImage(named: "cube"))
         sceneView.delegate = self
+        addGestureRecognizers()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        setupRightBarButtonItem()
         setupImageTrackingConfiguration()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        sceneView.session.pause()
+    }
+    
+    private func addGestureRecognizers() {
+        let tapgestureRecognizer =
+            UITapGestureRecognizer(target: self,
+                                   action: #selector(handleSceneViewTap(_:)))
+        sceneView.addGestureRecognizer(tapgestureRecognizer)
+    }
+    
+    @objc private func handleSceneViewTap(_ gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: sceneView)
+        let node = sceneView.hitTest(point).first?.node.parent
+        guard node is VideoNode else { return }
 
-    private func setupRightBarButtonItem() {
+        let player = recognizedImageName == "stream_trigger"
+            ? SceneNodeBuilder.createPlayer(fromUrl: ApiConstants.streamURl)
+            : SceneNodeBuilder.createPlayer(fromVideoName: universeVideoPath)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        present(playerViewController, animated: true) {
+            playerViewController.player?.play()
+        }
+    }
+    
+    private func setupRightBarButtonItem(_ image: UIImage?) {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "cube"), for: .normal)
-        button.addTarget(self, action: #selector(navigateTo3DModePage), for: .touchUpInside)
-        button.frame = CGRect(x: 0, y: 0, width: 53, height: 51)
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(rightBarButtonItemPressed),
+                         for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         let barButton = UIBarButtonItem(customView: button)
-        self.navigationItem.rightBarButtonItem = barButton
+        navigationItem.rightBarButtonItem = barButton
+    }
+
+    @objc func rightBarButtonItemPressed() {
+        Router.show(VolumetricModeViewController.self)
+    }
+
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        guard let imageAnchor = anchor as? ARImageAnchor else { return nil }
+        var node: SCNNode?
+        switch imageAnchor.referenceImage.name {
+        case "stream_trigger":
+            node = placeVideo(onImage: imageAnchor.referenceImage, ApiConstants.streamURl)
+        case "universe":
+            node = placeVideo(onImage: imageAnchor.referenceImage, universeVideoPath)
+        case "conference":
+            Router.show(ConferenceViewController.self)
+        default:
+            break
+        }
+        
+        recognizedImageName = imageAnchor.referenceImage.name ?? String.empty
+        focusFrame.isHidden = true
+        return node
     }
 
     private func setupImageTrackingConfiguration() {
         let configuration = ARImageTrackingConfiguration()
 
         guard let universe = initTrackingImage(withName: "universe"),
-              let conference = initTrackingImage(withName: "conference")
+              let conference = initTrackingImage(withName: "conference"),
+              let stream = initTrackingImage(withName: "stream_trigger")
         else { return }
 
-        configuration.trackingImages = [ universe, conference ]
+        configuration.trackingImages = [ universe, conference, stream ]
         configuration.maximumNumberOfTrackedImages = 2
         sceneView.session.run(configuration)
     }
 
-    @objc func navigateTo3DModePage() {
-        Router.show(VolumetricObjectsViewController.self)
-    }
+    private func placeVideo(onImage image: ARReferenceImage, _ videoSource: String) -> SCNNode {
+        let videoNode = SceneNodeBuilder.createVideoNode(videoSource: videoSource)
+        let planeNode = createPlaneNode(forVideoNode: videoNode?.videoNode, planeSize: image.physicalSize)
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        sceneView.session.pause()
-    }
-
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        guard let imageAnchor = anchor as? ARImageAnchor else { return nil }
-        switch imageAnchor.referenceImage.name {
-        case "universe":
-            return placeVideo(onImage: imageAnchor.referenceImage)
-        case "conference":
-            navigateToConference()
-        default:
-            return nil
-        }
-
-        return nil
-    }
-
-    private func navigateToConference() {
-        Router.show(ConferenceViewController.self)
-    }
-
-    private func placeVideo(onImage image: ARReferenceImage) -> SCNNode {
-        let videoNode = createVideoNode(withUrl: videoUrl)
-        let planeNode = createPlaneNode(forVideoNode: videoNode, planeSize: image.physicalSize)
-
-        let node = SCNNode()
+        let node = VideoNode()
+        node.player = videoNode?.player
         node.addChildNode(planeNode)
-        return planeNode
+        return node
     }
 
-    private func createVideoNode(withUrl url: String) -> SKVideoNode {
-        let videoItem = AVPlayerItem(asset: AVAsset(url: URL(string: url)!))
-        let player = AVPlayer(playerItem: videoItem)
-        let videoNode = SKVideoNode(avPlayer: player)
-        player.play()
-
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: nil) { (_) in
-            player.seek(to: CMTime.zero)
-            player.play()
-        }
-
-        return videoNode
-    }
-
-    private func createPlaneNode(forVideoNode videoNode: SKVideoNode, planeSize: CGSize) -> SCNNode {
-        let videoScene = SKScene(size: CGSize(width: 480, height: 360))
+    private func createPlaneNode(forVideoNode videoNode: SKVideoNode?, planeSize: CGSize) -> SCNNode {
+        guard let videoNode = videoNode else { return SCNNode() }
+        let videoScene = SKScene(size: CGSize(width: 1280, height: 720))
         videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
         videoNode.yScale = -1.0
         videoScene.addChild(videoNode)

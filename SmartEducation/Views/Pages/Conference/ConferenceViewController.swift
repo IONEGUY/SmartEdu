@@ -10,17 +10,15 @@ import JitsiMeet
 
 class ConferenceViewController: UIViewController, MVVMViewController {
     typealias ViewModelType = AnyObject
-
-    @IBOutlet weak var jitsiMeetView: JitsiMeetView!
-
+    
     var viewModel: AnyObject?
+    
+    @IBOutlet weak var jitsiMeetView: JitsiMeetView!
 
     private var roomName = "SmartEDU"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupBackBarButtonItem()
 
         openConferenceView()
     }
@@ -34,13 +32,18 @@ class ConferenceViewController: UIViewController, MVVMViewController {
             builder.room = self?.roomName
         }
 
-        JitsiMeet.sharedInstance().defaultConferenceOptions = options
+        if JitsiMeet.sharedInstance().defaultConferenceOptions == nil {
+            JitsiMeet.sharedInstance().defaultConferenceOptions = options
+        }
         jitsiMeetView.join(options)
     }
 }
 
 extension ConferenceViewController: JitsiMeetViewDelegate {
     func conferenceTerminated(_ data: [AnyHashable: Any]!) {
-        Router.pop()
+        if jitsiMeetView != nil {
+            Router.pop()
+            jitsiMeetView = nil
+        }
     }
 }
