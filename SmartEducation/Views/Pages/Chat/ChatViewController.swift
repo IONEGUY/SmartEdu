@@ -17,7 +17,7 @@ class ChatViewController: BaseViewController, MVVMViewController,
     
     private var messages: [MessageCellModel] = []
     private var chatService = ChatService()
-    weak var viewModel: ChatViewModel?
+    var viewModel: ChatViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
