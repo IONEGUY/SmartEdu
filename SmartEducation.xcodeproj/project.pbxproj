@@ -61,6 +61,7 @@
 		FA9346052566FE9800BC67E8 /* ImageRecognitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9346042566FE9800BC67E8 /* ImageRecognitionViewModel.swift */; };
 		FA93460A2567020E00BC67E8 /* ChatMessageInputViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */; };
 		FA9DD901256F060E00760106 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DD900256F060E00760106 /* BaseViewController.swift */; };
+		FA9DD9502570485000760106 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9DD94F2570485000760106 /* logo.png */; };
 		FAA43D01256E99410043467D /* VideoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA43D00256E99410043467D /* VideoNode.swift */; };
 		FAA43D09256EF0BB0043467D /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA43D08256EF0BB0043467D /* UIApplicationExtensions.swift */; };
 		FABBD3A5254C336500CE45C5 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBD3A4254C336500CE45C5 /* URLRequestBuilder.swift */; };
@@ -160,6 +161,7 @@
 		FA9346042566FE9800BC67E8 /* ImageRecognitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecognitionViewModel.swift; sourceTree = "<group>"; };
 		FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageInputViewDelegate.swift; sourceTree = "<group>"; };
 		FA9DD900256F060E00760106 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		FA9DD94F2570485000760106 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FAA43D00256E99410043467D /* VideoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoNode.swift; sourceTree = "<group>"; };
 		FAA43D08256EF0BB0043467D /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
 		FABBD3A4254C336500CE45C5 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 		FA52A1BC254CC8F20075DE9C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA9DD94F2570485000760106 /* logo.png */,
 				FA2358602559B9D500A627E1 /* Colors.swift */,
 				FA73268E25643F5A003BD2B6 /* StringResources.swift */,
 			);
@@ -659,6 +662,7 @@
 				FA0919E22551C34D0097203E /* SpecificScienceViewController.xib in Resources */,
 				FA7326AB25646CF2003BD2B6 /* ChatViewController.xib in Resources */,
 				FA2358682559C70200A627E1 /* VolumetricObjectCollectionViewCell.xib in Resources */,
+				FA9DD9502570485000760106 /* logo.png in Resources */,
 				FAE312C3253F21EA00CB73F8 /* art.scnassets in Resources */,
 				FA0919A225517C5D0097203E /* FieldsOfScienceViewController.xib in Resources */,
 				FA1619652562DFB700B825E7 /* ChatMessageInputView.xib in Resources */,
@@ -1039,7 +1043,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FEB7118D1870D7F03663CFD /* Pods-SmartEducation.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR6V794JNC;
@@ -1059,7 +1062,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C9DC74B013389E9DD052916 /* Pods-SmartEducation.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR6V794JNC;

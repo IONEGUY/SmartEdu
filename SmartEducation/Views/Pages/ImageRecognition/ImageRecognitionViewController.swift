@@ -21,6 +21,7 @@ class ImageRecognitionViewController: BaseViewController, MVVMViewController,
     
     var viewModel: ImageRecognitionViewModel?
 
+    private let universeVideoPath = "art.scnassets/universe_video"
     private var recognizedImageName = String.empty
 
     override func viewDidLoad() {
@@ -57,7 +58,7 @@ class ImageRecognitionViewController: BaseViewController, MVVMViewController,
 
         let player = recognizedImageName == "stream_trigger"
             ? SceneNodeBuilder.createPlayer(fromUrl: ApiConstants.streamURl)
-            : SceneNodeBuilder.createPlayer(fromVideoName: StringResources.universeVideoPath)
+            : SceneNodeBuilder.createPlayer(fromVideoName: universeVideoPath)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         present(playerViewController, animated: true) {
@@ -87,7 +88,8 @@ class ImageRecognitionViewController: BaseViewController, MVVMViewController,
             case "stream_trigger":
                 node = self?.placeVideo(onImage: imageAnchor.referenceImage, ApiConstants.streamURl)
             case "universe":
-                node = self?.placeVideo(onImage: imageAnchor.referenceImage, StringResources.universeVideoPath)
+                node = self?.placeVideo(onImage: imageAnchor.referenceImage,
+                                        StringResources.universeVideoPath)
             case "conference":
                 Router.show(ConferenceViewController.self)
             default:

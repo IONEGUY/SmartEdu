@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,10 +13,43 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gA-bS-4SZ">
+                                <rect key="frame" x="156.5" y="374" width="101" height="148"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="2sv-HO-4ic">
+                                        <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="2sv-HO-4ic" secondAttribute="height" multiplier="1:1" id="aXJ-G7-xe3"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smart EDU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxA-er-2vJ">
+                                        <rect key="frame" x="0.0" y="124" width="101" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="2sv-HO-4ic" firstAttribute="top" secondItem="7gA-bS-4SZ" secondAttribute="top" id="5A8-Ky-vb5"/>
+                                    <constraint firstItem="2sv-HO-4ic" firstAttribute="leading" secondItem="7gA-bS-4SZ" secondAttribute="leading" id="JLg-fS-0vh"/>
+                                    <constraint firstItem="FxA-er-2vJ" firstAttribute="top" secondItem="2sv-HO-4ic" secondAttribute="bottom" constant="23" id="KlR-AF-CFb"/>
+                                    <constraint firstAttribute="trailing" secondItem="2sv-HO-4ic" secondAttribute="trailing" id="SAq-iL-On4"/>
+                                    <constraint firstAttribute="trailing" secondItem="FxA-er-2vJ" secondAttribute="trailing" id="Tne-xD-Nmx"/>
+                                    <constraint firstItem="FxA-er-2vJ" firstAttribute="leading" secondItem="7gA-bS-4SZ" secondAttribute="leading" id="alt-z9-ZXk"/>
+                                    <constraint firstAttribute="bottom" secondItem="FxA-er-2vJ" secondAttribute="bottom" id="ws0-bJ-BUQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7gA-bS-4SZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="AQv-fs-i3h"/>
+                            <constraint firstItem="7gA-bS-4SZ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="y2s-Qj-KU8"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -22,4 +57,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo.png" width="80" height="80"/>
+    </resources>
 </document>
