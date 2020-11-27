@@ -8,6 +8,9 @@
 import UIKit
 import IQKeyboardManagerSwift
 import JitsiMeet
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
                      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         initJitSiApp(launchOptions, application)
+        initCrashlytics()
         IQKeyboardManager.shared.enable = true
         DIContainerConfigurator.initiate()
         initializeWindow()
@@ -35,6 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         return JitsiMeet.sharedInstance().application(app, open: url, options: options)
+    }
+    
+    private func initCrashlytics() {
+        AppCenter.start(withAppSecret: "bb4a8a08-0253-4146-81ae-f0402cff843d", services:[
+          Analytics.self,
+          Crashes.self
+        ])
     }
 
     private func initJitSiApp(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?, _ application: UIApplication) {

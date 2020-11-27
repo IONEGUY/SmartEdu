@@ -16,6 +16,7 @@ target 'SmartEducation' do
   pod 'IQKeyboardManagerSwift'
   pod 'SnapKit', '~> 5.0.0'
   pod 'OSSSpeechKit'
+  pod 'AppCenter'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|
