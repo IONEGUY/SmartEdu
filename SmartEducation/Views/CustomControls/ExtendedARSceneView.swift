@@ -19,37 +19,37 @@ class ExtendedARSceneView: ARSCNView, ARSmartHitTest, ARSCNViewDelegate,
 
     func setup() {
         delegate = self
-        
+
         appLighting()
         addCoaching()
         configueARSceneView()
         addGestureRecognizers()
     }
-    
+
     deinit {
         print("ExtendedARSceneView has been released")
     }
-    
+
     func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {
         planeVisualizer.isHidden = false
         setPositionToCenterOf(planeVisualizer)
     }
-    
+
     func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {
         planeVisualizer.isHidden = true
     }
-    
+
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         updatePlaneVisualizerPosition()
     }
 
     func add(_ newNode: VolumetricObjectSCNNode?) {
         guard let node = newNode else { return }
-        
+
         node.orientation.y = pointOfView?.orientation.y ?? node.orientation.y
         setPositionToCenterOf(node)
     }
-    
+
     private func addCoaching() {
         let coachingOverlay = ARCoachingOverlayView()
         addSubview(coachingOverlay)
@@ -58,7 +58,7 @@ class ExtendedARSceneView: ARSCNView, ARSmartHitTest, ARSCNViewDelegate,
         coachingOverlay.session = session
         coachingOverlay.delegate = self
     }
-    
+
     private func appLighting() {
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
@@ -66,7 +66,7 @@ class ExtendedARSceneView: ARSCNView, ARSmartHitTest, ARSCNViewDelegate,
         lightNode.light?.type = .omni
         lightNode.position = SCNVector3(x: 0, y: 10, z: 35)
         scene.rootNode.addChildNode(lightNode)
-        
+
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
         ambientLightNode.light?.castsShadow = true
@@ -143,7 +143,7 @@ class ExtendedARSceneView: ARSCNView, ARSmartHitTest, ARSCNViewDelegate,
             pinchGesture.scale = 1
         }
     }
-    
+
     @objc private func handleRotationAction(rotationGesture: UIRotationGestureRecognizer) {
         guard let node = getNodeFromHitTest(rotationGesture), node.rotatingEnabled
             else { return }
@@ -153,7 +153,7 @@ class ExtendedARSceneView: ARSCNView, ARSmartHitTest, ARSCNViewDelegate,
             node.eulerAngles.y = Float(-(currentRotationY + rotationGesture.rotation))
         }
     }
-    
+
     @objc private func handleLongPressAction(longPressGesture: UILongPressGestureRecognizer) {
         guard let node = getNodeFromHitTest(longPressGesture) else { return }
         node.removeFromParentNode()
@@ -165,7 +165,7 @@ class ExtendedARSceneView: ARSCNView, ARSmartHitTest, ARSCNViewDelegate,
         guard let node = hitTest(point).first?.node else { return nil}
         return getParentVolumetricObjectSCNNode(node) as? VolumetricObjectSCNNode
     }
-    
+
     private func getParentVolumetricObjectSCNNode(_ node: SCNNode?) -> SCNNode? {
         if node is VolumetricObjectSCNNode { return node }
         return getParentVolumetricObjectSCNNode(node?.parent)

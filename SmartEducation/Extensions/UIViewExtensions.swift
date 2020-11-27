@@ -19,7 +19,7 @@ extension UIView {
         layer.borderWidth = borderWidth ?? 3
         return self
     }
-    
+
     func applyPulseAnimation() {
         let pulse = PulseAnimation(numberOfPulse: Float.infinity, radius: 40, postion: center)
         pulse.animationDuration = 1
@@ -27,7 +27,7 @@ extension UIView {
         pulse.backgroundColor = #colorLiteral(red: 0.05282949957, green: 0.5737867104, blue: 1, alpha: 1)
         superview?.layer.insertSublayer(pulse, below: superview?.layer)
     }
-    
+
     func removePulseAnimation() {
         superview?.layer.sublayers?.forEach {
             if $0.name == PulseAnimation.typeName {
@@ -35,7 +35,7 @@ extension UIView {
             }
         }
     }
-    
+
     func fillSuperview() {
         guard let superview = self.superview else { return }
         translatesAutoresizingMaskIntoConstraints = superview.translatesAutoresizingMaskIntoConstraints

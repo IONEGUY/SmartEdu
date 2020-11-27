@@ -17,7 +17,7 @@ class RotatableSCNNode: VolumetricObjectSCNNode {
                                                 duration: TimeInterval(1 - duration / 10))
         runAction(SCNAction.repeatForever(rotationAction))
     }
-    
+
     public func updateRotationSpeed(_ duration: Float) {
         removeAllActions()
         addRotationAction(duration: duration)

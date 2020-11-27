@@ -17,16 +17,16 @@ class SceneNodeBuilder {
         "mars": 0.1,
         "moon": 0.05
     ]
-    
+
     private static var videosConfig: [String: String] = [
         "earth_video": "art.scnassets/earth_video",
         "moon_video": "art.scnassets/moon_video",
         "mars_video": "art.scnassets/mars_video",
         "stream": ApiConstants.streamURl
     ]
-    
+
     static var solarSystem: VolumetricObjectSCNNode?
-    
+
     class func buildPlaneVisualizer() -> VolumetricObjectSCNNode {
         let node = VolumetricObjectSCNNode()
         let plane = SCNPlane(width: 0.2, height: 0.2)
@@ -49,7 +49,7 @@ class SceneNodeBuilder {
             return buildAvatar()
         }
     }
-    
+
     class func createPlanet(radius: Float, image: String) -> RotatableSCNNode {
         let planet = SCNSphere(radius: CGFloat(radius))
         let material = SCNMaterial()
@@ -61,7 +61,7 @@ class SceneNodeBuilder {
 
         return planetNode
     }
-    
+
     class func createVideoNode(videoSource: String?)
         -> (videoNode: SKVideoNode, player: AVPlayer)? {
         guard let videoSource = videoSource,
@@ -71,7 +71,7 @@ class SceneNodeBuilder {
         else { return nil }
         let videoNode = SKVideoNode(avPlayer: videoPlayer)
         videoPlayer.play()
-        
+
         return (videoNode, videoPlayer)
     }
 
@@ -80,25 +80,25 @@ class SceneNodeBuilder {
             solarSystem = SolarSystem()
             return solarSystem
         }
-        
+
         guard let radius = planetsConfig[id] else { return nil }
         let node = createPlanet(radius: radius, image: id)
         node.draggingEnabled = true
         node.scalingEnabled = true
         node.rotatingEnabled = true
-        
+
         return node
     }
-    
+
     private class func buildVideoObject(_ id: String) -> VolumetricObjectSCNNode {
         let node = VolumetricObjectSCNNode()
         guard let videoNode = createVideoNode(videoSource: videosConfig[id])?.videoNode
         else { return node }
-        
+
         node.draggingEnabled = true
         node.scalingEnabled = true
         node.rotatingEnabled = true
-        
+
         let videoScene = SKScene(size: CGSize(width: 1920, height: 1080))
         videoScene.backgroundColor = .clear
         videoScene.scaleMode = .resizeFill
@@ -114,20 +114,20 @@ class SceneNodeBuilder {
         node.addChildNode(planeNode)
         return node
     }
-    
+
     class func createPlayer(fromUrl url: String) -> AVPlayer? {
         guard let url = URL(string: url) else { return nil }
         let asset = AVAsset(url: url)
         let playerItem = AVPlayerItem(asset: asset)
         return buildPlayerWith(playerItem: playerItem)
     }
-    
+
     class func createPlayer(fromVideoName name: String) -> AVPlayer? {
         guard let path = Bundle.main.path(forResource: name, ofType: "mp4") else { return nil }
         let playerItem = AVPlayerItem(url: URL(fileURLWithPath: path))
         return buildPlayerWith(playerItem: playerItem)
     }
-    
+
     private class func buildPlayerWith(playerItem: AVPlayerItem) -> AVPlayer {
         let player = AVPlayer(playerItem: playerItem)
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
@@ -136,7 +136,7 @@ class SceneNodeBuilder {
             player.seek(to: CMTime.zero)
             player.play()
         }
-        
+
         return player
     }
 
@@ -152,9 +152,9 @@ class SceneNodeBuilder {
         containerNode.draggingEnabled = true
 
         let nodesInFile = SCNScene(named: "art.scnassets/hakima.scn")
-        
+
         containerNode.addChildNode(nodesInFile?.rootNode ?? SCNNode())
-        
+
         return containerNode
     }
 }

@@ -12,7 +12,7 @@ struct ApiConstants {
     static let baseUrl = "https://jsonplaceholder.typicode.com"
 
     static let conferenceUrl = "https://smarteducation-zain-test.awtg.co.uk/"
-    
+
     static let streamURl = "http://77.232.100.137:8082/hls/SmartEDU.m3u8"
 
     struct Parameters {

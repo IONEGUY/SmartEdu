@@ -48,7 +48,7 @@ class Router {
             currentVC.navigationController?.popViewController(animated: false)
         }
     }
-    
+
     class func popTo<VCType: MVVMViewController>(_ vcType: VCType.Type) {
         guard let currentVC =
                 UIApplication.getTopViewController() else { return }

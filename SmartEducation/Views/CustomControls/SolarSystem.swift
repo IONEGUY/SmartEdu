@@ -13,18 +13,18 @@ import SwiftUI
 class SolarSystem: VolumetricObjectSCNNode {
     private var orbits: [RotatableSCNNode] = []
     private var planets: [RotatableSCNNode] = []
-    
+
     override init() {
         super.init()
-        
+
         buildPlanets()
         addChildNode(createSolarSysterProperties())
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func buildPlanets() {
         createSun()
         createMercury()
@@ -62,13 +62,13 @@ class SolarSystem: VolumetricObjectSCNNode {
         container.addSubview(rotationSpeedLabel)
         material.diffuse.contents = container
         plane.materials = [material]
-        
+
         let boxNode = SCNNode(geometry: plane)
         boxNode.position = SCNVector3(x: 0.0, y: 0.7, z: 0)
 
         return boxNode
     }
-    
+
     private func createLabel(_ text: String, _ frame: CGRect) -> UILabel {
         let label = UILabel(frame: frame)
         label.text = text
@@ -78,7 +78,7 @@ class SolarSystem: VolumetricObjectSCNNode {
         label.textAlignment = .center
         return label
     }
-    
+
     private func createSlider( _ frame: CGRect, handler: @escaping (Float) -> Void) -> UISlider {
         let slider = UISlider(frame: frame)
         slider.onChange(handler: handler)
@@ -92,7 +92,7 @@ class SolarSystem: VolumetricObjectSCNNode {
         slider.setThumbImage(circleImage, for: .highlighted)
         return slider
     }
-    
+
     private func makeCircleWith(size: CGSize, backgroundColor: UIColor) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         let context = UIGraphicsGetCurrentContext()
@@ -115,9 +115,9 @@ class SolarSystem: VolumetricObjectSCNNode {
         orbitNode.geometry = orbit
         return orbitNode
     }
-    
-    //MARK: - planets
-    
+
+    // MARK: - planets
+
     private func createSun() {
         let sun = SceneNodeBuilder.createPlanet(radius: 0.25, image: "sun")
         sun.name = "sun"
@@ -126,7 +126,7 @@ class SolarSystem: VolumetricObjectSCNNode {
         addChildNode(sun)
         planets.append(sun)
     }
-    
+
     private func createMercury() {
         let mercuryOrbit = createOrbit(orbitSize: 0.3)
         let mercury = SceneNodeBuilder.createPlanet(radius: 0.03, image: "mercury")
@@ -139,7 +139,7 @@ class SolarSystem: VolumetricObjectSCNNode {
         planets.append(mercury)
         orbits.append(mercuryOrbit)
     }
-    
+
     private func createVenus() {
         let venusOrbit = createOrbit(orbitSize: 0.5)
         let venus = SceneNodeBuilder.createPlanet(radius: 0.04, image: "venus")
@@ -152,7 +152,7 @@ class SolarSystem: VolumetricObjectSCNNode {
         planets.append(venus)
         orbits.append(venusOrbit)
     }
-    
+
     private func createEarth() {
         let earthOrbit = createOrbit(orbitSize: 0.7)
         let earth = SceneNodeBuilder.createPlanet(radius: 0.05, image: "earth")
@@ -162,7 +162,7 @@ class SolarSystem: VolumetricObjectSCNNode {
         earthOrbit.addRotationAction(duration: 1, rotation: 0.25)
         planets.append(earth)
         orbits.append(earthOrbit)
-        
+
         let moon = SceneNodeBuilder.createPlanet(radius: 0.01, image: "moon")
         moon.name = "moon"
         let moonOrbit = SCNTorus(ringRadius: 0.08, pipeRadius: 0.001)
@@ -171,13 +171,13 @@ class SolarSystem: VolumetricObjectSCNNode {
         moon.position = SCNVector3(x: 0.08, y: 0, z: 0)
         moonOrbitNode.position = SCNVector3(x: 0, y: 0, z: 0)
         orbits.append(moonOrbitNode)
-        
+
         earthOrbit.addChildNode(earth)
         earth.addChildNode(moonOrbitNode)
         addChildNode(earthOrbit)
         moonOrbitNode.addChildNode(moon)
     }
-    
+
     private func createMars() {
         let marsOrbit = createOrbit(orbitSize: 0.8)
         let mars = SceneNodeBuilder.createPlanet(radius: 0.03, image: "mars")
@@ -190,7 +190,7 @@ class SolarSystem: VolumetricObjectSCNNode {
         addChildNode(marsOrbit)
         marsOrbit.addChildNode(mars)
     }
-    
+
     private func createJupiter() {
         let jupiterOrbit = createOrbit(orbitSize: 1.0)
         let jupiter = SceneNodeBuilder.createPlanet(radius: 0.03, image: "jupiter")
@@ -203,7 +203,7 @@ class SolarSystem: VolumetricObjectSCNNode {
         jupiterOrbit.addChildNode(jupiter)
         addChildNode(jupiterOrbit)
     }
-    
+
     private func createSaturn() {
         let saturnOrbit = createOrbit(orbitSize: 1.2)
         let saturn = SceneNodeBuilder.createPlanet(radius: 0.03, image: "saturn")
@@ -216,7 +216,7 @@ class SolarSystem: VolumetricObjectSCNNode {
         saturnOrbit.addChildNode(saturn)
         addChildNode(saturnOrbit)
     }
-    
+
     private func createUranus() {
         let uranusOrbit = createOrbit(orbitSize: 1.4)
         let uranus = SceneNodeBuilder.createPlanet(radius: 0.03, image: "uranus")
@@ -229,7 +229,7 @@ class SolarSystem: VolumetricObjectSCNNode {
         uranusOrbit.addChildNode(uranus)
         addChildNode(uranusOrbit)
     }
-    
+
     private func createNeptune() {
         let neptuneOrbit = createOrbit(orbitSize: 1.6)
         let neptune = SceneNodeBuilder.createPlanet(radius: 0.03, image: "neptune")
@@ -242,7 +242,7 @@ class SolarSystem: VolumetricObjectSCNNode {
         neptuneOrbit.addChildNode(neptune)
         addChildNode(neptuneOrbit)
     }
-    
+
     private func createPluton() {
         let plutoOrbit = createOrbit(orbitSize: 1.7)
         let pluto = SceneNodeBuilder.createPlanet(radius: 0.03, image: "pluton")

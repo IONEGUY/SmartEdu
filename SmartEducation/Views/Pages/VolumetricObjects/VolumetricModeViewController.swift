@@ -25,26 +25,26 @@ class VolumetricModeViewController: BaseViewController, MVVMViewController,
     @IBOutlet weak var lastMessageSendTime: UILabel!
     @IBOutlet weak var lastMessageText: UILabel!
     @IBOutlet weak var messageInputCover: UIView!
-    
+
     private var chatService = ChatService()
     private var arSceneSetup = false
     weak var viewModel: VolumetricModeViewModel?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-              
+
         configueVolumetricObjectsCollectionView()
         addVolumetricItemTapHandlers(forViews: [planetsMode, videosMode, avatar])
         setupRightBarButtonItem(UIImage(named: "capture"))
         chatMessageInputView.delegate = self
         lastMessageContainer.layer.cornerRadius = 12
-        
+
         let tapGestureRecognizer =
             UITapGestureRecognizer(target: self,
                                    action: #selector(self.navigateToChat(_:)))
         messageInputCover.addGestureRecognizer(tapGestureRecognizer)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -52,19 +52,19 @@ class VolumetricModeViewController: BaseViewController, MVVMViewController,
         arSceneSetup.toggle()
         sceneView.setup()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         //It's workaround needed for avoid blocking ui after navigating to previous page or to next
         ARSCNView()
     }
-    
+
     override func backButtonPressed() {
         chatService.clearMessages()
         Router.popTo(SpecificScienceViewController.self)
     }
-  
+
     private func setupRightBarButtonItem(_ image: UIImage?) {
         let button = UIButton(type: .custom)
         button.setImage(image, for: .normal)
@@ -82,21 +82,21 @@ class VolumetricModeViewController: BaseViewController, MVVMViewController,
     @objc private func navigateToChat(_ gesture: UITapGestureRecognizer) {
         Router.show(ChatViewController.self)
     }
-    
+
     private func displayLastMessage() {
         lastMessageContainer.isHidden = false
         guard let lastMessage = ChatService().getLastIncomingMsssage() else { return }
         lastMessageText.text = lastMessage.text
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         lastMessageSendTime.text = dateFormatter.string(from: lastMessage.sentTime)
     }
-    
+
     func sendMessageButtonPressed(_ message: String) {
         chatService.addOutgoingMessage(message: message)
         let avatarMessage = chatService.addIncomingMessage(keyMessage: message)
-        
+
         displayLastMessage()
         SpeechSynthesizerService().synthesize(avatarMessage)
     }

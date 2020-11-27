@@ -10,9 +10,9 @@ import JitsiMeet
 
 class ConferenceViewController: UIViewController, MVVMViewController {
     typealias ViewModelType = AnyObject
-    
+
     var viewModel: AnyObject?
-    
+
     @IBOutlet weak var jitsiMeetView: JitsiMeetView!
 
     override func viewDidLoad() {

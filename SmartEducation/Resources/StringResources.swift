@@ -12,7 +12,7 @@ struct StringResources {
     static let conferenceRoomName = "SmartEDU"
     static let greetingMessage = "Hi, I’m Hakima. How can I help you?"
     static let unknownQuestionMessage = "Hmm…I don’t have an answer for that. Is there something else I can help with"
-    static let predefinedMessages: [String : String] = [
+    static let predefinedMessages: [String: String] = [
         "QUESTION": "OK. What is your question? Please ask.",
         "EARTH": "The Earth’s radius is 3,958.8 miles long, and its circumference is 24,873.6 miles",
         "MARS": """

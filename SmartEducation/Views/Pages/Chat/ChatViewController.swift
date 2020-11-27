@@ -11,28 +11,28 @@ import IQKeyboardManagerSwift
 class ChatViewController: BaseViewController, MVVMViewController,
                           ChatMessageInputViewDelegate {
     typealias ViewModelType = ChatViewModel
-    
+
     @IBOutlet weak var messagesTableView: UITableView!
     @IBOutlet weak var messageInput: ChatMessageInputView!
-    
+
     private var messages: [MessageCellModel] = []
     private var chatService = ChatService()
     var viewModel: ChatViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         createTitle()
         chatService.addGreetingMessageAndSay()
         initMessagesTableView()
         getAllMessages()
         messageInput.delegate = self
     }
-        
+
     private func createTitle() {
         navigationItem.titleView = UIImageView(image: UIImage(named: "hakima_title"))
     }
-    
+
     func sendMessageButtonPressed(_ message: String) {
         chatService.addOutgoingMessage(message: message)
         let avatarMessage = chatService.addIncomingMessage(keyMessage: message)
@@ -40,11 +40,11 @@ class ChatViewController: BaseViewController, MVVMViewController,
         getAllMessages()
         messagesTableView.reloadData()
     }
-    
+
     private func getAllMessages() {
         messages = chatService.getAllMessages()
     }
-    
+
     private func initMessagesTableView() {
         messagesTableView
             .register(MessageTableViewCell.self,

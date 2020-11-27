@@ -18,54 +18,51 @@ class ImageRecognitionViewController: BaseViewController, MVVMViewController,
 
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var focusFrame: UIView!
-    
-    var viewModel: ImageRecognitionViewModel?
 
-    private let universeVideoPath = "art.scnassets/universe_video"
-    private var recognizedImageName = String.empty
+    var viewModel: ImageRecognitionViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupRightBarButtonItem(UIImage(named: "cube"))
         sceneView.delegate = self
         addGestureRecognizers()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         setupImageTrackingConfiguration()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         sceneView.session.pause()
     }
-    
+
     private func addGestureRecognizers() {
         let tapgestureRecognizer =
             UITapGestureRecognizer(target: self,
                                    action: #selector(handleSceneViewTap(_:)))
         sceneView.addGestureRecognizer(tapgestureRecognizer)
     }
-    
+
     @objc private func handleSceneViewTap(_ gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: sceneView)
         let node = sceneView.hitTest(point).first?.node.parent
         guard node is VideoNode else { return }
 
-        let player = recognizedImageName == "stream_trigger"
+        let player = node?.name == "stream_trigger"
             ? SceneNodeBuilder.createPlayer(fromUrl: ApiConstants.streamURl)
-            : SceneNodeBuilder.createPlayer(fromVideoName: universeVideoPath)
+            : SceneNodeBuilder.createPlayer(fromVideoName: StringResources.universeVideoPath)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         present(playerViewController, animated: true) {
             playerViewController.player?.play()
         }
     }
-    
+
     private func setupRightBarButtonItem(_ image: UIImage?) {
         let button = UIButton(type: .custom)
         button.setImage(image, for: .normal)
@@ -83,20 +80,19 @@ class ImageRecognitionViewController: BaseViewController, MVVMViewController,
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         guard let imageAnchor = anchor as? ARImageAnchor else { return nil }
         var node: SCNNode?
+        switch imageAnchor.referenceImage.name {
+        case "stream_trigger":
+            node = placeVideo(onImage: imageAnchor.referenceImage, ApiConstants.streamURl)
+        case "universe":
+            node = placeVideo(onImage: imageAnchor.referenceImage,
+                              StringResources.universeVideoPath)
+        case "conference":
+            Router.show(ConferenceViewController.self)
+        default:
+            break
+        }
+
         DispatchQueue.main.async { [weak self] in
-            switch imageAnchor.referenceImage.name {
-            case "stream_trigger":
-                node = self?.placeVideo(onImage: imageAnchor.referenceImage, ApiConstants.streamURl)
-            case "universe":
-                node = self?.placeVideo(onImage: imageAnchor.referenceImage,
-                                        StringResources.universeVideoPath)
-            case "conference":
-                Router.show(ConferenceViewController.self)
-            default:
-                break
-            }
-            
-            self?.recognizedImageName = imageAnchor.referenceImage.name ?? String.empty
             self?.focusFrame.isHidden = true
         }
 
@@ -112,26 +108,32 @@ class ImageRecognitionViewController: BaseViewController, MVVMViewController,
         else { return }
 
         configuration.trackingImages = [ universe, conference, stream ]
-        configuration.maximumNumberOfTrackedImages = 2
+        configuration.maximumNumberOfTrackedImages = 3
         sceneView.session.run(configuration)
     }
 
     private func placeVideo(onImage image: ARReferenceImage, _ videoSource: String) -> SCNNode {
         let videoNode = SceneNodeBuilder.createVideoNode(videoSource: videoSource)
-        let planeNode = createPlaneNode(forVideoNode: videoNode?.videoNode, planeSize: image.physicalSize)
+        let planeNode = createPlaneNode(forVideoNode: videoNode, planeSize: image.physicalSize)
 
         let node = VideoNode()
         node.player = videoNode?.player
         node.addChildNode(planeNode)
+        node.name = image.name
         return node
     }
 
-    private func createPlaneNode(forVideoNode videoNode: SKVideoNode?, planeSize: CGSize) -> SCNNode {
+    private func createPlaneNode(forVideoNode videoNode: (videoNode: SKVideoNode,
+                                                          player: AVPlayer)?,
+                                 planeSize: CGSize) -> SCNNode {
         guard let videoNode = videoNode else { return SCNNode() }
-        let videoScene = SKScene(size: CGSize(width: 1280, height: 720))
-        videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
-        videoNode.yScale = -1.0
-        videoScene.addChild(videoNode)
+        let track = videoNode.player.currentItem?.asset.tracks.first
+        let size = track?.naturalSize.applying(track!.preferredTransform)
+        let defaultSize = CGSize(width: 640, height: 480)
+        let videoScene = SKScene(size: size ?? defaultSize)
+        videoNode.videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
+        videoNode.videoNode.yScale = -1.0
+        videoScene.addChild(videoNode.videoNode)
 
         let plane = SCNPlane(width: planeSize.width, height: planeSize.height)
         plane.firstMaterial?.diffuse.contents = videoScene

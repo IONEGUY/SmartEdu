@@ -15,7 +15,7 @@ class VolumetricModeViewModel {
     init() {
         volumetricObjectsTypeChangedCommand = volumetricObjectsTypeChanged
     }
-    
+
     deinit {
         print("VolumetricModeViewModel has been released")
     }

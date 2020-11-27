@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             JitsiMeet.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions!)
         }
     }
-    
+
     private func initializeWindow() {
         guard let rootViewController = Router.resolveVC(FieldsOfScienceViewController.self) else {
             fatalError("cannot resolve root view controller")
