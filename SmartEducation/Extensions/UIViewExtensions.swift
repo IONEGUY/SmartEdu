@@ -13,7 +13,6 @@ extension UIView {
     func applyRoundedStyle(borderColor: UIColor? = nil,
                            cornerRadius: CGFloat? = nil,
                            borderWidth: CGFloat? = nil) -> Self {
-        clipsToBounds = false
         layer.borderColor = borderColor?.cgColor ?? UIColor.volumetricItemSelectedColor.cgColor
         layer.cornerRadius = cornerRadius ?? frame.height / 2
         layer.borderWidth = borderWidth ?? 3

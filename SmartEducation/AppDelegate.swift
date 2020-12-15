@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         initJitSiApp(launchOptions, application)
         initCrashlytics()
-        IQKeyboardManager.shared.enable = true
         DIContainerConfigurator.initiate()
         initializeWindow()
         GlobalStyles.create()

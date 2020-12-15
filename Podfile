@@ -17,6 +17,7 @@ target 'SmartEducation' do
   pod 'SnapKit', '~> 5.0.0'
   pod 'OSSSpeechKit'
   pod 'AppCenter'
+  pod 'MessageKit'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|

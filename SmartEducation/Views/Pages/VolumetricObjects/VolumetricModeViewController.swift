@@ -86,7 +86,12 @@ class VolumetricModeViewController: BaseViewController, MVVMViewController,
     private func displayLastMessage() {
         lastMessageContainer.isHidden = false
         guard let lastMessage = ChatService().getLastIncomingMsssage() else { return }
-        lastMessageText.text = lastMessage.text
+        switch lastMessage.kind {
+        case .text(let text):
+            lastMessageText.text = text
+        default:
+            break
+        }
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"

@@ -8,9 +8,11 @@
 import Foundation
 
 class ChatService {
-    static var messages: [MessageCellModel] = []
+    static var messages: [Message] = []
+    static var currentUser = MessageSender(senderId: UUID().uuidString)
+    static var avatar = MessageSender(senderId: UUID().uuidString)
 
-    func getAllMessages() -> [MessageCellModel] {
+    func getAllMessages() -> [Message] {
         return ChatService.messages
     }
 
@@ -18,8 +20,9 @@ class ChatService {
         ChatService.messages = []
     }
 
-    func getLastIncomingMsssage() -> MessageCellModel? {
-        return ChatService.messages.filter { $0.messageType == MessageType.incoming }.last
+    func getLastIncomingMsssage() -> Message? {
+        return ChatService.messages.filter {
+            $0.sender.senderId == ChatService.avatar.senderId }.last
     }
 
     func addIncomingMessage(keyMessage: String) -> String {
@@ -31,24 +34,27 @@ class ChatService {
         }
         let avatarMessage = StringResources.predefinedMessages[keyWord]
             ?? StringResources.unknownQuestionMessage
-        ChatService.messages.append(MessageCellModel(messageType: .incoming,
-                                                     text: avatarMessage,
-                                                     sentTime: Date()))
+        ChatService.messages.append(Message(sender: ChatService.avatar,
+                                            messageId: UUID().uuidString,
+                                            sentDate: Date(),
+                                            kind: .text(avatarMessage)))
         return avatarMessage
     }
 
     func addOutgoingMessage(message: String) {
-        ChatService.messages.append(MessageCellModel(messageType: .outgoing,
-                                                     text: message,
-                                                     sentTime: Date()))
+        ChatService.messages.append(Message(sender: ChatService.currentUser,
+                                            messageId: UUID().uuidString,
+                                            sentDate: Date(),
+                                            kind: .text(message)))
     }
 
     func addGreetingMessageAndSay() {
         if ChatService.messages.isEmpty {
             SpeechSynthesizerService().synthesize(StringResources.greetingMessage)
-            ChatService.messages.append(MessageCellModel(messageType: .incoming,
-                                                         text: StringResources.greetingMessage,
-                                                         sentTime: Date()))
+            ChatService.messages.append(Message(sender: ChatService.avatar,
+                                                messageId: UUID().uuidString,
+                                                sentDate: Date(),
+                                                kind: .text(StringResources.greetingMessage)))
         }
     }
 }

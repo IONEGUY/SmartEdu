@@ -6,59 +6,90 @@
 //
 
 import UIKit
-import IQKeyboardManagerSwift
+import MessageKit
+import InputBarAccessoryView
 
-class ChatViewController: BaseViewController, MVVMViewController,
-                          ChatMessageInputViewDelegate {
+class ChatViewController: MessagesViewController, MVVMViewController {
     typealias ViewModelType = ChatViewModel
 
-    @IBOutlet weak var messagesTableView: UITableView!
-    @IBOutlet weak var messageInput: ChatMessageInputView!
-
-    private var messages: [MessageCellModel] = []
     private var chatService = ChatService()
+    
     var viewModel: ChatViewModel?
-
+    var messages: [Message] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         createTitle()
-        chatService.addGreetingMessageAndSay()
-        initMessagesTableView()
         getAllMessages()
-        messageInput.delegate = self
+        chatService.addGreetingMessageAndSay()
+        
+        configueMessagesViewControllerDelegates()
+        removeAvatarFromCell()
+        configueMessageInputBar()
     }
 
     private func createTitle() {
         navigationItem.titleView = UIImageView(image: UIImage(named: "hakima_title"))
     }
 
-    func sendMessageButtonPressed(_ message: String) {
-        chatService.addOutgoingMessage(message: message)
-        let avatarMessage = chatService.addIncomingMessage(keyMessage: message)
-        SpeechSynthesizerService().synthesize(avatarMessage)
-        getAllMessages()
-        messagesTableView.reloadData()
-    }
-
     private func getAllMessages() {
         messages = chatService.getAllMessages()
     }
+}
 
-    private func initMessagesTableView() {
-        messagesTableView
-            .register(MessageTableViewCell.self,
-                      forCellReuseIdentifier: MessageTableViewCell.typeName)
-        messagesTableView
-            .numberOfRows { [weak self] _ in
-                self?.messages.count ?? 0 }
-            .cellForRow { [weak self] indexPath in
-                guard let message = self?.messages[indexPath.row] else { return UITableViewCell() }
-                let cell =
-                    self?.messagesTableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.typeName,
-                                                                for: indexPath)
-                (cell as? MessageTableViewCell)?.initialize(withData: message)
-                return cell ?? UITableViewCell() }
-            .reloadData()
+extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate,
+                              MessagesDisplayDelegate, InputBarAccessoryViewDelegate {
+    func inputBar(_ inputBar: InputBarAccessoryView,
+                  didPressSendButtonWith text: String) {
+        chatService.addOutgoingMessage(message: text)
+        let avatarMessage = chatService.addIncomingMessage(keyMessage: text)
+        SpeechSynthesizerService().synthesize(avatarMessage)
+        getAllMessages()
+        messagesCollectionView.reloadData()
+        inputBar.inputTextView.text = .empty
+    }
+    
+    func currentSender() -> SenderType {
+        return ChatService.currentUser
+    }
+
+    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
+        return messages.count
+    }
+
+    func messageForItem(at indexPath: IndexPath,
+                        in messagesCollectionView: MessagesCollectionView) -> MessageType {
+        return messages[indexPath.section]
+    }
+    
+    private func configueMessageInputBar() {
+        let messageInput = messageInputBar.inputTextView
+        messageInput.placeholder = "Message"
+        messageInput.textContainerInset.left = 10
+        messageInput.textContainerInset.right = 12
+        messageInput.placeholderLabelInsets.left = 12
+        messageInput.backgroundColor = UIColor(hex: 0xF2F3F5)
+        messageInput.applyRoundedStyle(borderColor: UIColor(hex: 0xE1E3E6),
+                                       cornerRadius: 18,
+                                       borderWidth: 1)
+        
+        messageInputBar.sendButton.setImage(UIImage(named: "send"), for: .normal)
+        messageInputBar.sendButton.setTitle(.empty, for: .normal)
+    }
+    
+    private func removeAvatarFromCell() {
+        if let layout =
+            messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+            layout.setMessageIncomingAvatarSize(.zero)
+            layout.setMessageOutgoingAvatarSize(.zero)
+        }
+    }
+    
+    private func configueMessagesViewControllerDelegates() {
+        messagesCollectionView.messagesDataSource = self
+        messagesCollectionView.messagesLayoutDelegate = self
+        messagesCollectionView.messagesDisplayDelegate = self
+        messageInputBar.delegate = self
     }
 }
