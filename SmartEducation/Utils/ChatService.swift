@@ -6,55 +6,64 @@
 //
 
 import Foundation
+import RxSwift
+import RealmSwift
 
 class ChatService {
-    static var messages: [Message] = []
-    static var currentUser = MessageSender(senderId: UUID().uuidString)
-    static var avatar = MessageSender(senderId: UUID().uuidString)
+    private var repository = Repository()
 
-    func getAllMessages() -> [Message] {
-        return ChatService.messages
+    func setMessagesChangedObserver(_ block: @escaping () -> Void) {
+        repository.setCollectionChangedObserver(MessageDto.self) { block() }
     }
-
-    func clearMessages() {
-        ChatService.messages = []
-    }
-
-    func getLastIncomingMsssage() -> Message? {
-        return ChatService.messages.filter {
-            $0.sender.senderId == ChatService.avatar.senderId }.last
-    }
-
-    func addIncomingMessage(keyMessage: String) -> String {
-        var keyWord = String.empty
-        StringResources.predefinedMessages.keys.forEach { key in
-            if keyMessage.uppercased().contains(key) {
-                keyWord = key
-            }
+    
+    func get(pageIndex: Int, pageSize: Int) -> Single<PagingResult<Message>> {
+        return repository.get(MessageDto.self).map { (results) in
+            return results?
+                .sorted(byKeyPath: "sentDate", ascending: false)
+                .paginate(pageIndex: pageIndex, pageSize: pageSize)
+                .reversed()
+                .map { [unowned self] in self.mapMessageDtoToModel($0) } ?? []
+        }.map { [weak self] messages in
+            let count = self?.repository.itemsCount(MessageDto.self) ?? 0
+            return PagingResult(totalResultsCount: count,
+                                results: messages)
         }
-        let avatarMessage = StringResources.predefinedMessages[keyWord]
-            ?? StringResources.unknownQuestionMessage
-        ChatService.messages.append(Message(sender: ChatService.avatar,
-                                            messageId: UUID().uuidString,
-                                            sentDate: Date(),
-                                            kind: .text(avatarMessage)))
-        return avatarMessage
     }
 
-    func addOutgoingMessage(message: String) {
-        ChatService.messages.append(Message(sender: ChatService.currentUser,
-                                            messageId: UUID().uuidString,
-                                            sentDate: Date(),
-                                            kind: .text(message)))
-    }
-
-    func addGreetingMessageAndSay() {
-        if ChatService.messages.isEmpty {
-            SpeechSynthesizerService().synthesize(StringResources.greetingMessage)
-            ChatService.messages.append(Message(sender: ChatService.avatar,
-                                                messageId: UUID().uuidString,
-                                                sentDate: Date(),
-                                                kind: .text(StringResources.greetingMessage)))
+    func get() -> Single<[Message]> {
+        return repository.get(MessageDto.self).map { (results) in
+            return results?
+                .sorted(byKeyPath: "sentDate", ascending: false)
+                .map { [unowned self] in self.mapMessageDtoToModel($0) } ?? []
         }
+    }
+    
+    func remove(_ id: String) -> Completable {
+        let entity = MessageDto()
+        entity.id = id
+        return repository.delete(item: entity)
+    }
+    
+    func update(_ id: String, newText: String) -> Completable {
+        let entity = MessageDto()
+        entity.id = id
+        return repository.update(item: entity) { oldMessage in
+            oldMessage.text = newText
+        }
+    }
+
+    func send(message: String) -> Single<String> {
+        let messageDto = MessageDto()
+        messageDto.text = message
+        messageDto.senderId = "1"
+        return repository.add(item: messageDto).map { _ in message }
+    }
+
+    private func mapMessageDtoToModel(_ messageDto: MessageDto) -> Message {
+        return Message(sender: MessageSender(senderId: messageDto.senderId,
+                                             displayName: .empty),
+                       messageId: messageDto.id,
+                       sentDate: messageDto.sentDate,
+                       kind: .text(messageDto.text))
     }
 }

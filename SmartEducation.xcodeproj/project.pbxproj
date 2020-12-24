@@ -38,6 +38,8 @@
 		FA235890255ADAFB00A627E1 /* VolumetricObjectSCNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA23588F255ADAFB00A627E1 /* VolumetricObjectSCNNode.swift */; };
 		FA235895255B0B4A00A627E1 /* SceneNodeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA235894255B0B4A00A627E1 /* SceneNodeBuilder.swift */; };
 		FA381E92256074CC0009B599 /* RotatableSCNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA381E91256074CC0009B599 /* RotatableSCNNode.swift */; };
+		FA3CE25B2593749400E843F5 /* ContextMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CE25A2593749400E843F5 /* ContextMenuItem.swift */; };
+		FA3CE2602593B56000E843F5 /* PagingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CE25F2593B56000E843F5 /* PagingResult.swift */; };
 		FA512685255568D40082DBFF /* ImageRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA512683255568D40082DBFF /* ImageRecognitionViewController.swift */; };
 		FA512686255568D40082DBFF /* ImageRecognitionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA512684255568D40082DBFF /* ImageRecognitionViewController.xib */; };
 		FA5218162555DD0E0012BAEE /* ConferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5218142555DD0E0012BAEE /* ConferenceViewController.swift */; };
@@ -54,8 +56,13 @@
 		FA73268F25643F5A003BD2B6 /* StringResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73268E25643F5A003BD2B6 /* StringResources.swift */; };
 		FA7326AA25646CF2003BD2B6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7326A825646CF2003BD2B6 /* ChatViewController.swift */; };
 		FA7326B025646ECC003BD2B6 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7326AF25646ECC003BD2B6 /* ChatViewModel.swift */; };
+		FA7F88D4258AA4C3005E7BC5 /* MessageDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F88D3258AA4C3005E7BC5 /* MessageDto.swift */; };
 		FA8F823A2587FA74006CFF94 /* MessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F82392587FA74006CFF94 /* MessageSender.swift */; };
 		FA8F823F2587FA97006CFF94 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F823E2587FA97006CFF94 /* Message.swift */; };
+		FA8F827E25895BAD006CFF94 /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F827D25895BAD006CFF94 /* RepositoryProtocol.swift */; };
+		FA8F828325895DF3006CFF94 /* BaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F828225895DF3006CFF94 /* BaseEntity.swift */; };
+		FA8F828825895EE4006CFF94 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F828725895EE4006CFF94 /* Repository.swift */; };
+		FA8F828D258A5F16006CFF94 /* RealmResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F828C258A5F16006CFF94 /* RealmResults.swift */; };
 		FA9346052566FE9800BC67E8 /* ImageRecognitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9346042566FE9800BC67E8 /* ImageRecognitionViewModel.swift */; };
 		FA93460A2567020E00BC67E8 /* ChatMessageInputViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */; };
 		FA9DD901256F060E00760106 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DD900256F060E00760106 /* BaseViewController.swift */; };
@@ -136,6 +143,8 @@
 		FA23588F255ADAFB00A627E1 /* VolumetricObjectSCNNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricObjectSCNNode.swift; sourceTree = "<group>"; };
 		FA235894255B0B4A00A627E1 /* SceneNodeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneNodeBuilder.swift; sourceTree = "<group>"; };
 		FA381E91256074CC0009B599 /* RotatableSCNNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatableSCNNode.swift; sourceTree = "<group>"; };
+		FA3CE25A2593749400E843F5 /* ContextMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuItem.swift; sourceTree = "<group>"; };
+		FA3CE25F2593B56000E843F5 /* PagingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingResult.swift; sourceTree = "<group>"; };
 		FA512683255568D40082DBFF /* ImageRecognitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecognitionViewController.swift; sourceTree = "<group>"; };
 		FA512684255568D40082DBFF /* ImageRecognitionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageRecognitionViewController.xib; sourceTree = "<group>"; };
 		FA5218142555DD0E0012BAEE /* ConferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceViewController.swift; sourceTree = "<group>"; };
@@ -152,8 +161,13 @@
 		FA73268E25643F5A003BD2B6 /* StringResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringResources.swift; sourceTree = "<group>"; };
 		FA7326A825646CF2003BD2B6 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		FA7326AF25646ECC003BD2B6 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		FA7F88D3258AA4C3005E7BC5 /* MessageDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDto.swift; sourceTree = "<group>"; };
 		FA8F82392587FA74006CFF94 /* MessageSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSender.swift; sourceTree = "<group>"; };
 		FA8F823E2587FA97006CFF94 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		FA8F827D25895BAD006CFF94 /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
+		FA8F828225895DF3006CFF94 /* BaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEntity.swift; sourceTree = "<group>"; };
+		FA8F828725895EE4006CFF94 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		FA8F828C258A5F16006CFF94 /* RealmResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmResults.swift; sourceTree = "<group>"; };
 		FA9346042566FE9800BC67E8 /* ImageRecognitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecognitionViewModel.swift; sourceTree = "<group>"; };
 		FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageInputViewDelegate.swift; sourceTree = "<group>"; };
 		FA9DD900256F060E00760106 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -320,6 +334,9 @@
 				FA23586C2559D63800A627E1 /* VolumetricObject.swift */,
 				FA8F82392587FA74006CFF94 /* MessageSender.swift */,
 				FA8F823E2587FA97006CFF94 /* Message.swift */,
+				FA7F88D3258AA4C3005E7BC5 /* MessageDto.swift */,
+				FA3CE25A2593749400E843F5 /* ContextMenuItem.swift */,
+				FA3CE25F2593B56000E843F5 /* PagingResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -353,6 +370,7 @@
 				FA5286462552A0C100581987 /* StringExtensions.swift */,
 				FA2358772559F1A500A627E1 /* UIViewExtensions.swift */,
 				FAA43D08256EF0BB0043467D /* UIApplicationExtensions.swift */,
+				FA8F828C258A5F16006CFF94 /* RealmResults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -360,6 +378,7 @@
 		FA52A1B8254CC87F0075DE9C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FA8F827C25895B90006CFF94 /* Repository */,
 				FA16197A2562FE7F00B825E7 /* VoiceRecognizionService.swift */,
 				FA235894255B0B4A00A627E1 /* SceneNodeBuilder.swift */,
 				FA16197F2563120E00B825E7 /* SpeechSynthesizerService.swift */,
@@ -434,6 +453,16 @@
 				FA7326A825646CF2003BD2B6 /* ChatViewController.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		FA8F827C25895B90006CFF94 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				FA8F827D25895BAD006CFF94 /* RepositoryProtocol.swift */,
+				FA8F828225895DF3006CFF94 /* BaseEntity.swift */,
+				FA8F828725895EE4006CFF94 /* Repository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		FABBD3A3254C333C00CE45C5 /* Networking */ = {
@@ -820,15 +849,20 @@
 				FA0919C22551B91F0097203E /* ScienceListItem.swift in Sources */,
 				FA23586D2559D63800A627E1 /* VolumetricObject.swift in Sources */,
 				FA7326852564198E003BD2B6 /* PulseAnimation.swift in Sources */,
+				FA8F828825895EE4006CFF94 /* Repository.swift in Sources */,
 				FA0919D22551BF480097203E /* SciencesViewModel.swift in Sources */,
 				FABBD3AD254C33B500CE45C5 /* ApiConstants.swift in Sources */,
 				FA0919C92551BF0F0097203E /* SciencesViewController.swift in Sources */,
 				FA7326AA25646CF2003BD2B6 /* ChatViewController.swift in Sources */,
+				FA8F827E25895BAD006CFF94 /* RepositoryProtocol.swift in Sources */,
+				FA3CE25B2593749400E843F5 /* ContextMenuItem.swift in Sources */,
 				FA52A19B254CBF310075DE9C /* ErrorHandler.swift in Sources */,
+				FA7F88D4258AA4C3005E7BC5 /* MessageDto.swift in Sources */,
 				FA2358672559C70200A627E1 /* VolumetricObjectCollectionViewCell.swift in Sources */,
 				FAEE67A52550872400CD16B9 /* NavigatedToAware.swift in Sources */,
 				FAC35327255D6B5500F080EB /* ExtendedARSceneView.swift in Sources */,
 				FA93460A2567020E00BC67E8 /* ChatMessageInputViewDelegate.swift in Sources */,
+				FA8F828D258A5F16006CFF94 /* RealmResults.swift in Sources */,
 				FA0919D72551BFC50097203E /* SpecificScienceViewModel.swift in Sources */,
 				FAEE679B2550869D00CD16B9 /* DIContainerConfigurator.swift in Sources */,
 				FAEE67AA2550874F00CD16B9 /* MVVMViewController.swift in Sources */,
@@ -840,6 +874,7 @@
 				FA0919E12551C34D0097203E /* SpecificScienceViewController.swift in Sources */,
 				FA381E92256074CC0009B599 /* RotatableSCNNode.swift in Sources */,
 				FACA545A25587A8500ACB158 /* VolumetricModeViewController.swift in Sources */,
+				FA3CE2602593B56000E843F5 /* PagingResult.swift in Sources */,
 				FABBD3A5254C336500CE45C5 /* URLRequestBuilder.swift in Sources */,
 				FA73268A256434D2003BD2B6 /* ChatService.swift in Sources */,
 				FA52A196254CBA0A0075DE9C /* BaseApiService.swift in Sources */,
@@ -859,6 +894,7 @@
 				FA0919A825517CA20097203E /* FieldsOfScienceViewModel.swift in Sources */,
 				FA7326B025646ECC003BD2B6 /* ChatViewModel.swift in Sources */,
 				FA5286512552F94800581987 /* TableViewWithTitleViewModel.swift in Sources */,
+				FA8F828325895DF3006CFF94 /* BaseEntity.swift in Sources */,
 				FA8F823A2587FA74006CFF94 /* MessageSender.swift in Sources */,
 				FA9346052566FE9800BC67E8 /* ImageRecognitionViewModel.swift in Sources */,
 				FA2358782559F1A500A627E1 /* UIViewExtensions.swift in Sources */,

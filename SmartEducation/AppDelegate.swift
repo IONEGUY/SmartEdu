@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func initializeWindow() {
-        guard let rootViewController = Router.resolveVC(FieldsOfScienceViewController.self) else {
+        guard let rootViewController = Router.resolveVC(ChatViewController.self) else {
             fatalError("cannot resolve root view controller")
         }
 

@@ -61,7 +61,6 @@ class VolumetricModeViewController: BaseViewController, MVVMViewController,
     }
 
     override func backButtonPressed() {
-        chatService.clearMessages()
         Router.popTo(SpecificScienceViewController.self)
     }
 
@@ -84,26 +83,26 @@ class VolumetricModeViewController: BaseViewController, MVVMViewController,
     }
 
     private func displayLastMessage() {
-        lastMessageContainer.isHidden = false
-        guard let lastMessage = ChatService().getLastIncomingMsssage() else { return }
-        switch lastMessage.kind {
-        case .text(let text):
-            lastMessageText.text = text
-        default:
-            break
-        }
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        lastMessageSendTime.text = dateFormatter.string(from: lastMessage.sentTime)
+//        lastMessageContainer.isHidden = false
+//        guard let lastMessage = ChatService().getLastIncomingMsssage() else { return }
+//        switch lastMessage.kind {
+//        case .text(let text):
+//            lastMessageText.text = text
+//        default:
+//            break
+//        }
+//
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "HH:mm"
+//        lastMessageSendTime.text = dateFormatter.string(from: lastMessage.sentDate)
     }
 
     func sendMessageButtonPressed(_ message: String) {
-        chatService.addOutgoingMessage(message: message)
-        let avatarMessage = chatService.addIncomingMessage(keyMessage: message)
-
-        displayLastMessage()
-        SpeechSynthesizerService().synthesize(avatarMessage)
+//        chatService.addOutgoingMessage(message: message)
+//        let avatarMessage = chatService.addIncomingMessage(keyMessage: message)
+//
+//        displayLastMessage()
+//        SpeechSynthesizerService().synthesize(avatarMessage)
     }
 
     private func addVolumetricItemTapHandlers(forViews views: [UIView]) {
@@ -149,7 +148,7 @@ class VolumetricModeViewController: BaseViewController, MVVMViewController,
         if volumetricItem == .avatar {
             if messageInputCover == nil { return }
             messageInputCover?.removeFromSuperview()
-            chatService.addGreetingMessageAndSay()
+//            chatService.addGreetingMessageAndSay()
             displayLastMessage()
         }
         DispatchQueue.main.async { [weak self] in
