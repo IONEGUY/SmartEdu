@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import RxSwift
 
 struct ContextMenuItem<T> {
     var title: String
-    var action: (T) -> Void
+    var action: PublishSubject<T>
 }

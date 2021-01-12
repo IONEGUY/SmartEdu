@@ -50,11 +50,11 @@ class Repository: RepositoryProtocol {
         }
     }
     
-    func add<Entity: BaseEntity>(item: Entity) -> Single<Entity> {
-        return Single.create { [weak self] single in
+    func add<Entity: BaseEntity>(item: Entity) -> Completable {
+        return Completable.create { [weak self] completable in
             self?.realm.writeAsync( { realm in
                 realm.add(item)
-            }, { single(.success(item)) })
+            }, { completable(.completed) })
 
             return Disposables.create()
         }
@@ -73,39 +73,16 @@ class Repository: RepositoryProtocol {
         }
     }
     
-    func delete<Entity: BaseEntity>(item: Entity, _ executeAfterDelete: @escaping (Realm) -> Void = { _ in }) -> Completable {
-        return Completable.create { [weak self] completable in
+    func delete<Entity: BaseEntity>(item: Entity) -> Single<String> {
+        return Single.create { [weak self] single in
             self?.realm.writeAsync( { realm in
                 let predicate = NSPredicate(format: "id == %@", item.id)
                 if let entityToDelete = realm.objects(Entity.self).filter(predicate).first {
                     realm.delete(entityToDelete)
                 }
-            }, { completable(.completed) })
+            }, { single(.success(item.id)) })
             
             return Disposables.create()
-        }
-    }
-}
-
-extension Realm {
-    func writeAsync(_ block: @escaping ((Realm) -> Void), _ completion: @escaping () -> Void) {
-        DispatchQueue.global(qos: .background).async {
-            autoreleasepool {
-                do {
-                    guard let realm = try? Realm() else { return }
-
-                    try realm.write {
-                        //realm.beginWrite()
-                        block(realm)
-                        try realm.commitWrite()
-                    }
-                    
-                    realm.refresh()
-                    completion()
-                } catch let error {
-                    fatalError(error.localizedDescription)
-                }
-            }
         }
     }
 }

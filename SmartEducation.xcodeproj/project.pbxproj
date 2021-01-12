@@ -40,6 +40,8 @@
 		FA381E92256074CC0009B599 /* RotatableSCNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA381E91256074CC0009B599 /* RotatableSCNNode.swift */; };
 		FA3CE25B2593749400E843F5 /* ContextMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CE25A2593749400E843F5 /* ContextMenuItem.swift */; };
 		FA3CE2602593B56000E843F5 /* PagingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CE25F2593B56000E843F5 /* PagingResult.swift */; };
+		FA3CE2652594CD0300E843F5 /* RealmExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CE2642594CD0300E843F5 /* RealmExtensions.swift */; };
+		FA3CE26A2594CE2700E843F5 /* ChatServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CE2692594CE2700E843F5 /* ChatServiceProtocol.swift */; };
 		FA512685255568D40082DBFF /* ImageRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA512683255568D40082DBFF /* ImageRecognitionViewController.swift */; };
 		FA512686255568D40082DBFF /* ImageRecognitionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA512684255568D40082DBFF /* ImageRecognitionViewController.xib */; };
 		FA5218162555DD0E0012BAEE /* ConferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5218142555DD0E0012BAEE /* ConferenceViewController.swift */; };
@@ -63,6 +65,15 @@
 		FA8F828325895DF3006CFF94 /* BaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F828225895DF3006CFF94 /* BaseEntity.swift */; };
 		FA8F828825895EE4006CFF94 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F828725895EE4006CFF94 /* Repository.swift */; };
 		FA8F828D258A5F16006CFF94 /* RealmResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F828C258A5F16006CFF94 /* RealmResults.swift */; };
+		FA904E6F25AA3C520028FDFB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA904E6E25AA3C520028FDFB /* LoginViewController.swift */; };
+		FA904E7725AA3CB10028FDFB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA904E7625AA3CB10028FDFB /* LoginViewModel.swift */; };
+		FA904E7C25AA46760028FDFB /* CredantialsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA904E7B25AA46760028FDFB /* CredantialsService.swift */; };
+		FA904E8125AA4A1D0028FDFB /* CredantialsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA904E8025AA4A1D0028FDFB /* CredantialsServiceProtocol.swift */; };
+		FA904E8625AA4B2F0028FDFB /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA904E8525AA4B2F0028FDFB /* AppUser.swift */; };
+		FA904E8B25AA4D980028FDFB /* CacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA904E8A25AA4D980028FDFB /* CacheHelper.swift */; };
+		FA904E9325AA57770028FDFB /* PageDialogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA904E9225AA57770028FDFB /* PageDialogService.swift */; };
+		FA904E9825AA57F80028FDFB /* PageDialogServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA904E9725AA57F80028FDFB /* PageDialogServiceProtocol.swift */; };
+		FA904E9D25AB4B150028FDFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA904E9C25AB4B150028FDFB /* GoogleService-Info.plist */; };
 		FA9346052566FE9800BC67E8 /* ImageRecognitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9346042566FE9800BC67E8 /* ImageRecognitionViewModel.swift */; };
 		FA93460A2567020E00BC67E8 /* ChatMessageInputViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */; };
 		FA9DD901256F060E00760106 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DD900256F060E00760106 /* BaseViewController.swift */; };
@@ -75,6 +86,8 @@
 		FACA545A25587A8500ACB158 /* VolumetricModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA545825587A8500ACB158 /* VolumetricModeViewController.swift */; };
 		FACA545B25587A8500ACB158 /* VolumetricModeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACA545925587A8500ACB158 /* VolumetricModeViewController.xib */; };
 		FACA546025587AA600ACB158 /* VolumetricModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA545F25587AA600ACB158 /* VolumetricModeViewModel.swift */; };
+		FAD4F916259BC9B30001C172 /* Initializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD4F915259BC9B30001C172 /* Initializable.swift */; };
+		FAD4F924259CDD380001C172 /* MessageKindExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD4F923259CDD380001C172 /* MessageKindExtensions.swift */; };
 		FAE312C1253F21EA00CB73F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */; };
 		FAE312C3253F21EA00CB73F8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE312C2253F21EA00CB73F8 /* art.scnassets */; };
 		FAE312CA253F21EB00CB73F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE312C9253F21EB00CB73F8 /* Assets.xcassets */; };
@@ -145,6 +158,8 @@
 		FA381E91256074CC0009B599 /* RotatableSCNNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatableSCNNode.swift; sourceTree = "<group>"; };
 		FA3CE25A2593749400E843F5 /* ContextMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuItem.swift; sourceTree = "<group>"; };
 		FA3CE25F2593B56000E843F5 /* PagingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingResult.swift; sourceTree = "<group>"; };
+		FA3CE2642594CD0300E843F5 /* RealmExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmExtensions.swift; sourceTree = "<group>"; };
+		FA3CE2692594CE2700E843F5 /* ChatServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatServiceProtocol.swift; sourceTree = "<group>"; };
 		FA512683255568D40082DBFF /* ImageRecognitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecognitionViewController.swift; sourceTree = "<group>"; };
 		FA512684255568D40082DBFF /* ImageRecognitionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageRecognitionViewController.xib; sourceTree = "<group>"; };
 		FA5218142555DD0E0012BAEE /* ConferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +183,15 @@
 		FA8F828225895DF3006CFF94 /* BaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEntity.swift; sourceTree = "<group>"; };
 		FA8F828725895EE4006CFF94 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		FA8F828C258A5F16006CFF94 /* RealmResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmResults.swift; sourceTree = "<group>"; };
+		FA904E6E25AA3C520028FDFB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FA904E7625AA3CB10028FDFB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FA904E7B25AA46760028FDFB /* CredantialsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredantialsService.swift; sourceTree = "<group>"; };
+		FA904E8025AA4A1D0028FDFB /* CredantialsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredantialsServiceProtocol.swift; sourceTree = "<group>"; };
+		FA904E8525AA4B2F0028FDFB /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		FA904E8A25AA4D980028FDFB /* CacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHelper.swift; sourceTree = "<group>"; };
+		FA904E9225AA57770028FDFB /* PageDialogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageDialogService.swift; sourceTree = "<group>"; };
+		FA904E9725AA57F80028FDFB /* PageDialogServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageDialogServiceProtocol.swift; sourceTree = "<group>"; };
+		FA904E9C25AB4B150028FDFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA9346042566FE9800BC67E8 /* ImageRecognitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecognitionViewModel.swift; sourceTree = "<group>"; };
 		FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageInputViewDelegate.swift; sourceTree = "<group>"; };
 		FA9DD900256F060E00760106 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +204,8 @@
 		FACA545825587A8500ACB158 /* VolumetricModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricModeViewController.swift; sourceTree = "<group>"; };
 		FACA545925587A8500ACB158 /* VolumetricModeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolumetricModeViewController.xib; sourceTree = "<group>"; };
 		FACA545F25587AA600ACB158 /* VolumetricModeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumetricModeViewModel.swift; sourceTree = "<group>"; };
+		FAD4F915259BC9B30001C172 /* Initializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initializable.swift; sourceTree = "<group>"; };
+		FAD4F923259CDD380001C172 /* MessageKindExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageKindExtensions.swift; sourceTree = "<group>"; };
 		FAE312BD253F21EA00CB73F8 /* SmartEducation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartEducation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE312C2253F21EA00CB73F8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -330,6 +356,7 @@
 		FA52A1B4254CC8210075DE9C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA8F828225895DF3006CFF94 /* BaseEntity.swift */,
 				FA0919C12551B91F0097203E /* ScienceListItem.swift */,
 				FA23586C2559D63800A627E1 /* VolumetricObject.swift */,
 				FA8F82392587FA74006CFF94 /* MessageSender.swift */,
@@ -337,6 +364,7 @@
 				FA7F88D3258AA4C3005E7BC5 /* MessageDto.swift */,
 				FA3CE25A2593749400E843F5 /* ContextMenuItem.swift */,
 				FA3CE25F2593B56000E843F5 /* PagingResult.swift */,
+				FA904E8525AA4B2F0028FDFB /* AppUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -358,6 +386,7 @@
 				FACA545F25587AA600ACB158 /* VolumetricModeViewModel.swift */,
 				FA7326AF25646ECC003BD2B6 /* ChatViewModel.swift */,
 				FA9346042566FE9800BC67E8 /* ImageRecognitionViewModel.swift */,
+				FA904E7625AA3CB10028FDFB /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -371,6 +400,8 @@
 				FA2358772559F1A500A627E1 /* UIViewExtensions.swift */,
 				FAA43D08256EF0BB0043467D /* UIApplicationExtensions.swift */,
 				FA8F828C258A5F16006CFF94 /* RealmResults.swift */,
+				FA3CE2642594CD0300E843F5 /* RealmExtensions.swift */,
+				FAD4F923259CDD380001C172 /* MessageKindExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -378,12 +409,15 @@
 		FA52A1B8254CC87F0075DE9C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				FA8F827C25895B90006CFF94 /* Repository */,
+				FA8F828725895EE4006CFF94 /* Repository.swift */,
 				FA16197A2562FE7F00B825E7 /* VoiceRecognizionService.swift */,
 				FA235894255B0B4A00A627E1 /* SceneNodeBuilder.swift */,
 				FA16197F2563120E00B825E7 /* SpeechSynthesizerService.swift */,
 				FA732689256434D2003BD2B6 /* ChatService.swift */,
 				FA6FE48025686A9E00324753 /* GlobalStyles.swift */,
+				FA904E7B25AA46760028FDFB /* CredantialsService.swift */,
+				FA904E8A25AA4D980028FDFB /* CacheHelper.swift */,
+				FA904E9225AA57770028FDFB /* PageDialogService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -417,6 +451,7 @@
 		FA52A1BB254CC8B70075DE9C /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				FA904E6D25AA3C000028FDFB /* Login */,
 				FA7326A725646CCF003BD2B6 /* Chat */,
 				FACA545725587A3600ACB158 /* VolumetricObjects */,
 				FACA544025586B6700ACB158 /* Base */,
@@ -455,14 +490,12 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		FA8F827C25895B90006CFF94 /* Repository */ = {
+		FA904E6D25AA3C000028FDFB /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				FA8F827D25895BAD006CFF94 /* RepositoryProtocol.swift */,
-				FA8F828225895DF3006CFF94 /* BaseEntity.swift */,
-				FA8F828725895EE4006CFF94 /* Repository.swift */,
+				FA904E6E25AA3C520028FDFB /* LoginViewController.swift */,
 			);
-			path = Repository;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		FABBD3A3254C333C00CE45C5 /* Networking */ = {
@@ -477,7 +510,12 @@
 		FAC3532E255D6C6600F080EB /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				FA8F827D25895BAD006CFF94 /* RepositoryProtocol.swift */,
+				FA3CE2692594CE2700E843F5 /* ChatServiceProtocol.swift */,
 				FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */,
+				FAD4F915259BC9B30001C172 /* Initializable.swift */,
+				FA904E8025AA4A1D0028FDFB /* CredantialsServiceProtocol.swift */,
+				FA904E9725AA57F80028FDFB /* PageDialogServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -536,6 +574,7 @@
 				FA52A1B4254CC8210075DE9C /* Models */,
 				FABBD3A3254C333C00CE45C5 /* Networking */,
 				FAE312CE253F21EB00CB73F8 /* Info.plist */,
+				FA904E9C25AB4B150028FDFB /* GoogleService-Info.plist */,
 				FAE312C9253F21EB00CB73F8 /* Assets.xcassets */,
 				FAE312C2253F21EA00CB73F8 /* art.scnassets */,
 				FAE312C0253F21EA00CB73F8 /* AppDelegate.swift */,
@@ -691,6 +730,7 @@
 				FAE312CD253F21EB00CB73F8 /* LaunchScreen.storyboard in Resources */,
 				FACA545B25587A8500ACB158 /* VolumetricModeViewController.xib in Resources */,
 				FAE312CA253F21EB00CB73F8 /* Assets.xcassets in Resources */,
+				FA904E9D25AB4B150028FDFB /* GoogleService-Info.plist in Resources */,
 				FA512686255568D40082DBFF /* ImageRecognitionViewController.xib in Resources */,
 				FA0919CA2551BF0F0097203E /* SciencesViewController.xib in Resources */,
 				FA5218172555DD0E0012BAEE /* ConferenceViewController.xib in Resources */,
@@ -838,6 +878,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA904E9325AA57770028FDFB /* PageDialogService.swift in Sources */,
 				FA73268F25643F5A003BD2B6 /* StringResources.swift in Sources */,
 				FA235890255ADAFB00A627E1 /* VolumetricObjectSCNNode.swift in Sources */,
 				FA1619602562DECB00B825E7 /* ChatMessageInputView.swift in Sources */,
@@ -845,6 +886,8 @@
 				FA2358612559B9D500A627E1 /* Colors.swift in Sources */,
 				FAEE67A0255086E800CD16B9 /* Router.swift in Sources */,
 				FACA546025587AA600ACB158 /* VolumetricModeViewModel.swift in Sources */,
+				FA3CE2652594CD0300E843F5 /* RealmExtensions.swift in Sources */,
+				FA904E8B25AA4D980028FDFB /* CacheHelper.swift in Sources */,
 				FAA43D09256EF0BB0043467D /* UIApplicationExtensions.swift in Sources */,
 				FA0919C22551B91F0097203E /* ScienceListItem.swift in Sources */,
 				FA23586D2559D63800A627E1 /* VolumetricObject.swift in Sources */,
@@ -853,10 +896,12 @@
 				FA0919D22551BF480097203E /* SciencesViewModel.swift in Sources */,
 				FABBD3AD254C33B500CE45C5 /* ApiConstants.swift in Sources */,
 				FA0919C92551BF0F0097203E /* SciencesViewController.swift in Sources */,
+				FA904E6F25AA3C520028FDFB /* LoginViewController.swift in Sources */,
 				FA7326AA25646CF2003BD2B6 /* ChatViewController.swift in Sources */,
 				FA8F827E25895BAD006CFF94 /* RepositoryProtocol.swift in Sources */,
 				FA3CE25B2593749400E843F5 /* ContextMenuItem.swift in Sources */,
 				FA52A19B254CBF310075DE9C /* ErrorHandler.swift in Sources */,
+				FA904E8125AA4A1D0028FDFB /* CredantialsServiceProtocol.swift in Sources */,
 				FA7F88D4258AA4C3005E7BC5 /* MessageDto.swift in Sources */,
 				FA2358672559C70200A627E1 /* VolumetricObjectCollectionViewCell.swift in Sources */,
 				FAEE67A52550872400CD16B9 /* NavigatedToAware.swift in Sources */,
@@ -869,9 +914,12 @@
 				FA235895255B0B4A00A627E1 /* SceneNodeBuilder.swift in Sources */,
 				FAA43D01256E99410043467D /* VideoNode.swift in Sources */,
 				FA5286472552A0C100581987 /* StringExtensions.swift in Sources */,
+				FA904E7C25AA46760028FDFB /* CredantialsService.swift in Sources */,
 				FA0919A125517C5D0097203E /* FieldsOfScienceViewController.swift in Sources */,
 				FA6FE48125686A9E00324753 /* GlobalStyles.swift in Sources */,
+				FA904E7725AA3CB10028FDFB /* LoginViewModel.swift in Sources */,
 				FA0919E12551C34D0097203E /* SpecificScienceViewController.swift in Sources */,
+				FA904E9825AA57F80028FDFB /* PageDialogServiceProtocol.swift in Sources */,
 				FA381E92256074CC0009B599 /* RotatableSCNNode.swift in Sources */,
 				FACA545A25587A8500ACB158 /* VolumetricModeViewController.swift in Sources */,
 				FA3CE2602593B56000E843F5 /* PagingResult.swift in Sources */,
@@ -884,12 +932,16 @@
 				FA512685255568D40082DBFF /* ImageRecognitionViewController.swift in Sources */,
 				FA0919EA2551D7270097203E /* UIColorExtensions.swift in Sources */,
 				FAFA0D31255EF8610018DD9A /* SolarSystem.swift in Sources */,
+				FAD4F916259BC9B30001C172 /* Initializable.swift in Sources */,
 				FA0919B82551B6230097203E /* NSObjectExtensions.swift in Sources */,
 				FA1619702562F7AB00B825E7 /* MessageActionType.swift in Sources */,
 				FA16197B2562FE7F00B825E7 /* VoiceRecognizionService.swift in Sources */,
+				FA3CE26A2594CE2700E843F5 /* ChatServiceProtocol.swift in Sources */,
+				FA904E8625AA4B2F0028FDFB /* AppUser.swift in Sources */,
 				FA8F823F2587FA97006CFF94 /* Message.swift in Sources */,
 				FA0919AF2551B5460097203E /* FieldOfScienceCollectionViewCell.swift in Sources */,
 				FA1619802563120E00B825E7 /* SpeechSynthesizerService.swift in Sources */,
+				FAD4F924259CDD380001C172 /* MessageKindExtensions.swift in Sources */,
 				FA2358592559AD0C00A627E1 /* VolumetricItem.swift in Sources */,
 				FA0919A825517CA20097203E /* FieldsOfScienceViewModel.swift in Sources */,
 				FA7326B025646ECC003BD2B6 /* ChatViewModel.swift in Sources */,

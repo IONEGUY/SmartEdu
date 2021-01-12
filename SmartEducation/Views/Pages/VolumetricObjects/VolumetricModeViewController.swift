@@ -26,7 +26,6 @@ class VolumetricModeViewController: BaseViewController, MVVMViewController,
     @IBOutlet weak var lastMessageText: UILabel!
     @IBOutlet weak var messageInputCover: UIView!
 
-    private var chatService = ChatService()
     private var arSceneSetup = false
     weak var viewModel: VolumetricModeViewModel?
 

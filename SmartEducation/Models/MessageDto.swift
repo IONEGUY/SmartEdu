@@ -8,7 +8,7 @@
 import Foundation
 import MessageKit
 
-class MessageDto: BaseEntity {
+class MessageDto: BaseEntity, Codable {
     @objc dynamic var text: String = .empty
     @objc dynamic var sentDate = Date()
     @objc dynamic var senderId: String = .empty

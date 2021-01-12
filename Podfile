@@ -19,6 +19,12 @@ target 'SmartEducation' do
   pod 'AppCenter'
   pod 'MessageKit'
   pod 'RealmSwift', '~> 10.5.0'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
+  pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Storage'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|

@@ -9,22 +9,16 @@ import UIKit
 import MessageKit
 import InputBarAccessoryView
 import RxSwift
+import RxCocoa
 import SnapKit
 
 class ChatViewController: MessagesViewController, MVVMViewController {
     typealias ViewModelType = ChatViewModel
 
     private var activityIndicatorView: ActivityIndicatorView?
-    private var chatService = ChatService()
     private var disposeBag = DisposeBag()
-    private var contextMenuItems = [ContextMenuItem<Message>]()
-    private var isPageRefreshing = false
-    private var currentPage = 1
-    private var pageSize = 40
-    private var currentUpdatingMessageId: String = .empty
 
     var viewModel: ChatViewModel?
-    var messages: [Message] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,53 +27,81 @@ class ChatViewController: MessagesViewController, MVVMViewController {
         header.backgroundColor = .white
         view.addSubview(header)
         
-        contextMenuItems = [
-            ContextMenuItem<Message>(title: "Edit", action: { [weak self] in
-                self?.toggleEditMode(for: $0)
-            }),
-            ContextMenuItem<Message>(title: "Remove", action: { [weak self] in
-                self?.removeMessage($0.messageId)
-            })
-        ]
-        
+        let rightBarButtonItem = UIBarButtonItem()
+        rightBarButtonItem.title = "Log out"
+        rightBarButtonItem.onTap { [unowned self] in self.viewModel?.logOut() }
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+                
         messagesCollectionView.register(ActivityIndicatorView.self,
-                                        forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                        withReuseIdentifier: ActivityIndicatorView.typeName)
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: ActivityIndicatorView.typeName)
         showMessageTimestampOnSwipeLeft = true
         createTitle()
         configueMessagesViewControllerDelegates()
         removeAvatarFromCell()
         configueMessageInputBar()
-        getAllMessages {
-            self.messagesCollectionView.scrollToBottom() }
+        initSubscriptions()
     }
     
-    private func removeMessage(_ id: String) {
-        chatService.remove(id)
+    private func initSubscriptions() {        
+        viewModel?.messages
             .observeOn(MainScheduler.instance)
-            .subscribe(onCompleted: { [weak self] in
-            let index = self?.messages.firstIndex { $0.messageId == id } ?? 0
-            self?.messages.remove(at: index)
-            self?.messagesCollectionView.reloadData()
-        }).disposed(by: disposeBag)
+            .skip(1)
+            .take(1)
+            .subscribe { [unowned self] _ in
+                self.messagesCollectionView.reloadData()
+                self.messagesCollectionView.scrollToBottom()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel?.messages
+            .observeOn(MainScheduler.instance)
+            .skip(2)
+            .subscribe { [unowned self] _ in
+                self.messagesCollectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel?.activityIndicatorIsHidden
+            .observeOn(MainScheduler.instance)
+            .subscribe { [unowned self] in self.activityIndicatorView?.isHidden = $0 }
+            .disposed(by: disposeBag)
+        
+        viewModel?.updateMessageInputView
+            .observeOn(MainScheduler.instance)
+            .subscribe { [unowned self] messageText in
+                updateMessageInputView(messageText)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel?.updateMessageCollectionAfterloadMore
+            .observeOn(MainScheduler.instance)
+            .subscribe { [unowned self] (offset: Int) in
+                let indexPath = IndexPath(row: offset, section: 0)
+                self.messagesCollectionView.scrollToItem(at: indexPath,
+                                                         at: .top, animated: false)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel?.messageAdded
+            .observeOn(MainScheduler.instance)
+            .subscribe { [unowned self] _ in
+                self.messagesCollectionView.scrollToBottom()
+            }
+            .disposed(by: disposeBag)
     }
-
+    
     private func createTitle() {
         navigationItem.titleView = UIImageView(image: UIImage(named: "hakima_title"))
     }
     
-    private func toggleEditMode(for message: Message) {
-        isEditing = true
-        currentUpdatingMessageId = message.messageId
-        let messageInput = messageInputBar.inputTextView
-        messageInput.text = message.kind.get() as? String
-        messageInput.becomeFirstResponder()
-        
-        toggleCancelButtonVisibility()
-    }
-    
-    private func toggleCancelButtonVisibility() {
-        if isEditing {
+    private func updateMessageInputView(_ messageText: String = .empty) {
+        guard let viewModel = viewModel else { return }
+        if viewModel.isEditing {
+            let messageInput = messageInputBar.inputTextView
+            messageInput.text = messageText
+            messageInput.becomeFirstResponder()
+            
             let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
             cancelButton.setImage(UIImage(systemName: "multiply.circle"), for: .normal)
             cancelButton.contentVerticalAlignment = .fill
@@ -97,22 +119,8 @@ class ChatViewController: MessagesViewController, MVVMViewController {
     }
     
     private func cancleEditing() {
-        isEditing = false
-        toggleCancelButtonVisibility()
-    }
-
-    private func getAllMessages(_ completion: @escaping () -> Void = {}) {
-        chatService.get(pageIndex: currentPage, pageSize: pageSize)
-            .observeOn(MainScheduler.instance)
-            .subscribe { [weak self] (pagingResult: PagingResult<Message>) in
-                    if !pagingResult.results.isEmpty {
-                        self?.messages.insert(contentsOf: pagingResult.results, at: 0)
-                        self?.messagesCollectionView.reloadData()
-                        completion()
-                    } else {
-                        self?.activityIndicatorView?.isHidden = true
-                    }
-        }.disposed(by: disposeBag)
+        viewModel?.isEditing = false
+        updateMessageInputView()
     }
     
     func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
@@ -124,18 +132,18 @@ class ChatViewController: MessagesViewController, MVVMViewController {
                         point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil,
                                           previewProvider: nil,
-                                          actionProvider: { [weak self] suggestedActions in
+                                          actionProvider: { [weak self] _ in
             return self?.makeContextMenu(for: indexPath.row)
         })
     }
     
     func makeContextMenu(for row: Int) -> UIMenu {
         var actions = [UIAction]()
-        for item in self.contextMenuItems {
+        for item in viewModel?.messageActions ?? [] {
             let action = UIAction(title: item.title, identifier: nil, discoverabilityTitle: nil) { [unowned self] _ in
-                DispatchQueue.main.async {
-                    item.action(self.messages[row])
-                }
+                guard let value = self.viewModel?.messages.value[row]
+                else { return }
+                item.action.onNext(value)
             }
             actions.append(action)
         }
@@ -155,7 +163,7 @@ class ChatViewController: MessagesViewController, MVVMViewController {
                 for: indexPath) as? ActivityIndicatorView
 
             activityIndicatorView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40)
-            return activityIndicatorView ?? UICollectionReusableView()
+            return activityIndicatorView ?? ActivityIndicatorView()
         default:
             return UICollectionReusableView()
         }
@@ -163,25 +171,7 @@ class ChatViewController: MessagesViewController, MVVMViewController {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if messagesCollectionView.contentOffset.y <= 0 {
-           if !isPageRefreshing {
-                isPageRefreshing = true
-                activityIndicatorView?.isHidden = false
-                let oldContentSizeHeight =
-                    messagesCollectionView.contentSize.height
-                loadMore(oldContentSizeHeight)
-            }
-        }
-    }
-    
-    private func loadMore(_ offset: CGFloat) {
-        currentPage += 1
-        let oldMessagesCount = messages.count
-        getAllMessages { [unowned self] in
-            let previousTopCellIndex = messages.count - oldMessagesCount
-            let indexPath = IndexPath(row: previousTopCellIndex, section: 0)
-            self.messagesCollectionView.scrollToItem(at: indexPath,
-                                                     at: .top, animated: false)
-            self.isPageRefreshing = false
+            viewModel?.loadMore.onNext(nil)
         }
     }
 }
@@ -191,33 +181,15 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate,
     func inputBar(_ inputBar: InputBarAccessoryView,
                   didPressSendButtonWith text: String) {
         inputBar.inputTextView.text = .empty
-        if isEditing {
-            chatService.update(currentUpdatingMessageId, newText: text).observeOn(MainScheduler.instance)
-                .subscribe(onCompleted: { [unowned self] in
-                    let index = self.messages.firstIndex {
-                        $0.messageId == self.currentUpdatingMessageId } ?? 0
-                    self.messages[index].kind = .text(text)
-                    self.messagesCollectionView.reloadData()
-                })
-                .disposed(by: disposeBag)
-            cancleEditing()
-        } else {
-            let message = Message(sender: MessageSender(senderId: "1",
-                                                        displayName: .empty),
-                                  messageId: UUID().uuidString,
-                                  sentDate: Date(),
-                                  kind: .text(text))
-            chatService.send(message: text)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onSuccess: { [weak self] (messageText) in
-                    self?.messages.append(message)
-                    self?.messagesCollectionView.reloadData()
-            }).disposed(by: disposeBag)
-        }
+        viewModel?.sendButtonPressed.onNext(text)
     }
 
     func currentSender() -> SenderType {
-        return MessageSender(senderId: "1", displayName: .empty)
+        guard let sender = viewModel?.currentMessageSender else {
+            fatalError()
+        }
+        
+        return sender
     }
 
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
@@ -226,12 +198,12 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate,
     
     func numberOfItems(inSection section: Int,
                        in messagesCollectionView: MessagesCollectionView) -> Int {
-        return messages.count
+        return viewModel?.messages.value.count ?? 0
     }
 
     func messageForItem(at indexPath: IndexPath,
                         in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return messages[indexPath.row]
+        return viewModel?.messages.value[indexPath.row] ?? .empty
     }
     
     private func configueMessageInputBar() {
@@ -277,16 +249,5 @@ class ActivityIndicatorView: UICollectionReusableView {
             make.center.equalToSuperview()
         }
         setNeedsUpdateConstraints()
-    }
-}
-
-extension MessageKind {
-    func get() -> Any? {
-        switch self {
-        case .text(let value):
-            return value
-        default:
-            return nil
-        }
     }
 }
