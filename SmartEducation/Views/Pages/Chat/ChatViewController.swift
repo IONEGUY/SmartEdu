@@ -27,6 +27,7 @@ class ChatViewController: BaseViewController, MVVMViewController,
         initMessagesTableView()
         getAllMessages()
         messageInput.delegate = self
+        messagesTableView.transform = CGAffineTransform(scaleX: 1, y: -1)
     }
 
     private func createTitle() {
@@ -42,7 +43,7 @@ class ChatViewController: BaseViewController, MVVMViewController,
     }
 
     private func getAllMessages() {
-        messages = chatService.getAllMessages()
+        messages = chatService.getAllMessages().reversed()
     }
 
     private func initMessagesTableView() {
@@ -58,6 +59,7 @@ class ChatViewController: BaseViewController, MVVMViewController,
                     self?.messagesTableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.typeName,
                                                                 for: indexPath)
                 (cell as? MessageTableViewCell)?.initialize(withData: message)
+                cell?.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
                 return cell ?? UITableViewCell() }
             .reloadData()
     }
