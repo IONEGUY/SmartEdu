@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 class LoginViewController: UIViewController, MVVMViewController {
     typealias ViewModelType = LoginViewModel
@@ -39,7 +40,6 @@ class LoginViewController: UIViewController, MVVMViewController {
         
         guard let viewModel = viewModel else { return }
         loginTextField.rx.text.bind(to: viewModel.loginText).disposed(by: disposeBag)
-        //loginButton.rx.tap.bind(onNext: viewModel.performLogin).disposed(by: disposeBag)
         viewModel.isLoginButtonEnabled.bind(to: loginButton.rx.isEnabled).disposed(by: disposeBag)
         loginButton.onTap { viewModel.performLogin() }
         setupConstraints()

@@ -19,8 +19,14 @@ class ChatService: ChatServiceProtocol {
     private let repository: RepositoryProtocol
     private let credantialsService: CredantialsServiceProtocol
     private let firestore = Firestore.firestore()
+    private var lastDocumentSnapshot: DocumentSnapshot?
     
     private var currentMessageSender: SenderType?
+    private let messagesChangedSubject = PublishSubject<(message: Message, diffType: DiffType)>()
+    
+    var messagesChanged: Observable<(message: Message, diffType: DiffType)> {
+        return messagesChangedSubject.asObservable()
+    }
     
     init(repository: RepositoryProtocol,
          credantialsService: CredantialsServiceProtocol) {
@@ -35,12 +41,47 @@ class ChatService: ChatServiceProtocol {
         currentMessageSender = currentMessageSender ?? MessageSender(senderId: appUser.id)
         return currentMessageSender
     }
+    
+    func createListenerForMessages() {
+        firestore.collection("messages").addSnapshotListener { [unowned self] querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                if let error = error { messagesChangedSubject.onError(error) }
+                return
+            }
+            
+            guard let diff = snapshot.documentChanges.last,
+                  let messageDto = try? diff.document.data(as: MessageDto.self) else { return }
+            let message = Message(sender: MessageSender(senderId: messageDto.senderId),
+                                  messageId: diff.document.documentID,
+                                  sentDate: messageDto.sentDate,
+                                  kind: .text(messageDto.text))
+            var diffType: DiffType
+            switch diff.type {
+                case .added: diffType = DiffType.added
+                case .modified: diffType = DiffType.modified
+                case .removed: diffType = DiffType.removed
+            }
+            messagesChangedSubject.onNext((message, diffType))
+        }
+    }
 
     func get(pageIndex: Int, pageSize: Int) -> Single<PagingResult<Message>> {
-        return Single.create { single in
-            self.firestore.collection("messages")
-                .order(by: "sentDate", descending: true)
-                .getDocuments { (snapshot, error) in
+        return Single.create { [unowned self] single in
+            let collection = self.firestore.collection("messages")
+            var query: Query
+
+            if let lastDocumentSnapshot = lastDocumentSnapshot {
+                query = collection
+                    .order(by: "sentDate", descending: true)
+                    .limit(to: pageSize)
+                    .start(afterDocument: lastDocumentSnapshot)
+            } else {
+                query = collection
+                    .order(by: "sentDate", descending: true)
+                    .limit(to: pageSize)
+            }
+            
+            query.getDocuments { (snapshot, error) in
                 if let error = error {
                     single(.failure(error))
                 } else {
@@ -49,14 +90,15 @@ class ChatService: ChatServiceProtocol {
                     for document in documents {
                         guard let messageDto = try? document.data(as: MessageDto.self) else { continue }
                         messages.append(Message(sender: MessageSender(senderId: messageDto.senderId),
-                                                messageId: messageDto.id,
+                                                messageId: document.documentID,
                                                 sentDate: messageDto.sentDate,
                                                 kind: .text(messageDto.text)))
 
                     }
                     
                     let pagingResult = PagingResult(totalResultsCount: documents.count,
-                                                    results: messages)
+                                                    results: messages.reversed())
+                    self.lastDocumentSnapshot = documents.last
                     single(.success(pagingResult))
                 }
             }
@@ -78,15 +120,13 @@ class ChatService: ChatServiceProtocol {
     }
     
     func remove(_ id: String) -> Single<String> {
-        let entity = MessageDto()
-        entity.id = id
         return Single.create { [weak self] single in
             self?.firestore.collection("messages")
-                .document(id).delete() { error in
+                .document(id).delete { error in
                     if let error = error {
                         single(.failure(error))
                     } else {
-                        single(.success(.empty))
+                        single(.success(id))
                     }
                 }
             
@@ -126,7 +166,7 @@ class ChatService: ChatServiceProtocol {
         
         return Single.create { [weak self] single in
             try? self?.firestore.collection("messages")
-                .document(messageDto.id).setData(from: messageDto) { error in
+                .document(message.messageId).setData(from: messageDto) { error in
                     if let error = error {
                         single(.failure(error))
                     } else {

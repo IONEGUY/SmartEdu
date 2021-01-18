@@ -17,20 +17,43 @@ class ChatViewController: MessagesViewController, MVVMViewController {
 
     private var activityIndicatorView: ActivityIndicatorView?
     private var disposeBag = DisposeBag()
+    
+    private let floatingButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 25
+        button.backgroundColor = .green
+        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.isHidden = true
+        button.centerVertically(padding: 0)
+        return button
+    }()
 
     var viewModel: ChatViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 80))
-        header.backgroundColor = .white
-        view.addSubview(header)
-        
         let rightBarButtonItem = UIBarButtonItem()
         rightBarButtonItem.title = "Log out"
         rightBarButtonItem.onTap { [unowned self] in self.viewModel?.logOut() }
         navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        floatingButton.onTap { [unowned self] in
+            messagesCollectionView.scrollToBottom(animated: true)
+            viewModel?.unreadMessages.accept([])
+        }
+        
+        let navBarBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 80))
+        navBarBackgroundView.backgroundColor = .white
+        
+        view.addSubview(navBarBackgroundView)
+        view.addSubview(floatingButton)
+        
+        floatingButton.snp.makeConstraints { (make) in
+            make.width.height.equalTo(50)
+            make.bottom.equalToSuperview().inset(100)
+            make.right.equalToSuperview().inset(20)
+        }
                 
         messagesCollectionView.register(ActivityIndicatorView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -43,9 +66,10 @@ class ChatViewController: MessagesViewController, MVVMViewController {
         initSubscriptions()
     }
     
-    private func initSubscriptions() {        
-        viewModel?.messages
-            .observeOn(MainScheduler.instance)
+    private func initSubscriptions() {
+        guard let viewModel = viewModel else { return }
+        viewModel.messages
+            .observe(on: MainScheduler.instance)
             .skip(1)
             .take(1)
             .subscribe { [unowned self] _ in
@@ -54,28 +78,31 @@ class ChatViewController: MessagesViewController, MVVMViewController {
             }
             .disposed(by: disposeBag)
         
-        viewModel?.messages
-            .observeOn(MainScheduler.instance)
+        viewModel.messages
+            .observe(on: MainScheduler.instance)
             .skip(2)
             .subscribe { [unowned self] _ in
                 self.messagesCollectionView.reloadData()
+                
             }
             .disposed(by: disposeBag)
         
-        viewModel?.activityIndicatorIsHidden
-            .observeOn(MainScheduler.instance)
-            .subscribe { [unowned self] in self.activityIndicatorView?.isHidden = $0 }
+        viewModel.activityIndicatorIsHidden
+            .observe(on: MainScheduler.instance)
+            .subscribe { [unowned self] hidden in
+                self.activityIndicatorView?.isHidden = hidden
+            }
             .disposed(by: disposeBag)
-        
-        viewModel?.updateMessageInputView
-            .observeOn(MainScheduler.instance)
+                
+        viewModel.updateMessageInputView
+            .observe(on: MainScheduler.instance)
             .subscribe { [unowned self] messageText in
                 updateMessageInputView(messageText)
             }
             .disposed(by: disposeBag)
         
-        viewModel?.updateMessageCollectionAfterloadMore
-            .observeOn(MainScheduler.instance)
+        viewModel.updateMessageCollectionAfterloadMore
+            .observe(on: MainScheduler.instance)
             .subscribe { [unowned self] (offset: Int) in
                 let indexPath = IndexPath(row: offset, section: 0)
                 self.messagesCollectionView.scrollToItem(at: indexPath,
@@ -83,10 +110,21 @@ class ChatViewController: MessagesViewController, MVVMViewController {
             }
             .disposed(by: disposeBag)
         
-        viewModel?.messageAdded
-            .observeOn(MainScheduler.instance)
+        viewModel.messageSent
+            .observe(on: MainScheduler.instance)
             .subscribe { [unowned self] _ in
                 self.messagesCollectionView.scrollToBottom()
+            }
+            .disposed(by: disposeBag)
+        viewModel.unreadMessages
+            .observe(on: MainScheduler.instance)
+            .subscribe { [unowned self] (unreadMessages: [Message]) in
+                if unreadMessages.count == 0 {
+                    floatingButton.isHidden = true
+                } else {
+                    floatingButton.isHidden = false
+                    floatingButton.setTitle(String(unreadMessages.count), for: .normal)
+                }
             }
             .disposed(by: disposeBag)
     }
@@ -129,27 +167,8 @@ class ChatViewController: MessagesViewController, MVVMViewController {
     
     func collectionView(_ collectionView: UICollectionView,
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
-                        point: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil,
-                                          previewProvider: nil,
-                                          actionProvider: { [weak self] _ in
-            return self?.makeContextMenu(for: indexPath.row)
-        })
-    }
-    
-    func makeContextMenu(for row: Int) -> UIMenu {
-        var actions = [UIAction]()
-        for item in viewModel?.messageActions ?? [] {
-            let action = UIAction(title: item.title, identifier: nil, discoverabilityTitle: nil) { [unowned self] _ in
-                guard let value = self.viewModel?.messages.value[row]
-                else { return }
-                item.action.onNext(value)
-            }
-            actions.append(action)
-        }
-        let cancel = UIAction(title: "Cancel", attributes: .destructive) { _ in}
-        actions.append(cancel)
-        return UIMenu(title: "", children: actions)
+                        poiznt: CGPoint) -> UIContextMenuConfiguration? {
+        return viewModel?.createContextMenu(for: indexPath.row)
     }
     
     override func collectionView(_ collectionView: UICollectionView,
@@ -170,6 +189,14 @@ class ChatViewController: MessagesViewController, MVVMViewController {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let cellPoint = CGPoint(x: messagesCollectionView.bounds.midX,
+                                y: messagesCollectionView.contentOffset.y +
+                                    (messagesCollectionView.bounds.height - 84))
+        if let indexPath = messagesCollectionView.indexPathForItem(at: cellPoint) {
+            let message = viewModel?.messages.value[indexPath.row]
+            viewModel?.removeMessageFromUnreaded(message?.messageId)
+        }
+        
         if messagesCollectionView.contentOffset.y <= 0 {
             viewModel?.loadMore.onNext(nil)
         }
@@ -242,6 +269,7 @@ class ActivityIndicatorView: UICollectionReusableView {
         super.prepareForReuse()
         
         let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.transform = CGAffineTransform(scaleX: 2, y: 2)
         activityIndicator.color = .black
         activityIndicator.startAnimating()
         addSubview(activityIndicator)

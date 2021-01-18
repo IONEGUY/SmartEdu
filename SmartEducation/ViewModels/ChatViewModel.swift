@@ -17,7 +17,7 @@ class ChatViewModel {
     private var currentUpdatingMessageId: String = .empty
     private var loadMoreEnabled = true
     private var currentPage = 1
-    private var pageSize = 40
+    private var pageSize = 20
     
     var isEditing = false
     var isPageRefreshing = false
@@ -31,7 +31,8 @@ class ChatViewModel {
     var sendButtonPressed = PublishSubject<String>()
     var loadMore = PublishSubject<Any?>()
     var updateMessageCollectionAfterloadMore = PublishSubject<Int>()
-    var messageAdded = PublishSubject<Any?>()
+    var messageSent = PublishSubject<Any?>()
+    var unreadMessages = BehaviorRelay<[Message]>(value: [Message]())
     var messageActions: [ContextMenuItem<Message>]
     
     init(chatService: ChatServiceProtocol,
@@ -40,16 +41,34 @@ class ChatViewModel {
         self.credantialsService = credantialsService
         
         messageActions = [
-            ContextMenuItem<Message>(title: "Edit",
-                                     action: toogleEditMode),
-            ContextMenuItem<Message>(title: "Remove",
-                                     action: removeMessage)
+            ContextMenuItem<Message>(title: "Edit", image: "pencil", action: toogleEditMode),
+            ContextMenuItem<Message>(title: "Remove", image: "trash", action: removeMessage)
         ]
         
         getMessages()
         initSubscriptions()
         
         currentMessageSender = chatService.getCurretSender()
+        chatService.createListenerForMessages()
+    }
+    
+    func createContextMenu(for index: Int) -> UIContextMenuConfiguration? {
+        if messages.value[index].sender.senderId != chatService.getCurretSender()?.senderId { return nil }
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: { [unowned self] _ in
+            var actions = messageActions.map { item in
+                UIAction(title: item.title,
+                         image: UIImage(systemName: item.image),
+                         identifier: nil,
+                         discoverabilityTitle: nil) { _ in
+                    item.action.onNext(messages.value[index])
+                }
+            }
+            let cancel = UIAction(title: "Cancel", attributes: .destructive) { _ in}
+            actions.append(cancel)
+            return UIMenu(title: "", children: actions)
+        })
     }
     
     func logOut() {
@@ -63,14 +82,51 @@ class ChatViewModel {
                 var messages = self.messages.value
                 messages.insert(contentsOf: pagingResult.results, at: 0)
                 self.messages.accept(messages)
-                self.activityIndicatorIsHidden.accept(pagingResult.results.isEmpty)
                 self.currentPage += 1
+                self.activityIndicatorIsHidden.accept(true)
                 completion()
             }
             .disposed(by: disposeBag)
     }
     
+    func removeMessageFromUnreaded(_ messageId: String?) {
+        guard let messageId = messageId else { return }
+        var unreadMessages = self.unreadMessages.value
+        if let index = unreadMessages.firstIndex(where: { $0.messageId == messageId }) {
+            unreadMessages.remove(at: index)
+            self.unreadMessages.accept(unreadMessages)
+        }
+    }
+    
     private func initSubscriptions() {
+        chatService.messagesChanged
+            .skip(1)
+            .filter { [unowned self] in
+                $0.message.sender.senderId != chatService.getCurretSender()?.senderId }
+            .subscribe(onNext: { [unowned self] (message: Message, diffType: DiffType) in
+                switch diffType {
+                case .added:
+                    var messages = self.messages.value
+                    messages.append(message)
+                    self.messages.accept(messages)
+                    var unreadMessages = self.unreadMessages.value
+                    unreadMessages.append(message)
+                    self.unreadMessages.accept(unreadMessages)
+                case .modified:
+                    var messages = self.messages.value
+                    if let index = messages.firstIndex(where: { $0.messageId == message.messageId }) {
+                        messages[index].kind = message.kind
+                        self.messages.accept(messages)
+                    }
+                case .removed:
+                    var messages = self.messages.value
+                    if let index = messages.firstIndex(where: { $0.messageId == message.messageId }) {
+                        messages.remove(at: index)
+                        self.messages.accept(messages)
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
         removeMessage
             .subscribe { [unowned self] (message) in
                 self.chatService.remove(message.messageId).subscribe { (id: String) in
@@ -96,25 +152,24 @@ class ChatViewModel {
         sendButtonPressed
             .subscribe { [unowned self] (messageText: String) in
                 if isEditing {
-                    chatService.update(currentUpdatingMessageId, newText: messageText).observeOn(MainScheduler.instance)
-                        .subscribe { [unowned self] in
+                    chatService.update(currentUpdatingMessageId, newText: messageText)
+                        .subscribe(onDisposed:  { [unowned self] in
                             let index = self.messages.value.firstIndex {
                                 $0.messageId == self.currentUpdatingMessageId } ?? 0
                             var messages = self.messages.value
                             messages[index].kind = .text(messageText)
                             self.messages.accept(messages)
-                        }
+                        })
                         .disposed(by: disposeBag)
                     isEditing = false
                     self.updateMessageInputView.onNext(.empty)
                 } else {
                     chatService.send(messageText: messageText)
-                        .observeOn(MainScheduler.instance)
                         .subscribe { (message: Message) in
                             var messages = self.messages.value
                             messages.append(message)
                             self.messages.accept(messages)
-                            messageAdded.onNext(nil)
+                            messageSent.onNext(nil)
                     }
                     .disposed(by: disposeBag)
                 }
@@ -126,6 +181,7 @@ class ChatViewModel {
                 if !self.isPageRefreshing && loadMoreEnabled {
                     self.isPageRefreshing = true
                     let oldMessagesCount = self.messages.value.count
+                    self.activityIndicatorIsHidden.accept(false)
                     self.getMessages {
                         self.isPageRefreshing = false
                         let offset = self.messages.value.count - oldMessagesCount

@@ -10,5 +10,6 @@ import RxSwift
 
 struct ContextMenuItem<T> {
     var title: String
+    var image: String
     var action: PublishSubject<T>
 }

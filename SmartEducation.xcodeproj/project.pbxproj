@@ -78,6 +78,8 @@
 		FA93460A2567020E00BC67E8 /* ChatMessageInputViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */; };
 		FA9DD901256F060E00760106 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9DD900256F060E00760106 /* BaseViewController.swift */; };
 		FA9DD9502570485000760106 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FA9DD94F2570485000760106 /* logo.png */; };
+		FAA26C6025B1BE4300EC1C38 /* DiffType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA26C5F25B1BE4300EC1C38 /* DiffType.swift */; };
+		FAA26C6525B332E500EC1C38 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA26C6425B332E500EC1C38 /* UIButtonExtensions.swift */; };
 		FAA43D01256E99410043467D /* VideoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA43D00256E99410043467D /* VideoNode.swift */; };
 		FAA43D09256EF0BB0043467D /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA43D08256EF0BB0043467D /* UIApplicationExtensions.swift */; };
 		FABBD3A5254C336500CE45C5 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBD3A4254C336500CE45C5 /* URLRequestBuilder.swift */; };
@@ -196,6 +198,8 @@
 		FA9346092567020E00BC67E8 /* ChatMessageInputViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageInputViewDelegate.swift; sourceTree = "<group>"; };
 		FA9DD900256F060E00760106 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		FA9DD94F2570485000760106 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		FAA26C5F25B1BE4300EC1C38 /* DiffType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffType.swift; sourceTree = "<group>"; };
+		FAA26C6425B332E500EC1C38 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		FAA43D00256E99410043467D /* VideoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoNode.swift; sourceTree = "<group>"; };
 		FAA43D08256EF0BB0043467D /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
 		FABBD3A4254C336500CE45C5 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 			children = (
 				FA2358582559AD0C00A627E1 /* VolumetricItem.swift */,
 				FA16196F2562F7AB00B825E7 /* MessageActionType.swift */,
+				FAA26C5F25B1BE4300EC1C38 /* DiffType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -402,6 +407,7 @@
 				FA8F828C258A5F16006CFF94 /* RealmResults.swift */,
 				FA3CE2642594CD0300E843F5 /* RealmExtensions.swift */,
 				FAD4F923259CDD380001C172 /* MessageKindExtensions.swift */,
+				FAA26C6425B332E500EC1C38 /* UIButtonExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -880,6 +886,7 @@
 			files = (
 				FA904E9325AA57770028FDFB /* PageDialogService.swift in Sources */,
 				FA73268F25643F5A003BD2B6 /* StringResources.swift in Sources */,
+				FAA26C6025B1BE4300EC1C38 /* DiffType.swift in Sources */,
 				FA235890255ADAFB00A627E1 /* VolumetricObjectSCNNode.swift in Sources */,
 				FA1619602562DECB00B825E7 /* ChatMessageInputView.swift in Sources */,
 				FA5218162555DD0E0012BAEE /* ConferenceViewController.swift in Sources */,
@@ -922,6 +929,7 @@
 				FA904E9825AA57F80028FDFB /* PageDialogServiceProtocol.swift in Sources */,
 				FA381E92256074CC0009B599 /* RotatableSCNNode.swift in Sources */,
 				FACA545A25587A8500ACB158 /* VolumetricModeViewController.swift in Sources */,
+				FAA26C6525B332E500EC1C38 /* UIButtonExtensions.swift in Sources */,
 				FA3CE2602593B56000E843F5 /* PagingResult.swift in Sources */,
 				FABBD3A5254C336500CE45C5 /* URLRequestBuilder.swift in Sources */,
 				FA73268A256434D2003BD2B6 /* ChatService.swift in Sources */,
