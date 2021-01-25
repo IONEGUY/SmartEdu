@@ -13,6 +13,8 @@ struct Message: MessageType {
     var messageId = UUID().uuidString
     var sentDate = Date()
     var kind: MessageKind
+    var avatarHidden = false
+    var isRead = false
     
     static var empty: Message {
         return Message(sender: MessageSender(senderId: .empty),

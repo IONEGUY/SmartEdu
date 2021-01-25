@@ -59,14 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initializeWindow() {
         guard let credantialsService =
                 DIContainerConfigurator.container.resolve(CredantialsServiceProtocol.self) else { return }
-        guard let rootViewController = credantialsService.isUserLoggedIn()
-            ? Router.resolveVC(ChatViewController.self)
-            : Router.resolveVC(LoginViewController.self)
-        else { fatalError("cannot resolve root view controller") }
-
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController =
-            UINavigationController(rootViewController: rootViewController)
-        window?.makeKeyAndVisible()
+        credantialsService.isUserLoggedIn()
+            ? Router.changeRootVC(ChatViewController.self)
+            : Router.changeRootVC(LoginViewController.self)
     }
 }

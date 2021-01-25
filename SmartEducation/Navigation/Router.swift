@@ -58,4 +58,21 @@ class Router {
             }
         }
     }
+    
+    class func changeRootVC<VCType: MVVMViewController>(_ vcType: VCType.Type) {
+        guard let rootViewController = Router.resolveVC(VCType.self)
+        else { fatalError("cannot resolve root view controller") }
+        
+        var window: UIWindow?
+        if (UIApplication.shared.delegate as? AppDelegate)?.window == nil {
+            window = UIWindow(frame: UIScreen.main.bounds)
+            (UIApplication.shared.delegate as? AppDelegate)?.window = window
+        } else {
+            window = (UIApplication.shared.delegate as? AppDelegate)?.window
+        }
+        
+        window?.rootViewController =
+            UINavigationController(rootViewController: rootViewController)
+        window?.makeKeyAndVisible()
+    }
 }

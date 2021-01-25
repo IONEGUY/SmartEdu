@@ -16,24 +16,107 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class ChatService: ChatServiceProtocol {
+    private let messagesCollectionName = "messages1"
+    
     private let repository: RepositoryProtocol
     private let credantialsService: CredantialsServiceProtocol
     private let firestore = Firestore.firestore()
     private var lastDocumentSnapshot: DocumentSnapshot?
-    
+
     private var currentMessageSender: SenderType?
     private let messagesChangedSubject = PublishSubject<(message: Message, diffType: DiffType)>()
-    
+    private let unreadMessagesCountSubject = PublishSubject<Int>()
+    private let messageTypingMembersSubject = PublishSubject<[String]>()
+
     var messagesChanged: Observable<(message: Message, diffType: DiffType)> {
         return messagesChangedSubject.asObservable()
     }
+
+    var unreadMessagesCount: Observable<Int> {
+        return unreadMessagesCountSubject.asObservable()
+    }
     
+    var messageTypingMembers: Observable<[String]> {
+        return messageTypingMembersSubject.asObservable()
+    }
+
     init(repository: RepositoryProtocol,
          credantialsService: CredantialsServiceProtocol) {
         self.repository = repository
         self.credantialsService = credantialsService
     }
+
+    func createListenerForUnreadMessagesCount() {
+        firestore.collection("chats").document("chat")
+            .addSnapshotListener { [weak self] documentSnapshot, error in
+                if let unreadMessagesCount = documentSnapshot?.data()?["unreadMessagesCount"] as? Int {
+                    self?.unreadMessagesCountSubject.onNext(unreadMessagesCount)
+                }
+        }
+    }
+
+    func createListenerForMessages() {
+        firestore.collection(messagesCollectionName)
+            .addSnapshotListener { [weak self] querySnapshot, error in
+                guard let diff = querySnapshot?.documentChanges.last,
+                    let messageDto = try? diff.document.data(as: MessageDto.self) else { return }
+                let message = Message(sender: MessageSender(senderId: messageDto.senderId),
+                                      messageId: diff.document.documentID,
+                                      sentDate: messageDto.sentDate,
+                                      kind: .text(messageDto.text))
+                var diffType: DiffType
+                switch diff.type {
+                case .added: diffType = DiffType.added
+                case .modified: diffType = DiffType.modified
+                case .removed: diffType = DiffType.removed
+                }
+                self?.messagesChangedSubject.onNext((message, diffType))
+        }
+    }
     
+    func createMessageTypingListener() {
+        firestore.collection("chats").document("chat").collection("typingMembers")
+            .addSnapshotListener { [weak self] querySnapshot, error in
+                guard var typingNames = querySnapshot?.documents.map(\.documentID)
+                else { return }
+                let id = self?.getCurretSender()?.senderId ?? .empty
+                typingNames.removeAll { $0 ==  "User \(id)"}
+                self?.messageTypingMembersSubject.onNext(typingNames)
+        }
+    }
+    
+    func startMessageTyping() -> Completable {
+        return Completable.create { [weak self] completable in
+            let senderId = self?.getCurretSender()?.senderId ?? .empty
+            self?.firestore.collection("chats").document("chat").collection("typingMembers")
+                .document("User \(senderId)").setData([String : Any]())
+            return Disposables.create()
+        }
+    }
+    
+    func endMessageTyping() -> Completable {
+        return Completable.create { [weak self] completable in
+            let senderId = self?.getCurretSender()?.senderId ?? .empty
+            self?.firestore.collection("chats").document("chat").collection("typingMembers")
+                .document("User \(senderId)").delete()
+            return Disposables.create()
+        }
+    }
+    
+    func updateUnreadMessagesCount(_ value: Int) -> Completable {
+        return Completable.create { [unowned self] completable in
+            firestore.collection("chats")
+                .document("chat").updateData(["unreadMessagesCount": value]) { error in
+                    if let error = error {
+                        completable(.error(error))
+                    } else {
+                        completable(.completed)
+                    }
+            }
+            return Disposables.create()
+        }
+    }
+
     func getCurretSender() -> SenderType? {
         guard let appUser = credantialsService.getCurrentUser() else {
             fatalError("failed to retrieve current app user")
@@ -42,45 +125,29 @@ class ChatService: ChatServiceProtocol {
         return currentMessageSender
     }
     
-    func createListenerForMessages() {
-        firestore.collection("messages").addSnapshotListener { [unowned self] querySnapshot, error in
-            guard let snapshot = querySnapshot else {
-                if let error = error { messagesChangedSubject.onError(error) }
-                return
-            }
-            
-            guard let diff = snapshot.documentChanges.last,
-                  let messageDto = try? diff.document.data(as: MessageDto.self) else { return }
-            let message = Message(sender: MessageSender(senderId: messageDto.senderId),
-                                  messageId: diff.document.documentID,
-                                  sentDate: messageDto.sentDate,
-                                  kind: .text(messageDto.text))
-            var diffType: DiffType
-            switch diff.type {
-                case .added: diffType = DiffType.added
-                case .modified: diffType = DiffType.modified
-                case .removed: diffType = DiffType.removed
-            }
-            messagesChangedSubject.onNext((message, diffType))
+    func getUnreadMessagesCount() -> Single<Int> {
+        return Single.create { [unowned self] single in
+            firestore.collection("chats").document("chat")
+                .getDocument { (snapshot, error) in
+                    if let unreadMessagesCount = snapshot?.data()?["unreadMessagesCount"] as? Int {
+                        single(.success(unreadMessagesCount))
+                    }
+                }
+            return Disposables.create()
         }
     }
 
     func get(pageIndex: Int, pageSize: Int) -> Single<PagingResult<Message>> {
         return Single.create { [unowned self] single in
-            let collection = self.firestore.collection("messages")
-            var query: Query
+            let collection = self.firestore.collection(messagesCollectionName)
+            var query: Query = collection
+                .order(by: "sentDate", descending: true)
+                .limit(to: pageSize)
 
             if let lastDocumentSnapshot = lastDocumentSnapshot {
-                query = collection
-                    .order(by: "sentDate", descending: true)
-                    .limit(to: pageSize)
-                    .start(afterDocument: lastDocumentSnapshot)
-            } else {
-                query = collection
-                    .order(by: "sentDate", descending: true)
-                    .limit(to: pageSize)
+                query = query.start(afterDocument: lastDocumentSnapshot)
             }
-            
+
             query.getDocuments { (snapshot, error) in
                 if let error = error {
                     single(.failure(error))
@@ -95,17 +162,17 @@ class ChatService: ChatServiceProtocol {
                                                 kind: .text(messageDto.text)))
 
                     }
-                    
+
                     let pagingResult = PagingResult(totalResultsCount: documents.count,
                                                     results: messages.reversed())
                     self.lastDocumentSnapshot = documents.last
                     single(.success(pagingResult))
                 }
             }
-            
+
             return Disposables.create()
         }
-        
+
 //        return repository.get(MessageDto.self).map { (results) in
 //            return results?
 //                .sorted(byKeyPath: "sentDate", ascending: false)
@@ -118,36 +185,36 @@ class ChatService: ChatServiceProtocol {
 //                                results: messages)
 //        }
     }
-    
+
     func remove(_ id: String) -> Single<String> {
-        return Single.create { [weak self] single in
-            self?.firestore.collection("messages")
+        return Single.create { [unowned self] single in
+            firestore.collection(messagesCollectionName)
                 .document(id).delete { error in
                     if let error = error {
                         single(.failure(error))
                     } else {
                         single(.success(id))
                     }
-                }
-            
+            }
+
             return Disposables.create()
         }
         //return repository.delete(item: entity)
     }
-    
+
     func update(_ id: String, newText: String) -> Single<Void> {
         let entity = MessageDto()
         entity.id = id
-        return Single.create { [weak self] single in
-            self?.firestore.collection("messages")
-                .document(id).updateData(["text" : newText]) { error in
+        return Single.create { [unowned self] single in
+            firestore.collection(messagesCollectionName)
+                .document(id).updateData(["text": newText]) { error in
                     if let error = error {
                         single(.failure(error))
                     } else {
                         single(.success(Void()))
                     }
             }
-            
+
             return Disposables.create()
         }
 //        return repository.update(item: entity) { oldMessage in
@@ -157,15 +224,15 @@ class ChatService: ChatServiceProtocol {
 
     func send(messageText: String) -> Single<Message> {
         guard let sender = currentMessageSender else { fatalError() }
-        
+
         let message = Message(sender: sender, kind: .text(messageText))
-        
+
         let messageDto = MessageDto()
         messageDto.text = messageText
         messageDto.senderId = sender.senderId
-        
-        return Single.create { [weak self] single in
-            try? self?.firestore.collection("messages")
+
+        return Single.create { [unowned self] single in
+            try? firestore.collection(messagesCollectionName)
                 .document(message.messageId).setData(from: messageDto) { error in
                     if let error = error {
                         single(.failure(error))
@@ -173,7 +240,7 @@ class ChatService: ChatServiceProtocol {
                         single(.success(message))
                     }
             }
-            
+
             return Disposables.create()
         }
 //        return repository.add(item: messageDto).asObservable().map { (never) in

@@ -32,7 +32,7 @@ class LoginViewModel {
         let text = (loginText.value ?? .empty).trimmingCharacters(in: .whitespaces)
         let success = credantialsService.setCurrentUser(withId: text)
         if success {
-            Router.show(ChatViewController.self)
+            Router.changeRootVC(ChatViewController.self)
         } else {
             dialogService.displayAlert(title: "Error", message: "Login has beed failed")
         }
