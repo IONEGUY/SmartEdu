@@ -30,7 +30,8 @@ class DIContainerConfigurator {
     }
     
     private static func registerServices() {
-        container.autoregister(ChatServiceProtocol.self, initializer: ChatService.init)
+        container.autoregister(ChatServiceProtocol.self, initializer: FirebaseChatService.init)
+        container.autoregister(ChatManagerProtocol.self, initializer: ChatManager.init)
         container.autoregister(RepositoryProtocol.self, initializer: Repository.init)
         container.autoregister(CredantialsServiceProtocol.self, initializer: CredantialsService.init)
         container.autoregister(PageDialogServiceProtocol.self, initializer: PageDialogService.init)

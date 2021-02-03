@@ -9,12 +9,21 @@ import Foundation
 import MessageKit
 
 extension MessageKind {
-    func get() -> Any? {
+    func get<T>() -> T {
+        var value: T?
         switch self {
-        case .text(let value):
-            return value
+        case .text(let val):
+            value = val as? T
+        case .attributedText(let val):
+            value = val as? T
         default:
-            return nil
+            fatalError("unexpected message kind")
         }
+        
+        guard let messageKindValue = value else {
+            fatalError("failed to convert message kind value to generic type")
+        }
+        
+        return messageKindValue
     }
 }

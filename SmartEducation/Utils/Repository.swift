@@ -37,13 +37,37 @@ class Repository: RepositoryProtocol {
         notificationTokens.append(token)
     }
     
-    func get<Entity: BaseEntity>(_ type: Entity.Type) -> Single<Results<Entity>?> {
+    func merge<Entity: BaseEntity>(items: [Entity]) -> Completable {
+        return Completable.create { [weak self] completable in
+            self?.realm.writeAsync( { realm in
+                items.forEach { realm.add($0, update: .modified) }
+            }, { completable(.completed) })
+            
+            return Disposables.create()
+        }
+    }
+    
+    func get<Entity: BaseEntity>(_ type: Entity.Type) -> Single<[Entity]> {
         return Single.create { single in
             DispatchQueue.global().async {
-                let realm = try? Realm()
-                let objects = realm?.objects(Entity.self)
-                sleep(2)
-                single(.success(objects))
+                guard let realm = try? Realm() else { return }
+                let objects = realm.objects(Entity.self)
+                single(.success(Array(objects)))
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func get<Entity: BaseEntity>(_ pageIndex: Int, _ pageSize: Int,
+                                 sortBy: String, asc: Bool = false) -> Single<[Entity]> {
+        return Single.create { single in
+            DispatchQueue.global().async {
+                guard let realm = try? Realm() else { return }
+                let objects = realm.objects(Entity.self)
+                    .sorted(byKeyPath: sortBy, ascending: asc)
+                    .paging(pageIndex: pageIndex, pageSize: pageSize)
+                single(.success(Array(objects)))
             }
             
             return Disposables.create()
@@ -51,9 +75,13 @@ class Repository: RepositoryProtocol {
     }
     
     func add<Entity: BaseEntity>(item: Entity) -> Completable {
+        return add(items: [item])
+    }
+    
+    func add<Entity: BaseEntity>(items: [Entity]) -> Completable {
         return Completable.create { [weak self] completable in
             self?.realm.writeAsync( { realm in
-                realm.add(item)
+                realm.add(items)
             }, { completable(.completed) })
 
             return Disposables.create()
@@ -81,6 +109,17 @@ class Repository: RepositoryProtocol {
                     realm.delete(entityToDelete)
                 }
             }, { single(.success(item.id)) })
+            
+            return Disposables.create()
+        }
+    }
+    
+    func updateAll<Entity: BaseEntity>(_ newItems: [Entity]) -> Completable {
+        return Completable.create { [weak self] completable in
+            self?.realm.writeAsync( { realm in
+                realm.delete(realm.objects(Entity.self))
+                realm.add(newItems)
+            }, { completable(.completed) })
             
             return Disposables.create()
         }

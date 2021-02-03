@@ -7,25 +7,22 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
-import MessageKit
 
 protocol ChatServiceProtocol {
-    var messagesChanged: Observable<(message: Message, diffType: DiffType)> { get }
-    var unreadMessagesCount: Observable<Int> { get }
-    var messageTypingMembers: Observable<[String]> { get }
+    var messagesChangedSubject: PublishSubject<(message: MessageDto, diffType: DiffType)> { get }
+    var unreadMessagesCountSubject: PublishSubject<Int> { get }
+    var messageTypingMembersSubject: PublishSubject<[String]> { get }
     
     func createListenerForUnreadMessagesCount()
     func createListenerForMessages()
-    func createMessageTypingListener()
+    func createMessageTypingListener(for userName: String)
     
-    func startMessageTyping() -> Completable
-    func endMessageTyping() -> Completable
-    func getCurretSender() -> SenderType?
-    func getUnreadMessagesCount() -> Single<Int>
+    func changeMessageTypingStatus(isTyping: Bool, for userName: String) -> Completable
     func updateUnreadMessagesCount(_ value: Int) -> Completable
-    func get(pageIndex: Int, pageSize: Int) -> Single<PagingResult<Message>>
-    func remove(_ id: String) -> Single<String>
-    func update(_ id: String, newText: String) -> Single<Void>
-    func send(messageText: String) -> Single<Message>
+    func recoverMessage(_ id: String) -> Completable
+    
+    func get(_ pageIndex: Int, _ pageSize: Int) -> Single<[MessageDto]>
+    func remove(_ id: String) -> Completable
+    func update(_ messageDto: MessageDto) -> Completable
+    func send(_ messageDto: MessageDto) -> Completable
 }

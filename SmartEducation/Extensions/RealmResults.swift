@@ -9,17 +9,40 @@ import Foundation
 import RealmSwift
 
 extension Results {
-    func paginate(pageIndex: Int, pageSize: Int) -> [ElementType] {
-        var slice = [ElementType]()
-        let lowerBound = (pageIndex - 1) * pageSize
+    func paging(pageIndex: Int, pageSize: Int) -> [Element] {
+        var slice = [Element]()
+        let lowerBound = (pageIndex) * pageSize
         var upperBound = lowerBound + pageSize
         
-        if lowerBound > self.count - 1 {
+        if lowerBound > count - 1 {
             return []
         }
         
-        if upperBound > self.count - 1 {
-            upperBound = self.count
+        if upperBound > count - 1 {
+            upperBound = count
+        }
+        
+        for index in lowerBound ..< upperBound {
+            let item = self[index]
+            slice.append(item)
+        }
+
+        return slice
+    }
+}
+
+extension Array {
+    func paging(pageIndex: Int, pageSize: Int) -> [Element] {
+        var slice = [Element]()
+        let lowerBound = (pageIndex) * pageSize
+        var upperBound = lowerBound + pageSize
+        
+        if lowerBound > count - 1 {
+            return []
+        }
+        
+        if upperBound > count - 1 {
+            upperBound = count
         }
         
         for index in lowerBound ..< upperBound {

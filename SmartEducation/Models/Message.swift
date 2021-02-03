@@ -15,9 +15,11 @@ struct Message: MessageType {
     var kind: MessageKind
     var avatarHidden = false
     var isRead = false
+    var isDeleted = false
     
     static var empty: Message {
-        return Message(sender: MessageSender(senderId: .empty),
+        return Message(sender: MessageSender(senderId: .empty,
+                                             displayName: .empty),
                        kind: .text(.empty))
     }
 }

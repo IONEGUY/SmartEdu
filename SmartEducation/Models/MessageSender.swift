@@ -10,5 +10,5 @@ import MessageKit
 
 struct MessageSender: SenderType {
     public let senderId: String
-    public let displayName: String = .empty
+    public let displayName: String
 }

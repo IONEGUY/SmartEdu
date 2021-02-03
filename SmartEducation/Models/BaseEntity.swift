@@ -10,6 +10,7 @@ import RealmSwift
 
 class BaseEntity: Object {
     @objc dynamic var id = UUID().uuidString
+    @objc dynamic var isDeleted = false
     
     override static func primaryKey() -> String {
         return "id"

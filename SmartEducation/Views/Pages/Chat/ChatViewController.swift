@@ -38,37 +38,13 @@ class ChatViewController: MessagesViewController, MVVMViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let rightBarButtonItem = UIBarButtonItem()
-        rightBarButtonItem.title = "Log out"
-        rightBarButtonItem.onTap { [unowned self] in self.viewModel?.logOut() }
-        navigationItem.rightBarButtonItem = rightBarButtonItem
-        
-        floatingButton.onTap { [unowned self] in
-            messagesCollectionView.scrollToBottom(animated: true)
-            viewModel?.unreadMessagesCount.accept(0)
-        }
-        
-        let navBarBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 80))
-        navBarBackgroundView.backgroundColor = .white
-        
-        view.addSubview(navBarBackgroundView)
-        view.addSubview(floatingButton)
-        messageInputBar.topStackView.addArrangedSubview(typingIndicator)
-        
-        floatingButton.snp.makeConstraints { (make) in
-            make.width.height.equalTo(50)
-            make.bottom.equalToSuperview().inset(70)
-            make.right.equalToSuperview().inset(20)
-        }
-                
-        messagesCollectionView.register(ActivityIndicatorView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: ActivityIndicatorView.typeName)
-        showMessageTimestampOnSwipeLeft = true
+
         createTitle()
-        configueMessagesViewControllerDelegates()
-        removeAvatarFromCell()
+        createRightBarButtonItem()
+        createFloatingButton()
+        createNavBarBackgroundView()
+        configueMessagesViewController()
+        removeAvatarFromIncomingMessageCell()
         configueMessageInputBar()
         initSubscriptions()
     }
@@ -102,8 +78,8 @@ class ChatViewController: MessagesViewController, MVVMViewController {
                                                     at: .bottom,
                                                     animated: false)
                 if viewModel.isLastMessageFromCurrentSender() { return }
-                let veryBottomUnreadMessage = getMessageByPoint()
-                viewModel.correctUnreadMessagesCount.onNext(veryBottomUnreadMessage?.messageId)
+                guard let messageId = getMessageByPoint()?.messageId else { return }
+                viewModel.correctUnreadMessagesCount.onNext(messageId)
             }
             .disposed(by: disposeBag)
         
@@ -111,7 +87,7 @@ class ChatViewController: MessagesViewController, MVVMViewController {
             .observe(on: MainScheduler.instance)
             .subscribe { [unowned self] _ in messagesCollectionView.reloadData() }
             .disposed(by: disposeBag)
-        
+
         viewModel.activityIndicatorIsHidden
             .observe(on: MainScheduler.instance)
             .subscribe { [unowned self] in
@@ -127,19 +103,16 @@ class ChatViewController: MessagesViewController, MVVMViewController {
         
         viewModel.updateMessageCollectionAfterloadMore
             .observe(on: MainScheduler.instance)
-            .subscribe { [unowned self] (offset: Int) in
-                let indexPath = IndexPath(row: offset, section: 0)
-                self.messagesCollectionView.scrollToItem(at: indexPath,
-                                                         at: .centeredVertically,
-                                                         animated: false)
+            .map { IndexPath(row: $0, section: 0) }
+            .subscribe { [unowned self] in
+                messagesCollectionView.scrollToItem(at: $0, at: .top, animated: false)
             }
             .disposed(by: disposeBag)
         
         viewModel.unreadMessagesCount
             .observe(on: MainScheduler.instance)
+            .filter { _ in !viewModel.isLastMessageFromCurrentSender() }
             .subscribe { [unowned self] (value: Int) in
-                if viewModel.isLastMessageFromCurrentSender() { return }
-                
                 if isLastMessageVisible() {
                     guard let lastMessageId = viewModel.messages.value.last?.messageId
                     else { return }
@@ -155,6 +128,44 @@ class ChatViewController: MessagesViewController, MVVMViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        viewModel.isMessageEditingModeEnabled
+            .filter { $0 == false }
+            .subscribe(on: MainScheduler.instance)
+            .map { _ in String.empty }
+            .map(updateMessageInputView)
+            .subscribe()
+            .disposed(by: disposeBag)
+    }
+    
+    private func createNavBarBackgroundView() {
+        let navBarBackgroundView = UIView(frame: CGRect(x: 0, y: 0,
+                                                        width: view.bounds.width,
+                                                        height: 70))
+        navBarBackgroundView.backgroundColor = .white
+        view.addSubview(navBarBackgroundView)
+    }
+    
+    private func createRightBarButtonItem() {
+        let rightBarButtonItem = UIBarButtonItem()
+        rightBarButtonItem.title = "Log out"
+        rightBarButtonItem.onTap { [unowned self] in self.viewModel?.logOut() }
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+    }
+    
+    private func createFloatingButton() {
+        floatingButton.onTap { [unowned self] in
+            messagesCollectionView.scrollToBottom(animated: true)
+            viewModel?.unreadMessagesCount.accept(0)
+        }
+        
+        view.addSubview(floatingButton)
+        
+        floatingButton.snp.makeConstraints { (make) in
+            make.width.height.equalTo(50)
+            make.bottom.equalToSuperview().inset(70)
+            make.right.equalToSuperview().inset(20)
+        }
     }
     
     private func isLastMessageVisible() -> Bool {
@@ -169,7 +180,7 @@ class ChatViewController: MessagesViewController, MVVMViewController {
     
     private func updateMessageInputView(_ messageText: String = .empty) {
         guard let viewModel = viewModel else { return }
-        if viewModel.isEditing {
+        if viewModel.isMessageEditingModeEnabled.value == true {
             let messageInput = messageInputBar.inputTextView
             messageInput.text = messageText
             messageInput.becomeFirstResponder()
@@ -191,7 +202,7 @@ class ChatViewController: MessagesViewController, MVVMViewController {
     }
     
     private func cancleEditing() {
-        viewModel?.isEditing = false
+        viewModel?.isMessageEditingModeEnabled.accept(false)
         updateMessageInputView()
     }
     
@@ -201,7 +212,7 @@ class ChatViewController: MessagesViewController, MVVMViewController {
     
     func collectionView(_ collectionView: UICollectionView,
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
-                        poiznt: CGPoint) -> UIContextMenuConfiguration? {
+                        point: CGPoint) -> UIContextMenuConfiguration? {
         return viewModel?.createContextMenu(for: indexPath.row)
     }
     
@@ -215,7 +226,9 @@ class ChatViewController: MessagesViewController, MVVMViewController {
                 withReuseIdentifier: ActivityIndicatorView.typeName,
                 for: indexPath) as? ActivityIndicatorView
 
-            activityIndicatorView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40)
+            activityIndicatorView?.frame = CGRect(x: 0, y: 0,
+                                                  width: self.view.frame.width,
+                                                  height: 40)
             return activityIndicatorView ?? ActivityIndicatorView()
         default:
             return UICollectionReusableView()
@@ -251,7 +264,8 @@ class ChatViewController: MessagesViewController, MVVMViewController {
     }
     
     func cellBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return isFromCurrentSender(message: message) ? 15 : 0
+        return isFromCurrentSender(message: message) &&
+            !((message as? Message)?.isDeleted ?? false) ? 15 : 0
     }
     
     func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
@@ -269,6 +283,22 @@ class ChatViewController: MessagesViewController, MVVMViewController {
         let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
         return .bubbleTail(corner, .curved)
     }
+    
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return viewModel?.messages.value[indexPath.row].isDeleted ?? false
+            ? .clear
+            : isFromCurrentSender(message: message)
+                ? UIColor(hex: 0x64C466)
+                : UIColor(hex: 0xE5E5EA)
+    }
+    
+    func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return viewModel?.messages.value[indexPath.row].isDeleted ?? false
+            ? .black
+            : isFromCurrentSender(message: message)
+                ? .white
+                : .black
+    }
 }
 
 extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate,
@@ -276,7 +306,7 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate,
     func inputBar(_ inputBar: InputBarAccessoryView,
                   didPressSendButtonWith text: String) {
         inputBar.inputTextView.text = .empty
-        viewModel?.sendButtonPressed.onNext(text)
+        viewModel?.sendButtonPressed.onNext(.text(text))
         viewModel?.endMesageTyping()
     }
 
@@ -315,22 +345,27 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate,
         
         messageInputBar.sendButton.setImage(UIImage(named: "send"), for: .normal)
         messageInputBar.sendButton.setTitle(.empty, for: .normal)
+        messageInputBar.topStackView.addArrangedSubview(typingIndicator)
     }
     
-    private func removeAvatarFromCell() {
+    private func removeAvatarFromIncomingMessageCell() {
         if let layout =
             messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
             layout.setMessageOutgoingAvatarSize(.zero)
         }
     }
     
-    private func configueMessagesViewControllerDelegates() {
-        messagesCollectionView.register(TextMessageCell.self,
-                                        forCellWithReuseIdentifier: TextMessageCell.typeName)
+    private func configueMessagesViewController() {
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
+        
+        messagesCollectionView.register(ActivityIndicatorView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: ActivityIndicatorView.typeName)
+
+        showMessageTimestampOnSwipeLeft = true
     }
 }
 
